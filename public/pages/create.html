@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form >
+        <label for="id">id: </label>
+        <input type="text" id="id" name="id" placeholder="enter id"><br><br>
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" placeholder="enter name"><br><br>
+        <label for="size">size: </label>
+        <input type="number" id="size" name="size" placeholder="enter size"><br><br>
+        <label for="price">price: </label>
+        <input type="number" id="price" name="price" placeholder="enter price"><br><br>
+        <label for="quantity">quantity: </label>
+        <input type="number" id="quantity" name="quantity" placeholder="enter quantity"><br><br>
+        <button type="button" id="add" onclick="Add()">Add</button>
+        <button type="button" id="submit" onclick="Submit()">Submit</button>
+    </form>
+
+    <script>
+        var list = [];
+
+        function Add(){
+            let id = document.getElementById('id').value;
+            let name = document.getElementById('name').value;
+            let size = document.getElementById('size').value;
+            let price = document.getElementById('price').value;
+            let quantity = document.getElementById('quantity').value;
+            console.log(id)
+            newObj = {'id':id,'name': name,'size': size, 'price':price,'quantity': quantity};
+            console.log(newObj);
+            list.push(newObj);
+            console.log(list);
+        }
+
+        function Submit(){
+            console.table(list);
+            fetch('/create', {
+                method: 'post',
+                headers: {
+                    "Content-Type": "application/json",                 
+                },
+                body: JSON.stringify(list)
+            })
+            .then(res => res.json())
+            .then(data =>{
+
+            })
+            .catch
+            {
+                console.log(Error)
+            }
+            
+        }
+    </script>
+</body>
+</html>
