@@ -1,0 +1,8 @@
+# Bỏ qua thư mục node_modules
+node_modules/
+
+# # Bỏ qua các tệp tạm thời
+# .tmp
+
+# # Bỏ qua các tệp log
+# *.log
