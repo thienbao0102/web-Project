@@ -1,12 +1,23 @@
 const express = require('express')
 const bodyParser = require('body-parser');
-const controllerDetail = require('./controllers/controllers')
+const controllers = require('./controllers/controllers')
+const controllerDetails = require('./controllers/controllerDetails')
 
 const app = express()
 const port = 3000
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+
+//khai bao dung public cho folder public
+app.use(express.static('public/images'))
+
+//ket noi database
+controllerDetails.connecToDatabase();
+
+process.on('SIGINT', ()=>{
+    controllerDetails.closeConnectToDatabase()
+})
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
