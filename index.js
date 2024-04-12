@@ -6,8 +6,7 @@ const controllerDetails = require('./controllers/controllerDetails')
 const app = express()
 const port = 3000
 
-app.use(express.static('public/images'));
-app.use(express.static('public/pages/stylesheets'));
+app.use(express.static('public'));
 //app.use(express.static('public/pages/scipts'));
 //app.use(express.static('public/images/svg'));
 
