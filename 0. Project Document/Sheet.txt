@@ -1,0 +1,26 @@
+https://docs.google.com/spreadsheets/d/1WLHnjYAeULZjV7meqt9y55H103WEa4plqYmPv7B1z64/edit?usp=sharing
+
+Chó Linh
+
+Function:
+
+-Client:
+
+//dang ky
+    validation {
+        Check thông tin(email, username > 8 < 15 (Ko " "), password >= 8, gender)
+        checkExistUserName(username) //da ton tai / chua ton tai
+        
+    }
+    register {
+        fetch(method: post)
+    }
+
+//
+    
+
+-Server: #return {data:, message:, status:} 
+
+    status: #
+
+    checkExistUserName(username) => return {data, message, status}
