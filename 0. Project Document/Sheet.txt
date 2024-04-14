@@ -8,19 +8,107 @@ Function:
 
 //dang ky
     validation {
-        Check thông tin(email, username > 8 < 15 (Ko " "), password >= 8, gender)
-        checkExistUserName(username) //da ton tai / chua ton tai
-        
+        Check thông tin(email, Fullname != null, password >= 8, gender)
+        checkExistUserEmail(email) //da ton tai / chua ton tai
     }
     register {
         fetch(method: post)
     }
 
-//
+//dang nhap
+    validation{
+        checkNotNull()
+        checkPasswordLength(password)
+        checkInvalidEmail(email)
+    }
+    login(
+        fetch(method: get)
+    )
+    loginByGG()
+
+//search admin
+    search(){
+        fetch(method : get)
+    }
+
+//add products admin
+    createShoes(){
+        fetch(method : post) /. thanh cong / that bai
+    }
+
+//search Client
+    debounce(){
+        search(){
+            fetch(method : get)
+        }
+    }
+
+//update admin
+    updateShoes(shoes, updateField){
+        fetch(method : delete) 
+    }
+
+//delete admin
+    deleteShoes(shoes){
+        fetch(method : delete) 
+    }
+
+//Gio hang
+    idenUser()
+    userCart(id){
+        Nếu có id sản phẩm => {search(){
+        fetch(method : get)
+    }}
+    }
+
     
 
 -Server: #return {data:, message:, status:} 
 
     status: #
 
-    checkExistUserName(username) => return {data, message, status}
+    checkExistUserEmail(email) => return {data, message, status}
+
+    hashPassword(password)
+
+    checkLogin(email, password) => return {data, message, status}
+
+    searchShoes(query)//detail
+
+    searchUser(query)
+
+    createSearchQuery(query)//controllers
+
+    createID() => return id
+
+    createShoes()
+
+    addProductToCart(userID, shoes)
+    {
+        searchCart(userId)
+    }
+
+    searchCart(userId)//detail
+
+    createCart(userId)
+    
+
+API: 
+/api/chucnang
+
+Linh:
+    products
+
+Hoài:
+    dashboard - admin
+    home
+    cart
+
+Bao:
+    Search - admin
+
+dealine Fe t3 16/04/2024
+
+
+màu:
+https://colorhunt.co/palette/22283131363f76abaeeeeeee
