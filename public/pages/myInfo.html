@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/myInfo.css">
     <title>Home</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
         <div class="item">
             <div class="route">
                 <ul>
-                    <a href="/"><li id="here"><ion-icon name="home-outline"></ion-icon> <p>Home</p> </li></a>
+                    <a href="/"><li ><ion-icon name="home-outline"></ion-icon> <p>Home</p> </li></a>
                     <a href=""><li><ion-icon name="grid-outline"></ion-icon> <p>Products</p> </li></a>
                     <a href=""><li><ion-icon name="newspaper-outline"></ion-icon> <p>What New?</p> </li></a>
                     <a href=""><li><ion-icon name="help-circle-outline"></ion-icon> <p>About Us</p> </li></a>
@@ -26,7 +26,7 @@
             <div class="account">
                 <h4>ACCOUNT</h4>
                 <ul>
-                    <a href="/myinfo"><li><ion-icon name="person-outline"></ion-icon> <p>My Info</p> </li></a>
+                    <a href="/myinfo"><li id="here"><ion-icon name="person-outline"></ion-icon> <p>My Info</p> </li></a>
                     <a href=""><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
                     <a href=""><li><ion-icon name="settings-outline"></ion-icon> <p>Setting</p> </li></a>
                 </ul>
@@ -42,11 +42,11 @@
     </nav>
     <section>
         <header>
-            <div class="welcome-box">
+            <!-- <div class="welcome-box">
                 <h1>Welcome to Stride Sync.</h1>
                 <h4>Hello Mach Hoai, welcome back!</h4>
-            </div>
-            <div class="search-box" id="fixedBox">
+            </div> -->
+            <!-- <div class="search-box" id="fixedBox">
                 <span class="fixed-search">
                     <input type="text" id="searchInput" placeholder="Search at here...">
                     <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
@@ -57,32 +57,50 @@
                 <span class="user-avt">
                     <img id="user-avatar" src="../avt.png" alt="">
                 </span>
-            </div>
+            </div> -->
         </header>
         <div class="container">
-            
+            <div class="user">
+                <div class="block-avt"></div>
+                <span class="line"></span>
+                <div class="option-change">
+                    <p class="options" style="color: black;">My Profile</p>
+                    <p class="options">Change Password</p>
+                    <a href="" class="options">My Orders</a>
+                </div>
+            </div>
+            <span class="line-part"></span>
+            <div class="part-info">
+                <div class="user-maininfo">
+                    <h1>Account Information</h1>
+                    <input type="text" id="fullname"><br>
+                    <input type="text" id="email" disabled><br>
+                    <input type="text" id="phonenumber" ><br>
+                    <label for="">Gender</label><br>
+                    <input type="radio" id="male" name="gender">
+                    <label for="male">Male</label>
+                    <input type="radio" id="famale" name="gender">
+                    <label for="famale">Famale</label><br>
+                    <button>Cancel</button>
+                    <button style="background-color: red; color: white;">submit</button>
+                </div>
+                <div class="change-pass">
+                    <h1>Change Password</h1>
+                    <form action="">
+                        <label for="new-pass">New Password</label><br>
+                        <input type="password" id="newPass" placeholder="Enter new password"><br>
+                        <label for="re-new-pass">Re-enter New Password</label><br>
+                        <input type="password" id="reEnterNewPass" placeholder="e-enter New Password"><br>
+                        <button style="background-color: greenyellow;">Change</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
     <footer>
 
     </footer>
-    <script>
-        fixedBox = document.getElementById("fixedBox");
-        document.addEventListener("DOMContentLoaded", () =>{
-            var lastScrollTop = 0;
-            window.addEventListener("scroll", function (){
-                var st = window.pageYOffset || document.documentElement.scrollTop;
-                if (st > lastScrollTop || st == 0) {
-                    fixedBox.style.top = 0 + "px"
-                    console.log(lastScrollTop);
-                } else if (st < lastScrollTop) {
-                    fixedBox.style.top = lastScrollTop + "px"
-                    console.log(lastScrollTop);
-                }
-                lastScrollTop = st <= 0 ? 0 : st;
-            });
-        })
-    </script>
+    <script src="../javascript/myInfo.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

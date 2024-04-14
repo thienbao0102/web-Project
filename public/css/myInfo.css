@@ -1,0 +1,437 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    background-color: rgba(228, 227, 227, 0.87);
+}
+
+/*-----------navigation-----------*/
+
+.navigation{
+    height: 100%;
+    width: 65px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    background-color: #EEEEEE;
+    font-family: "Sono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:"MONO" 1;
+    transition: 0.5s;
+    z-index:100000;
+}
+
+.navigation:hover{
+    width: 240px;
+}
+
+.navigation :where(p, h4, #helpCenter){
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.navigation:hover{
+    width: 240px;
+}
+
+.navigation:hover.navigation :where(p, h4, #helpCenter){
+    visibility:visible;
+    opacity: 1;
+}
+
+.navigation .logo{
+    display: flex;
+    align-items: center;
+    height: 84px;
+    width: 100%;
+}
+
+.navigation .logo img{
+    width: 100%;
+    object-fit: fill;
+}
+
+.navigation .item
+{
+    width: 100%;
+    min-width: 200px;
+}
+
+.navigation .item :where(.route, .account)
+{
+    margin: 2rem 0;
+}
+
+.navigation .item a{
+    text-decoration: none;
+}
+
+.navigation .item ul li{
+    list-style-type: none;
+    color: #222831bd;
+    height: 46px;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    font-size: 1.2rem;
+    font-family: "Sono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:"MONO" 1;
+}
+
+.navigation .item ul li p {
+    position: relative;
+}
+
+.item :where(.route, .account) ion-icon {
+    font-size: 25px;
+    height: 100%;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.account h4 {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.navigation .item ul li#here::before{
+    content: "";
+    background-color: #222831;
+    position: absolute;
+    height: 100%;
+    width: 5px;
+    border-radius: 0 5px 5px 0;
+    left: 0;
+}
+
+.navigation .item ul li:hover{
+    color: #222831;
+}
+
+.navigation .item ul li#here {
+    color: #222831;
+}
+
+.help-center{
+    visibility: hidden;
+    background-color: #76ABAE;
+    width: 216px;
+    margin-top: 2rem;
+    margin-inline: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    color: #222831;
+}
+
+.help-center span {
+    height: 60px;
+    width: 60px;
+    background-color: #EEEEEE;
+    position: absolute;
+    top: -26px;
+    border-radius: 50px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    box-shadow: 0px 21px 12px -5px rgba(0,0,0,0.1);
+}
+
+.help-center span ion-icon {
+    font-size: 25px;
+    margin: auto;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    background-color: #76ABAE;
+    color: #222831;
+}
+
+.help-center h3{
+    margin-top: 30px;
+}
+
+.help-center p{
+    text-wrap: balance ;
+    font-size: 15px;
+    text-align: center;
+    width: 120%;
+    z-index: 10;
+}
+
+.btn-help{
+    height: 40px;
+    z-index: 10;
+    background-color: #EEEEEE;
+    margin-top: 30px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    font-family: "Sono", monospace;
+    font-style: normal;
+    text-wrap: nowrap;
+    text-align: center;
+    box-shadow: 0px 21px 12px -5px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.btn-help:hover {
+    box-shadow: none;
+    transition: 0.3s;
+}
+
+
+.help-center #glass {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.help-center #glass::before,
+.help-center #glass::after {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    background-color: #eeeeeea6;
+}
+
+.help-center #glass::before {
+    height: 100px;
+    width: 100px;
+    top: -40px; 
+    left: -60px; 
+}
+
+.help-center #glass::after {
+    bottom: -70px;
+    right: -70px;
+    height: 150px;
+    width: 150px;
+}
+
+/*-----------Section-----------*/
+
+section{
+    height: 100vh;
+    margin-left: 65px;
+    padding: 10px 20px;
+}
+
+/* header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+} */
+
+/* .welcome-box h1{
+    font-size: 25px;
+}
+
+.welcome-box h4{
+    font-weight: 400;
+    margin-top: 5px;
+} */
+
+/* .search-box{
+    position: absolute;
+    left: 50%;
+}
+
+.search-box span {
+    display: flex;
+    height: 40px;
+    width: 380px;
+    padding: 10px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #EEEEEE;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+}
+
+.search-box span input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 85%;
+    height: 100%;
+    font-size: 15px;
+} */
+
+/* .search-box span button{
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+} */
+
+/* .user-box{
+    height: 50px;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+/* .user-box  :where(.user-avt, .notification){
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    overflow: hidden;
+} */
+
+/* .user-box #user-avatar{
+    height: 100%;
+    width: 100%;
+} */
+
+/* ----------my information----------- */
+
+.container{
+    position: relative;
+    box-shadow: 0px 0px 36px 18px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    height: 85%;
+    margin: 3%;
+    overflow: hidden;
+    display: flex;
+    div{
+        flex-grow: 1;
+    }
+}
+
+.container .user{
+    position: relative;
+    width: 30%;
+    top: 15%;
+}
+
+.container .user .block-avt{
+    position: relative;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    margin-bottom:10px ;
+}
+.container .user .line
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1px;
+    width: 200px;
+    background-color: black;
+}
+
+.container .user .option-change{
+    width: 200px;
+    margin-top: 30px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+}
+.container .user .option-change :where(p,a){
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(110, 110, 110);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.container .line-part{
+    height: 100%;
+    width: 0.5px;
+    background-color: black;
+}
+
+.container .part-info{
+    width: 70%;
+    height: 100%;
+    position: relative;
+    top: 15%;
+    font-size: 18px;
+}
+
+.container .part-info .user-maininfo{
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container .part-info .user-maininfo :where(#fullname,#email,#phonenumber){
+    width: 100%;
+    margin: 10px 0px; 
+    line-height: 25px;
+}
+
+.container .part-info .user-maininfo :where(#male,#famale)
+{
+    cursor: pointer;
+}
+
+.container .part-info button{
+    height: 35px;
+    width: 80px;
+    font-weight: 600;
+    margin-top:20px ;
+}
+
+.container .part-info .change-pass{
+    display: none;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container .part-info .change-pass :where(input){
+    width: 100%;
+    margin: 10px 0px; 
+    line-height: 25px;
+}

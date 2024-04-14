@@ -28,6 +28,9 @@ app.get('/', async (req, res) =>{
     res.sendFile(__dirname + '/public/pages/index.html');
 })
 
+    //page my info
+app.get('/myinfo', (req,res)=> res.sendFile(__dirname + '/public/pages/myInfo.html'))
+
 /*------------API------------*/
 
 
