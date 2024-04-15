@@ -63,33 +63,66 @@
         <div class="container">
             <div class="login">
                 <form >
-                    <label for="email">Email</label><br>
-                    <input type="email" placeholder="Enter your email" required id="email"><br>
-                    <label for="password">Password</label><br>
-                    <input type="password" placeholder="Enter your password" required id="password"><br>
-                    <button>Login</button>
+                    <label for="email" >
+                        Email
+                        <p class="email"></p>
+                    </label><br>
+                    <input type="email" placeholder="Enter your email"  id="email"><br>
+                    <label for="password" >
+                        Password
+                        <p class="password"></p>
+                    </label><br>                   
+                    <div class="bounary_pasword">
+                        <input type="password" placeholder="Enter your password"  id="password">
+                        <i class="fa-solid fa-eye" style="color: #000000;" onclick="showPassword('password',0)"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000;" onclick="showPassword('password',0)"></i>
+                    </div><br>
+                    <p class="forgotPassword">Forgot Password?</p>
+                    <button type="button" onclick="validationLogin()">Login</button>
                 </form>
             </div>
             <div class="register">
                 <form >
-                    <label for="full_name">Full Name</label><br>
-                    <input type="text" id="fullName" placeholder="Enter your name" required><br>
-                    <label for="email">Email</label><br>
-                    <input type="email" id="email" placeholder="Enter your email" required><br>
-                    <label for="">Gender</label><br>
-                    <input type="radio" id="male" name="gender">
+                    <label for="full_name" >
+                        Full Name
+                        <p class="fullName"></p>
+                    </label><br>
+                    <input type="text" id="fullName" placeholder="Enter your name" ><br>
+
+                    <label for="email"  >
+                        Email
+                        <p class="registerEmail"></p>
+                    </label><br>
+                    <input type="email" id="registerEmail" placeholder="Enter your email" ><br>
+
+                    <label for="" class="gender">Gender</label><br>
+                    <input type="radio" id="male" name="gender" checked>
                     <span>Male</span>
                     <input type="radio" id="famale" name="gender">
                     <span>famale</span><br><br>
-                    <label for="phone_number">Phone Number</label><br>
-                    <input type="text" id="phoneNumber" placeholder="Enter your phone number" required><br>
-                    <label for="Password">Password</label><br>
-                    <input type="password" id="registerPassword" placeholder="Enter your password" required><br>
-                    <button>Register</button>
+
+                    <label for="phone_number" >
+                        Phone Number
+                        <p class="phoneNumber"></p>
+                    </label><br>
+                    <input type="text" id="phoneNumber" placeholder="Enter your phone number" ><br>
+
+                    <label for="Password" >
+                        Password
+                        <p class="registerPassword"></p>
+                    </label><br>
+                    <div class="bounary_pasword">
+                        <input type="password" id="registerPassword" placeholder="Enter your password" >
+                        <i class="fa-solid fa-eye" style="color: #000000;" onclick="showPassword('registerPassword',1)"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000;" onclick="showPassword('registerPassword',1)"></i>
+                    </div><br>
+                    
+                    <button type="button" onclick="validationRegister()">Sign In</button>
                 </form>
             </div>
             <div id="change">
-                <p id="textContent">Register</p>
+                <p id="textContent">Hello, Friend</p><br>
+                <p id="textMore" style="font-size: 20px; color: rgb(174, 173, 173);">Click arrow to Register</p>
                 <span id="next" onclick="changeStatus(1)"><i class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i></span>
                 <span id="pre" onclick="changeStatus(-1)"><i class="fa-solid fa-arrow-left-long" style="color: #ffffff;"></i></span>
             </div>

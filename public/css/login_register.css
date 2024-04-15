@@ -335,6 +335,7 @@ header {
     }
 }
 
+/* ------login and register---- */
 .container .login {
     border-radius: 20px 0 0 20px;
     border-top: 4px solid red;
@@ -357,29 +358,72 @@ header {
 
 .container form input:not(#male, #famale) {
     width: 100%;
-    margin: 10px 0px;
+    margin: 15px 0px;
     line-height: 25px;
+    padding: 0px 5px;
 }
 
 .container form label {
     font-size: 18px;
     font-weight: 600;
+    position: relative;
+}
+.container form .forgotPassword
+{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    cursor: pointer;
 }
 
 .container form button{
+    
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     height: 40px;
     width: 120px;
     border-radius: 10px;
     font-size: 18px;
     font-weight: 600;
     margin-top: 20px;
-    background-color: aqua;
+    background-color: black;
+    color: white;
+}
+.container form label:not(.gender) p{
+    color: red;
+    font-size: 13px;
+    position: absolute;
+    font-weight: 400;
+    bottom: -15px;
+    display: none;
+    width: fit-content;
+    left: 0px;
+    right: -230px;
+    
 }
 
+/*-------tao show or hide password-------- */
+.container form .bounary_pasword{
+    position: relative;
+}
+
+.container form .bounary_pasword .fa-solid{
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.container form .bounary_pasword .fa-eye{
+    display: none;
+}
+/*-----chuyen đôi qua lại giữa login và register------  */
 .container #change {
     background-image: url('../images/system/background_login_register.jpg');
     background-position: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50%;
@@ -389,9 +433,9 @@ header {
     height: 100%;
     transition: left 1s ease;
     p{
-        font-size: 30px;
+        font-size: 40px;
         font-weight: 600;
-        color: white;
+        color: rgb(255, 255, 255);       
     }
 }
 
