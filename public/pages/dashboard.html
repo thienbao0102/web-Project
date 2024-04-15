@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
+    <!-- Chart library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <link href='./pages/assets/css/fullcalendar.css' rel='stylesheet' />
+    <link href='./pages/assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" integrity="sha256-C6CB9UYIS9UJeqinPHWTHVqh/E1uhG5Twh+Y5qFQmYg=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src='./pages/assets/js/fullcalendar.js' type="text/javascript"></script>
+
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class="navigation">
+        <div class="logo">
+            <a href=""><img src="../system/newlogo.png" alt="Stride Sync"></a>
+        </div>
+        <div class="item">
+            <div class="route">
+                <ul>
+                    <a href=""><li id="here"><ion-icon name="speedometer-outline"></ion-icon> <p>Dashboard</p> </li></a>
+                    <a href=""><li><ion-icon name="grid-outline"></ion-icon> <p>Management</p> </li></a>
+                    <a href=""><li><ion-icon name="pie-chart-outline"></ion-icon> <p>Statistical</li></a>
+                    <a href=""><li><ion-icon name="help-circle-outline"></ion-icon> <p>About Us</p> </li></a>
+                </ul>
+            </div>
+            <div class="account">
+                <h4>ACCOUNT</h4>
+                <ul>
+                    <a href=""><li><ion-icon name="person-outline"></ion-icon> <p>My Info</p> </li></a>
+                    <a href=""><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
+                    <a href=""><li><ion-icon name="settings-outline"></ion-icon> <p>Setting</p> </li></a>
+                </ul>
+            </div>
+            <div id="helpCenter" class="help-center">
+                <span><ion-icon name="mail-outline"></ion-icon></span>
+                <h3>Contact Us</h3>
+                <p>Having trouble in StrideSync. Please contact us for more questions.</p>
+                <button class="btn-help">Go to contact</button>
+                <span id="glass"></span>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <header>
+            <div class="welcome-box">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="search-box" id="fixedBox">
+                <span class="fixed-search">
+                    <input type="text" id="searchInput" placeholder="Search at here...">
+                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
+                </span>
+            </div>
+            <div class="user-box">
+                <span class="notification"><ion-icon name="bag-outline"></ion-icon></span>
+                <span class="user-avt">
+                    <img id="user-avatar" src="../avt.png" alt="">
+                </span>
+            </div>
+        </header>
+        <div class="container">
+            <div class="chart item-box" onclick="click()">
+                <span>
+                    <h2>STATISTICAL TABLE</h2>
+                    <select id="selectTime" >
+                        <option value="1">Week</option>
+                        <option value="2">Month</option>
+                        <option value="3">Year</option>
+                    </select>                  
+                </span>
+                <canvas id="chartjs-line"></canvas>
+            </div>
+            <div class="function item-box">
+                <span class="item" id="item1"></span>
+                <span class="item" id="item2"></span>
+                <span class="item" id="item3"></span>
+                <span class="item" id="item4">
+                    
+                </span>
+            </div>
+            <div class="long-div item-box"></div>
+            <div class="item-box"></div>
+            <div id='wrap'>
+                <div id='calendar'></div>
+                <div style='clear:both'></div>
+            </div>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        function click() {
+            alert("clicked");
+        }
+        fixedBox = document.getElementById("fixedBox");
+        document.addEventListener("DOMContentLoaded", () =>{
+            var lastScrollTop = 0;
+            window.addEventListener("scroll", function (){
+                var st = window.pageYOffset || document.documentElement.scrollTop;
+                if (st > lastScrollTop || st == 0) {
+                    fixedBox.style.top = 0 + "px"
+                    console.log(lastScrollTop);
+                } else if (st < lastScrollTop) {
+                    fixedBox.style.top = lastScrollTop + "px"
+                    console.log(lastScrollTop);
+                }
+                lastScrollTop = st <= 0 ? 0 : st;
+            });
+        })
+    </script>
+    <!-- Chart script -->
+    <script>
+        // Chart
+        new Chart(document.getElementById("chartjs-line"), {
+        type: "line",
+        data: {
+            labels: ["Monday", "Tuesday", "Wednesday", "Thusday", "Friday", "Saturday", "Sunday"],
+            datasets: [{
+            label: 'revenue',
+            fill: true,
+            backgroundColor: "transparent",
+            borderColor: "#222831",
+            data: [1000, 1562, 1584, 1892, 1487, 2223, 2966]
+            }, //{
+            // label: "Orders",
+            // fill: true,
+            // backgroundColor: "transparent",
+            // borderColor: "#adb5bd",
+            // borderDash: [4, 4],
+            // data: [958, 724, 629, 883, 915, 1214, 1476, 1212, 1554, 2128, 1466, 1827]
+            // }
+            ]
+        },
+        options: {
+            scales: {
+            xAxes: [{
+                reverse: true,
+                gridLines: {
+                color: "rgba(0,0,0,0.05)"
+                }
+            }],
+            yAxes: [{
+                borderDash: [5, 5],
+                gridLines: {
+                color: "rgba(0,0,0,0)",
+                fontColor: "#fff"
+                }
+            }]
+            }
+        }
+        });
+    </script>
+    <script src="https://unpkg.com/@adminkit/core@latest/dist/js/app.js"></script>
+    <!-- Calender script -->
+    <script>
+
+        $(document).ready(function() {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+    
+            /*  className colors
+    
+            className: default(transparent), important(red), chill(pink), success(green), info(blue)
+    
+            */
+    
+    
+            /* initialize the external events
+            -----------------------------------------------------------------*/
+    
+            $('#external-events div.external-event').each(function() {
+    
+                // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                // it doesn't need to have a start or end
+                var eventObject = {
+                    title: $.trim($(this).text()) // use the element's text as the event title
+                };
+    
+                // store the Event Object in the DOM element so we can get to it later
+                $(this).data('eventObject', eventObject);
+    
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true,      // will cause the event to go back to its
+                    revertDuration: 0  //  original position after the drag
+                });
+    
+            });
+    
+    
+            /* initialize the calendar
+            -----------------------------------------------------------------*/
+    
+            var calendar =  $('#calendar').fullCalendar({
+                header: {
+                    left: 'title',
+                    center: 'agendaDay,agendaWeek,month',
+                    right: 'prev,next today'
+                },
+                editable: true,
+                firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+                selectable: true,
+                defaultView: 'month',
+    
+                axisFormat: 'h:mm',
+                columnFormat: {
+                    month: 'ddd',    // Mon
+                    week: 'ddd d', // Mon 7
+                    day: 'dddd M/d',  // Monday 9/7
+                    agendaDay: 'dddd d'
+                },
+                titleFormat: {
+                    month: 'MMMM yyyy', // September 2009
+                    week: "MMMM yyyy", // September 2009
+                    day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+                },
+                allDaySlot: false,
+                selectHelper: true,
+                select: function(start, end, allDay) {
+                    var title = prompt('Event Title:');
+                    if (title) {
+                        calendar.fullCalendar('renderEvent',
+                            {
+                                title: title,
+                                start: start,
+                                end: end,
+                                allDay: allDay
+                            },
+                            true // make the event "stick"
+                        );
+                    }
+                    calendar.fullCalendar('unselect');
+                },
+                droppable: true, // this allows things to be dropped onto the calendar !!!
+                drop: function(date, allDay) { // this function is called when something is dropped
+    
+                    // retrieve the dropped element's stored Event Object
+                    var originalEventObject = $(this).data('eventObject');
+    
+                    // we need to copy it, so that multiple events don't have a reference to the same object
+                    var copiedEventObject = $.extend({}, originalEventObject);
+    
+                    // assign it the date that was reported
+                    copiedEventObject.start = date;
+                    copiedEventObject.allDay = allDay;
+    
+                    // render the event on the calendar
+                    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+    
+                    // is the "remove after drop" checkbox checked?
+                    if ($('#drop-remove').is(':checked')) {
+                        // if so, remove the element from the "Draggable Events" list
+                        $(this).remove();
+                    }
+    
+                },
+    
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: new Date(y, m, 1)
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: new Date(y, m, d-3, 16, 0),
+                        allDay: false,
+                        className: 'info'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: new Date(y, m, d+4, 16, 0),
+                        allDay: false,
+                        className: 'info'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: new Date(y, m, d, 10, 30),
+                        allDay: false,
+                        className: 'important'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: new Date(y, m, d, 12, 0),
+                        end: new Date(y, m, d, 14, 0),
+                        allDay: false,
+                        className: 'important'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: new Date(y, m, d+1, 19, 0),
+                        end: new Date(y, m, d+1, 22, 30),
+                        allDay: false,
+                    },
+                    {
+                        title: 'Click for Google',
+                        start: new Date(y, m, 28),
+                        end: new Date(y, m, 29),
+                        url: 'http://google.com/',
+                        className: 'success'
+                    }
+                ],
+            });
+    
+    
+        });
+    
+    </script>
+    <!-- Jquery CDN -->
+    
+    <!-- Ion-icon CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

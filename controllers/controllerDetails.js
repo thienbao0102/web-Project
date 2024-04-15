@@ -21,14 +21,18 @@ async function connecToDatabase()
 //close connect database
 async function closeConnectToDatabase()
 {
-    try {
-        if(client)
-        {
-            await client.close();
-            console.log("Closed Database!");
-        }
-    } catch (error) {
-        console.log("err: " + error)
+    if(client) {
+        await client.close()
+            .then (() => {
+                console.log ('Mongo Database closed.');
+                process.exit(0);
+            })
+            .catch (error => {
+                console.error('Fail to close MongoDB connection error: ', error);
+                process.exit(1);
+            });
+    }else {
+        process.exit(0);
     }
 }
 
