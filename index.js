@@ -26,12 +26,13 @@ app.get('/', async (req, res) =>{
 
 //dashboard page
 app.get('/dashboard', async (req, res) =>{
-    res.sendFile(__dirname + '/public/pages/index.html');
+    res.sendFile(__dirname + '/public/pages/dashboard.html');
 })
 
     //page my info
 app.get('/myinfo', (req,res)=> res.sendFile(__dirname + '/public/pages/myInfo.html'))
 
+    //products page
 app.get('/products', (req,res)=> {
     res.sendFile(__dirname + '/public/pages/products.html');
 })
@@ -42,6 +43,12 @@ app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages
 /*------------API------------*/
 
 
+
+
+app.get(`*`,(req,res)=>
+{
+    res.sendFile(__dirname + '/public/pages/404-page.html');
+})
 
 process.on('SIGINT', ()=>{
     controllerDetails.closeConnectToDatabase()
