@@ -37,4 +37,4 @@ app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages
 /*------------API------------*/
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Stride sync is running on http://localhost:${port}`))
