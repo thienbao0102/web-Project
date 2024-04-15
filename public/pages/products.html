@@ -10,6 +10,7 @@
     <title>Home</title>
 </head>
 <body>
+    <a href="#" id="btnScrollToTop"><button><img src="../system/srcolltotop.svg" alt=""></button></a>
     <nav class="navigation">
         <div class="logo">
             <a href=""><img src="../system/newlogo.png" alt="Stride Sync"></a>
@@ -18,7 +19,7 @@
             <div class="route">
                 <ul>
                     <a href="/"><li><ion-icon name="home-outline"></ion-icon> <p>Home</p> </li></a>
-                    <a href=""><li id="here"><ion-icon name="grid-outline"></ion-icon> <p>Products</p> </li></a>
+                    <a href="#"><li id="here"><ion-icon name="grid-outline"></ion-icon> <p>Products</p> </li></a>
                     <a href=""><li><ion-icon name="newspaper-outline"></ion-icon> <p>What New?</p> </li></a>
                     <a href=""><li><ion-icon name="help-circle-outline"></ion-icon> <p>About Us</p> </li></a>
                 </ul>
@@ -46,12 +47,7 @@
                 <h1>Welcome to Stride Sync.</h1>
                 <h4>Hello Mach Hoai, welcome back!</h4>
             </div>
-            <div class="search-box" id="fixedBox">
-                <span class="fixed-search">
-                    <input type="text" id="searchInput" placeholder="Search at here...">
-                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
-                </span>
-            </div>
+            
             <div class="user-box">
                 <span class="notification"><ion-icon name="bag-outline"></ion-icon></span>
                 <span class="user-avt">
@@ -60,10 +56,46 @@
             </div>
         </header>
         <div class="container">
-            <div class="filter">
-
+            <div class="left">
+                <div class="filter">
+                    <h2>Filter</h2>
+                    <input type="text" id="searchInput" placeholder="Search at here...">
+                    <div class="category">
+                        <p style="margin-top: 1rem;">Category:</p>
+                        <span>
+                            <label class="toggle-btn">
+                                <input type="checkbox" id="shoesType" value="type1">
+                                <div class="content">Type1</div>
+                            </label>
+                            <label class="toggle-btn">
+                                <input type="checkbox" id="shoesType" value="type2">
+                                <div class="content">Type2</div>
+                            </label>
+                            <label class="toggle-btn">
+                                <input type="checkbox" id="shoesType" value="type3">
+                                <div class="content">Type3</div>
+                            </label>
+                        </span>
+                    </div>
+                    
+                    <div id="priceRange" class="form-group">
+                        <span>
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" class="search-input" name="price">
+                        </span>
+                        <span>
+                            <input type="checkbox" id="checkbox" style="margin-right: 1rem;">
+                            <label for="checkbox">Price range</label>
+                        </span>
+                        <div id="priceRangeInput">
+                            <input type="number" id="minPrice" placeholder="Min">
+                            <p style="padding: 0.7rem 5px 5px 5px;">-</p>
+                            <input type="number" id="maxPrice" placeholder="Max">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="products">
+            <div class="right">
 
             </div>
         </div>
@@ -72,20 +104,51 @@
 
     </footer>
     <script>
-        fixedBox = document.getElementById("fixedBox");
-        document.addEventListener("DOMContentLoaded", () =>{
-            var lastScrollTop = 0;
-            window.addEventListener("scroll", function (){
-                var st = window.pageYOffset || document.documentElement.scrollTop;
-                if (st > lastScrollTop || st == 0) {
-                    fixedBox.style.top = 0 + "px"
-                    console.log(lastScrollTop);
-                } else if (st < lastScrollTop) {
-                    fixedBox.style.top = lastScrollTop + "px"
-                    console.log(lastScrollTop);
+        const checkBox = document.getElementById('checkbox');
+        const maxPrice = document.getElementById('maxPrice');
+        const minPrice = document.getElementById('minPrice');
+
+        maxPrice.style.backgroundColor = "#12121212";
+        minPrice.style.backgroundColor = "#12121212";
+        maxPrice.disabled = true;
+        minPrice.disabled = true;
+
+        /* Xử lí ô check box của price range*/
+        checkBox.addEventListener("change", function() {
+            // Nếu checkbox được check
+            if (checkbox.checked) {
+                // Disable ô input price
+                price.value = '';
+                price.disabled = true;
+                price.style.backgroundColor = "#12121212";
+                maxPrice.style.backgroundColor = "#EEEEEE";
+                minPrice.style.backgroundColor = "#EEEEEE";
+                maxPrice.disabled = false;
+                minPrice.disabled = false;
+            } else {
+                // Enable ô input price
+                price.disabled = false;
+                price.style.backgroundColor = "#EEEEEE";
+                maxPrice.style.backgroundColor = "#12121212";
+                minPrice.style.backgroundColor = "#12121212";
+                minPrice.value = '';
+                maxPrice.value = '';
+            }
+        })
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const btnScrollToTop = document.getElementById('btnScrollToTop');
+            window.addEventListener("scroll", () => {
+                console.log(window.scrollY)
+                if(window.scrollY > 0){
+                    btnScrollToTop.style.visibility = "visible";
+                    btnScrollToTop.style.opacity = 1;
+                }else{
+                    btnScrollToTop.style.visibility = "hidden";
+                    btnScrollToTop.style.opacity = 0;
                 }
-                lastScrollTop = st <= 0 ? 0 : st;
-            });
+            })
         })
     </script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
