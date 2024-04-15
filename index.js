@@ -19,17 +19,22 @@ app.use(express.static('public/images'))
 //ket noi database
 controllerDetails.connecToDatabase();
 
-process.on('SIGINT', ()=>{
-    controllerDetails.closeConnectToDatabase()
-})
-
 /*------------Route------------*/
 app.get('/', async (req, res) =>{
     res.sendFile(__dirname + '/public/pages/index.html');
 })
 
+//dashboard page
+app.get('/dashboard', async (req, res) =>{
+    res.sendFile(__dirname + '/public/pages/index.html');
+})
+
     //page my info
 app.get('/myinfo', (req,res)=> res.sendFile(__dirname + '/public/pages/myInfo.html'))
+
+app.get('/products', (req,res)=> {
+    res.sendFile(__dirname + '/public/pages/products.html');
+})
 
     //page login and register
 app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages/login_register.html'))
@@ -37,4 +42,8 @@ app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages
 /*------------API------------*/
 
 
+
+process.on('SIGINT', ()=>{
+    controllerDetails.closeConnectToDatabase()
+})
 app.listen(port, () => console.log(`Stride sync is running on http://localhost:${port}`))
