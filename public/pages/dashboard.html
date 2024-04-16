@@ -56,12 +56,6 @@
             <div class="welcome-box">
                 <h1>Dashboard</h1>
             </div>
-            <div class="search-box" id="fixedBox">
-                <span class="fixed-search">
-                    <input type="text" id="searchInput" placeholder="Search at here...">
-                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
-                </span>
-            </div>
             <div class="user-box">
                 <span class="notification"><ion-icon name="bag-outline"></ion-icon></span>
                 <span class="user-avt">
@@ -112,24 +106,6 @@
 
     </footer>
     <script>
-        function click() {
-            alert("clicked");
-        }
-        fixedBox = document.getElementById("fixedBox");
-        document.addEventListener("DOMContentLoaded", () =>{
-            var lastScrollTop = 0;
-            window.addEventListener("scroll", function (){
-                var st = window.pageYOffset || document.documentElement.scrollTop;
-                if (st > lastScrollTop || st == 0) {
-                    fixedBox.style.top = 0 + "px"
-                    console.log(lastScrollTop);
-                } else if (st < lastScrollTop) {
-                    fixedBox.style.top = lastScrollTop + "px"
-                    console.log(lastScrollTop);
-                }
-                lastScrollTop = st <= 0 ? 0 : st;
-            });
-        })
     </script>
     <!-- Chart script -->
     <script>
@@ -386,6 +362,9 @@
             temp.innerHTML = Math.round(weatherData.main.temp) + "&#8451" || default_value;
             feelTemp.innerHTML ="Skin feel "+ Math.round(weatherData.main.feels_like) + "&#8451"|| default_value;
             weatherDesc.innerHTML = weatherData.weather[0].main + '<i class="symbol"> | </i>' + weatherData.weather[0].description;
+            if(Math.round(weatherData.main.feels_like) >= 35){
+                feelTemp.style.backgroundColor = "#7EA1FF";
+            }
         }
     </script>
     <!-- Ion-icon CDN -->
