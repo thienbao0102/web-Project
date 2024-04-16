@@ -392,19 +392,27 @@ header {
     display: grid;
     background-color: transparent;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     gap: 1rem;
 }
 
 #item1, #item2, #item3 {
     grid-column: 1;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#item3{
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    background-color: #cdd8f0;
 }
 
 #item4 {
     grid-column: 2;
     grid-row-start: 1;
     grid-row-end: 4;
-    display: flex;
-    align-items: stretch;
 }
 
 .function .item {
@@ -429,6 +437,64 @@ header {
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.295);
 }
 
+#weatherWidget{
+    max-height: 150px;
+    height: 90%;
+    width: 90%;
+    padding: 0 15px;
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 0.5fr;
+    grid-template-columns: 1fr 2fr ;
+    align-self: center;
+}
+
+.city-name{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#weatherIcon{
+    grid-row-start: 2;
+    grid-row-end: 4;
+    width: 100%;
+    align-self: center;
+}
+
+#weatherWidget span{
+    grid-row-start: 2
+}
+
+#weatherWidget span{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#weatherWidget span span{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#weatherWidget span .symbol {
+    color: rgb(216, 85, 85);
+    font-weight: 700;
+}
+
+#weatherWidget span span h3{
+    font-size: 40px;
+    font-weight: 500;
+}
+
+#weatherWidget span span .feel-temp{
+    height: 2rem;
+    padding: 5px 10px;
+    background-color: rgb(216, 85, 85);
+    text-align: center;
+    color: #EEEEEE;
+    border-radius: 10rem;
+}
 
 
 
