@@ -95,14 +95,14 @@
                 </div>
                 <div class="more-search">
                     <label for="price">Price you want search</label><br>
-                    <input type="number" name="price" id="minPrice" placeholder="from">
-                    <input type="number" name="price" id="maxPrice" placeholder="to"><br>
+                    <input type="number" name="price" id="minPrice" min="0" placeholder="from">
+                    <input type="number" name="price" id="maxPrice" min="0" placeholder="to"><br>
 
                     <label for="size">Size you want search</label><br>
-                    <input type="number" name="size" id="size" placeholder="Enter size"><br>
+                    <input type="number" name="size" id="size" min="0" placeholder="Enter size"><br>
 
                     <label for="quantity">Quantity Price you want search</label><br>
-                    <input type="number" name="quantity" id="quantity" placeholder="Enter quantity "><br>
+                    <input type="number" name="quantity" id="quantity" min="0" placeholder="Enter quantity "><br>
                 </div>
                 <div class="ativated-point">
                     <div class="animation">
@@ -116,13 +116,12 @@
                 <h1>Update</h1>
                 <form>
                     <label for="name">Name Product</label><br>
-                    <input type="text" name="name" id="name" placeholder="Enter name you want update"><br>
+                    <input type="text" name="name" id="nameUpdate" placeholder="Enter name you want update"><br>
                     <label for="price">Price</label><br>
-                    <input type="number" name="price" id="price" placeholder="Enter price you want update"><br>
+                    <input type="number" name="price" id="priceUpdate" min="0" placeholder="Enter price you want update"><br>
                     <label for="size-and-quantity">Size and Quantity</label><br>
-                    <input type="number" name="size" id="size" placeholder="size">
-                    <input type="number" name="quantity" id="quantity" placeholder="Enter quantity for size"
-                        disabled><br>
+                    <input type="number" name="size" id="sizeUpdate" min="0" placeholder="size">
+                    <input type="number" name="quantity" id="quantityUpdate" min="0" placeholder="Enter quantity for size" disabled><br>
                     <label for="uploadImage">Upload Image</label><br>
                     <input type="file" name="uploadFile" id="uploadFile"><br>
                 </form>
@@ -130,12 +129,38 @@
                     <button>Update</button>
                 </div>
             </div>
-            <div class="containerProduct">
-                <div class="product">
-                    <button id="delete">delete</button>
-                    <button id="showFormUpdate" onclick="showFormUpdate()">Update</button>
-                </div>
-            </div>
+        </div>
+        <div class="containerProduct">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Size-Quantity</th>
+                            <th>Image Product</th>
+                            <th>Func</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Áo thun nam</td>
+                            <td>150.000đ</td>
+                            <td>
+                                <p>35-60</p>
+                                <p>46-80</p>
+                            </td>
+                            <td><img src="" alt=""></td>
+                            <td>
+                                <button id="delete" style="background: red;">Delete</button>
+                                <button id="showFormUpdate" style="background: yellow;" onclick="showFormUpdate()">Update</button>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+        </div>
     </section>
     <footer>
 

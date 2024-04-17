@@ -485,7 +485,7 @@ header {
     transform: translateX(-50%);
 }
 
-.container .update input:not(#size,#quantity){
+.container .update input:not(#sizeUpdate,#quantityUpdate){
     height: 30px;
     width: 100%;
     padding: 0px 10px;
@@ -493,7 +493,7 @@ header {
     border-radius: 15px;
 }
 
-.container .update #size{
+.container .update #sizeUpdate{
     width: 15%;
     height: 30px;
     padding: 0px 10px;
@@ -501,7 +501,7 @@ header {
     border-radius: 15px;
 }
 
-.container .update #quantity{
+.container .update #quantityUpdate{
     width: 84%;
     height: 30px;
     padding: 0px 10px;
@@ -528,7 +528,7 @@ header {
     font-size: 15px;
     font-weight: 600;
     border-radius: 10px;
-    background-color:#00FF00;
+    background-color: yellow;
     border: none;
     cursor: pointer;
 }
@@ -551,7 +551,55 @@ header {
 }
 
     /* css cho phan san pham sau tim */
-/* .container .containerProduct{
+.containerProduct{
     width: 100%;
     height: fit-content;
-} */
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.containerProduct table{
+    width: 90%;
+    text-align: center;
+    font-size: 18px;
+}
+
+.containerProduct table thead{
+    position: sticky;
+}
+
+.containerProduct table tr{
+    position: relative;
+}
+
+.containerProduct table tr::after{
+    position: absolute;
+    content: '';
+    bottom: 0px;
+    height: 1px;
+    width: 100%;
+    background-color: black;
+    left: 0px;
+}
+
+.containerProduct table tr td{
+    position: relative;
+}
+
+.containerProduct table tr td img{
+    height: 100px;
+    width: 120px;
+    margin: 5px 0px;
+    background-color: #00FF00;
+}
+
+.containerProduct table tr td button{
+    height: 40px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 800;
+    cursor: pointer;
+}
