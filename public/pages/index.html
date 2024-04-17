@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="../css/index.css">
     <title>Home</title>
 </head>
+<style>
+.cart-outline::before{
+    content: "10";
+    top: -10px;
+    right: -10px;
+    position: absolute;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    padding: 5px;
+    color: #EEEEEE;
+    background-color: #222831;
+}
+</style>
 <body>
     <nav class="navigation">
         <div class="logo">
@@ -27,7 +40,7 @@
                 <h4>ACCOUNT</h4>
                 <ul>
                     <a href="/myinfo"><li><ion-icon name="person-outline"></ion-icon> <p>My Info</p> </li></a>
-                    <a href=""><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
+                    <a href="/cart"><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
                     <a href=""><li><ion-icon name="settings-outline"></ion-icon> <p>Setting</p> </li></a>
                 </ul>
             </div>
@@ -53,7 +66,7 @@
                 </span>
             </div>
             <div class="user-box">
-                <span class="notification"><ion-icon name="bag-outline"></ion-icon></span>
+                <a style="color: #222831;" href="/cart"><span class="cart cart-outline"><ion-icon name="bag-outline"></ion-icon></span></a>
                 <span class="user-avt">
                     <img id="user-avatar" src="../avt.png" alt="">
                 </span>

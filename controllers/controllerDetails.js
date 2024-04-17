@@ -3,18 +3,19 @@ const urlConnect = 'mongodb://localhost:27017'
 const nameDB = 'MyDatabase';
 const nameCollection = 'shoes';
 let client;
-let shoes;
+let db;
 
 //connect to Database
 async function connecToDatabase()
 {
     try {
         client = await MongoClient.connect(urlConnect);
-        shoes = client.db(nameDB).collection(nameCollection);
+        db = client.db(nameDB).collection(nameCollection);
         console.log("Connect success!");        
     } catch (error) {
         console.log("connect failed!");
         console.error("error: " + error);
+        throw error;
     }
 }
 
@@ -36,7 +37,18 @@ async function closeConnectToDatabase()
     }
 }
 
+async function getAllShoes() {
+    try
+    {
+        const documents = await db.find().toArray();
+        return documents;
+    } catch(err) {
+        console.error("Error while pulling shoes. Error: ", err);
+        throw err;
+    }
+}
+
 
 module.exports ={
-    connecToDatabase, closeConnectToDatabase
+    connecToDatabase, closeConnectToDatabase, getAllShoes
 }

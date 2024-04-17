@@ -35,6 +35,7 @@
     }
 
     .product-image {
+        max-height: 268px;
         width: 100%;
         border-radius: 8px;
     }
@@ -46,12 +47,22 @@
     .product-title {
         font-size: 20px;
         margin-bottom: 8px;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* Số dòng tối đa bạn muốn hiển thị */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .product-description {
+        display: -webkit-box;
         font-size: 16px;
         color: #666;
         margin-bottom: 8px;
+        -webkit-line-clamp: 2; /* Số dòng tối đa bạn muốn hiển thị */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .product-price {
@@ -247,7 +258,7 @@
                     </div>
                 </div>
             </div>
-            <div class="right">
+            <div class="right" id="products">
                 <div class="product-card popular-product">
                     <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
                     <div class="product-info">
@@ -272,90 +283,6 @@
                         <button class="add-to-cart">Buy now</button>
                     </div>
                 </div>
-                <div class="product-card">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <h2 class="product-title">Product Name</h2>
-                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
-                            <p id="newPrice">$50.99</p>
-                        </span>
-                        <button class="add-to-cart">Buy now</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <h2 class="product-title">Product Name</h2>
-                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
-                            <p id="newPrice">$50.99</p>
-                        </span>
-                        <button class="add-to-cart">Buy now</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <h2 class="product-title">Product Name</h2>
-                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
-                            <p id="newPrice">$50.99</p>
-                        </span>
-                        <button class="add-to-cart">Buy now</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <h2 class="product-title">Product Name</h2>
-                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
-                            <p id="newPrice">$50.99</p>
-                        </span>
-                        <button class="add-to-cart">Buy now</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <h2 class="product-title">Product Name</h2>
-                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
-                            <p id="newPrice">$50.99</p>
-                        </span>
-                        <button class="add-to-cart">Buy now</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <h2 class="product-title">Product Name</h2>
-                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
-                            <p id="newPrice">$50.99</p>
-                        </span>
-                        <button class="add-to-cart">Buy now</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <h2 class="product-title">Product Name</h2>
-                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
-                            <p id="newPrice">$50.99</p>
-                        </span>
-                        <button class="add-to-cart">Buy now</button>
-                    </div>
-                </div>
                 
             </div>
         </div>
@@ -363,6 +290,52 @@
     <footer>
 
     </footer>
+    <!-- script tuong tac server -->
+    <script>
+        document.addEventListener("DOMContentLoaded",() =>{
+            getProducts()
+        })
+
+
+        async function getProducts(){
+            await fetch(`/api/getAllProducts`, {
+                method: 'get',
+            }) 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                renderProducts(data.products);
+            })
+        }
+
+        function renderProducts(products) {
+            let Html = ' ';
+            console.table(products)
+            if(products !== null){
+                products.forEach(product => {
+                Html += `<div class="product-card">`;
+                Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                Html += `<div class="product-info">`;
+                Html += `<h2 class="product-title">${product.name}</h2>`;
+                Html += `<p class="product-description">${product.description}</p>`;
+                Html += `<span id="productPrice">`;
+                Html += `<p class="product-price" id="currentPrice">$${product.price}</p>`;
+                Html += `<p id="newPrice"></p>`;
+                Html += `</span>`;
+                Html += `<button class="add-to-cart" data-id = "${product._id}">Buy now</button>`;
+                Html += `</div>`;
+                Html += `</div>`;
+            });
+            }
+            // Chèn vào phần tử có id là "container"
+            var container = document.getElementById('products');
+            container.innerHTML += Html;
+        }
+    </script>
     <script>//script xử lí price range
         const checkBox = document.getElementById('checkbox');
         const maxPrice = document.getElementById('maxPrice');
@@ -400,7 +373,6 @@
         document.addEventListener("DOMContentLoaded", ()=>{
             const btnScrollToTop = document.getElementById('btnScrollToTop');
             window.addEventListener("scroll", () => {
-                console.log(window.scrollY)
                 if(window.scrollY > 0){
                     btnScrollToTop.style.visibility = "visible";
                     btnScrollToTop.style.opacity = 1;
