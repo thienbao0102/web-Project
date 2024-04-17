@@ -76,18 +76,40 @@
                 <canvas id="chartjs-line"></canvas>
             </div>
             <div class="function item-box">
-                <div class="item" id="item1"></div>
-                <div class="item" id="item2"></div>
+                <div class="item" id="item1">
+                    <span class="icon"><ion-icon name="bag-check"></ion-icon></span>
+                    <span class="text">
+                        <p id="todayOders">300</p>
+                        <p>Todays orders</p>
+                    </span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </div>
+                <div class="item" id="item2">
+                    <span class="icon"><ion-icon name="cube"></ion-icon></span>
+                    <span class="text">
+                        <p id="totalProducts">3,000</p>
+                        <p>Total products</p>
+                    </span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </div>
+                <div class="item" id="item5">
+                    <span class="icon"><ion-icon name="cash"></ion-icon></span>
+                    <span class="text">
+                        <p id="todayRevenue">$5,000</p>
+                        <p>Today revenue</p>
+                    </span>
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </div>
                 <div class="item" id="item3">
                     <div id="weatherWidget">
-                        <p class="city-name" id="cityName">Ho Chi Minh</p>
+                        <p class="city-name" id="cityName">----</p>
                         <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Weather icon" id="weatherIcon" class="icon">
                         <span>
                             <span>
-                                <h3 class="temp" id="temp">36 &#8451</h3>
-                                <p class="feel-temp" id="feelTemp">Skin feel 42 &#8451</p>
+                                <h3 class="temp" id="temp">--</h3>
+                                <p class="feel-temp" id="feelTemp">Skin feel --</p>
                             </span>
-                                <p class="weather-discription" id="weatherDesc">Clouds<i class="symbol"> | </i>Scattered clouds</p>
+                                <p class="weather-discription" id="weatherDesc">--<i class="symbol"> | </i>--</p>
                         </span>
                     </div>
                 </div>
@@ -362,8 +384,11 @@
             temp.innerHTML = Math.round(weatherData.main.temp) + "&#8451" || default_value;
             feelTemp.innerHTML ="Skin feel "+ Math.round(weatherData.main.feels_like) + "&#8451"|| default_value;
             weatherDesc.innerHTML = weatherData.weather[0].main + '<i class="symbol"> | </i>' + weatherData.weather[0].description;
-            if(Math.round(weatherData.main.feels_like) >= 35){
+            if(Math.round(weatherData.main.feels_like) <= 35){
                 feelTemp.style.backgroundColor = "#7EA1FF";
+            }
+            else{
+                feelTemp.style.backgroundColor = "rgb(216, 85, 85);";
             }
         }
     </script>

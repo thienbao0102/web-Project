@@ -1,392 +1,596 @@
 [
     {
         "_id": "SHOE0001",
+        "name": "Nike React Infinity Run Flyknit",
         "sizes": {
-            "size1": 35,
-            "size2": 36,
-            "size3": 37
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Classic Sneakers with a modern twist, perfect for everyday wear.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(1).png"
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-665455a5-45de-40fb-945f-c1852b82400d/react-infinity-run-flyknit-mens-running-shoe-zX42Nc.jpg"
     },
     {
         "_id": "SHOE0002",
+        "name": "Nike React Miler",
         "sizes": {
-            "size1": 38,
-            "size2": 39,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Comfortable and stylish lifestyle shoes for casual outings.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(2).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-5cc7de3b-2afc-49c2-a1e4-0508997d09e6/react-miler-mens-running-shoe-DgF6nr.jpg"
     },
     {
         "_id": "SHOE0003",
+        "name": "Nike Air Zoom Pegasus 37",
         "sizes": {
-            "size1": 41,
-            "size2": 42,
-            "size3": 43
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "High-performance sports shoes designed for active individuals.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(3).png"
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-33b0a0a5-c171-46cc-ad20-04a768703e47/air-zoom-pegasus-37-womens-running-shoe-Jl0bDf.jpg"
     },
     {
         "_id": "SHOE0004",
+        "name": "Nike Joyride Run Flyknit",
         "sizes": {
-            "size1": 44,
-            "size2": 45,
-            "size3": 46
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Elegant Western-style shoes suitable for formal occasions.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(4).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/99a7d3cb-e40c-4474-91c2-0f2e6d231fd2/joyride-run-flyknit-womens-running-shoe-HcfnJd.jpg"
     },
     {
         "_id": "SHOE0005",
+        "name": "Nike Mercurial Vapor 13 Elite FG",
         "sizes": {
-            "size1": 47,
-            "size2": 48,
-            "size3": 49
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Trendy lifestyle shoes with a unique design for fashion-forward individuals.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(5).png"
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg"
     },
     {
         "_id": "SHOE0006",
+        "name": "Nike Phantom Vision Elite Dynamic Fit FG",
         "sizes": {
-            "size1": 35,
-            "size2": 37,
-            "size3": 39
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Durable sports shoes built to endure rigorous activities.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(6).png"
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/s1amp7uosrn0nqpsxeue/phantom-vision-elite-dynamic-fit-fg-firm-ground-soccer-cleat-19Kv1V.jpg"
     },
     {
         "_id": "SHOE0007",
+        "name": "Nike Phantom Venom Academy FG",
         "sizes": {
-            "size1": 40,
-            "size2": 42,
-            "size3": 44
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Classic Western-style boots for a timeless look.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(7).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/whegph8z9ornhxklc8rp/phantom-venom-academy-fg-firm-ground-soccer-cleat-6JVNll.jpg"
     },
     {
         "_id": "SHOE0008",
+        "name": "Nike Mercurial Vapor 13 Elite Tech Craft FG",
         "sizes": {
-            "size1": 36,
-            "size2": 38,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Versatile lifestyle shoes suitable for various occasions.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(8).png"
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/vhbwnkor8sxt8qtecgia/mercurial-vapor-13-elite-tech-craft-fg-firm-ground-soccer-cleat-l38JPj.jpg"
     },
     {
         "_id": "SHOE0009",
+        "name": "Nike Mercurial Superfly 7 Pro MDS FG",
         "sizes": {
-            "size1": 41,
-            "size2": 43,
-            "size3": 45
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Lightweight and breathable sports shoes for maximum comfort.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(9).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-a52a8aec-22dc-4982-961b-75c5f4c72805/mercurial-superfly-7-pro-mds-fg-firm-ground-soccer-cleat-mhcpdN.jpg"
     },
     {
         "_id": "SHOE0010",
+        "name": "Nike Air Force 1",
         "sizes": {
-            "size1": 38,
-            "size2": 39,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Stylish Western-inspired shoes for a modern look.",
         "sale": false,
-        "status": "In Stock",
+        "isPopular": false,
         "image": "image(10).png"
     },
     {
         "_id": "SHOE0011",
+        "name": "Nike Air Max 90",
         "sizes": {
-            "size1": 35,
-            "size2": 36,
-            "size3": 37
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Breathable running shoes designed for long-distance training.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(11).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/178b2a46-3ee4-492b-882e-f71efdd53a36/air-force-1-big-kids-shoe-2zqp8D.jpg"
     },
     {
         "_id": "SHOE0012",
+        "name": "Nike Air Max 90 LTR",
         "sizes": {
-            "size1": 38,
-            "size2": 39,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Trail running shoes with enhanced grip for outdoor adventures.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(12).png"
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/8439f823-86cf-4086-81d2-4f9ff9a66866/air-max-90-big-kids-shoe-1wzwJM.jpg"
     },
     {
         "_id": "SHOE0013",
+        "name": "Nike Joyride Dual Run",
         "sizes": {
-            "size1": 41,
-            "size2": 42,
-            "size3": 43
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Cross-training shoes suitable for various workout routines.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(13).png"
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/33888130-0320-41a1-ba53-a026decd8aa2/joyride-dual-run-big-kids-running-shoe-1HDJF8.jpg"
     },
     {
         "_id": "SHOE0014",
+        "name": "Nike Renew Run",
         "sizes": {
-            "size1": 44,
-            "size2": 45,
-            "size3": 46
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "High-performance basketball shoes designed for quick cuts and jumps.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(14).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-73e54c0b-11a6-478b-9f90-bd97fcde872d/renew-run-big-kids-running-shoe-5Bpz93.jpg"
     },
     {
         "_id": "SHOE0015",
+        "name": "Beck",
         "sizes": {
-            "size1": 47,
-            "size2": 48,
-            "size3": 49
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Sturdy hiking shoes with ankle support for rugged terrain.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(15).png"
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/Beck-Black_800x800.jpg"
     },
     {
         "_id": "SHOE0016",
+        "name": "Bridgport Advice",
         "sizes": {
-            "size1": 35,
-            "size2": 37,
-            "size3": 39
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Flexible tennis shoes suitable for quick movements on the court.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(16).png"
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/BRIDGPORT_ADVICE-BLACK_1_800x800.jpg?v=1576567903"
     },
     {
         "_id": "SHOE0017",
+        "name": "Fester",
         "sizes": {
-            "size1": 40,
-            "size2": 42,
-            "size3": 44
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Comfortable soccer cleats designed for agility and control.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(17).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/fester-Tan_800x800.jpg?v=1575537531"
     },
     {
         "_id": "SHOE0018",
+        "name": "Pixel",
         "sizes": {
-            "size1": 36,
-            "size2": 38,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Lightweight cycling shoes with a stiff sole for efficient power transfer.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(18).png"
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/PIXEL-TAN_800x800.jpg?v=1577420506"
     },
     {
         "_id": "SHOE0019",
+        "name": "Austin",
         "sizes": {
-            "size1": 41,
-            "size2": 43,
-            "size3": 45
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Waterproof trail running shoes for wet and muddy conditions.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(19).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/Austin-Coffee_800x800.jpg?v=1574772988"
     },
     {
         "_id": "SHOE0020",
+        "name": "SS-HL-0135",
         "sizes": {
-            "size1": 38,
-            "size2": 39,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Skateboarding shoes with durable construction for skatepark sessions.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(20).png"
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/009240000-11-SS-HL-0135-Black_800x800.jpg?v=1572264270"
     },
     {
         "_id": "SHOE0021",
+        "name": "SS-HL-0136",
         "sizes": {
-            "size1": 35,
-            "size2": 36,
-            "size3": 37
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Versatile running shoes suitable for road and treadmill workouts.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(21).png"
+        "sale": 25,
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/009250000-779-SS-HL-0136-Coffee_800x800.jpg?v=1571900372"
     },
     {
         "_id": "SHOE0022",
+        "name": "SS-HL-0128",
         "sizes": {
-            "size1": 38,
-            "size2": 39,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Formal",
         "description": "Breathable golf shoes with excellent traction for stability on the course.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(22).png"
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/000300242-484-SS-HL-0128-Blue_800x800.jpg?v=1583235174"
     },
     {
         "_id": "SHOE0023",
+        "name": "SS-MS-0075",
         "sizes": {
-            "size1": 41,
-            "size2": 42,
-            "size3": 43
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Sleek running shoes with responsive cushioning for a smooth ride.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(23).png"
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/009170000-479-SS-MS-0075-Red_800x800.jpg?v=1570688687"
     },
     {
         "_id": "SHOE0024",
+        "name": "SS-PM-0093",
         "sizes": {
-            "size1": 44,
-            "size2": 45,
-            "size3": 46
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Stable weightlifting shoes with a secure fit for heavy lifting.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(24).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/SS-PM-0093_1_800x800.jpg?v=1570601253"
     },
     {
         "_id": "SHOE0025",
+        "name": "Nizza X Disney",
         "sizes": {
-            "size1": 47,
-            "size2": 48,
-            "size3": 49
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Casual",
         "description": "Agile trail running shoes designed for technical terrain.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(25).png"
+        "isPopular": false,
+        "imageURL": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/ef901c7aeac042578eceab9d0159196c_9366/Nizza_x_Disney_Sport_Goofy_Shoes_White_FW0651_01_standard.jpg"
     },
     {
         "_id": "SHOE0026",
+        "name": "X_PLR",
         "sizes": {
-            "size1": 35,
-            "size2": 37,
-            "size3": 39
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Casual",
         "description": "All-round fitness shoes suitable for gym workouts and classes.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(26).png"
+        "isPopular": false,
+        "imageURL": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/a36518227134495da766ab9d01772fa2_9366/X_PLR_Shoes_Red_FY9063_01_standard.jpg"
     },
     {
         "_id": "SHOE0027",
+        "name": "Stan Smith",
         "sizes": {
-            "size1": 40,
-            "size2": 42,
-            "size3": 44
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Casual",
         "description": "Soccer shoes with a synthetic upper for precise ball control.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(27).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/d0720712d81e42b1b30fa80800826447_9366/Stan_Smith_Shoes_White_M20607_M20607_01_standard.jpg"
     },
     {
         "_id": "SHOE0028",
+        "name": "NMD_R1",
         "sizes": {
-            "size1": 36,
-            "size2": 38,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Casual",
         "description": "Running shoes with a supportive midsole for overpronation control.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(28).png"
+        "isPopular": false,
+        "imageURL": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/99ca762cb9054caf82fbabc500fd146e_9366/NMD_R1_Shoes_Blue_FY9392_01_standard.jpg"
     },
     {
         "_id": "SHOE0029",
+        "name": "NMD_R1 Flash Red",
         "sizes": {
-            "size1": 41,
-            "size2": 43,
-            "size3": 45
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Sport",
         "description": "Tennis shoes with durable outsoles for traction on hard courts.",
-        "sale": true,
-        "status": "In Stock",
-        "image": "image(29).png"
+        "sale": 20,
+        "isPopular": false,
+        "imageURL": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/90f85768e3894aeaab67aba0014a3379_9366/NMD_R1_Shoes_Red_FY9389_01_standard.jpg"
     },
     {
         "_id": "SHOE0030",
+        "name": "Superstar",
         "sizes": {
-            "size1": 38,
-            "size2": 39,
-            "size3": 40
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
         },
-        "type": "Sport",
+        "category": "Casual",
         "description": "Training shoes with flexible uppers for natural movement during workouts.",
         "sale": false,
-        "status": "In Stock",
-        "image": "image(30).png"
+        "isPopular": false,
+        "imageURL": "https://assets.adidas.com/images/h_320,f_auto,q_auto:sensitive,fl_lossy/90f85768e3894aeaab67aba0014a3379_9366/NMD_R1_Shoes_Red_FY9389_01_standard.jpg"
+    },
+    {
+        "_id": "SHOE0031",
+        "name": "Club C Revenge Mens",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Casual",
+        "description": "Training shoes with flexible uppers for natural movement during workouts.",
+        "sale": false,
+        "isPopular": false,
+        "imageURL": "https://assets.reebok.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/7599294868804d78a1b1ab6f01718a5e_9366/Club_C_Revenge_Men's_Shoes_White_FV9877_01_standard.jpg"
+    },
+    {
+        "_id": "SHOE0032",
+        "name": "SK80-Low",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Casual",
+        "description": "Training shoes with flexible uppers for natural movement during workouts.",
+        "sale": false,
+        "isPopular": false,
+        "imageURL": "https://images.vans.com/is/image/Vans/UUK24I-HERO?$583x583$"
+    },
+    {
+        "_id": "SHOE0033",
+        "name": "Michael Feburary SK8-Hi",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Casual",
+        "description": "Training shoes with flexible uppers for natural movement during workouts.",
+        "sale": 15,
+        "isPopular": false,
+        "imageURL": "https://images.vans.com/is/image/Vans/MV122M-HERO?$583x583$"
     }
 ]

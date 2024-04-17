@@ -1,83 +1,8 @@
 [
     {
-      "admin id": "ADMIN001",
+      "_id": "ADMIN001",
       "username": "admin_john",
-      "password": "password123",
-      "date created": "2024-04-15",
-      "buyer name": "John Doe",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN002",
-      "username": "admin_jane",
-      "password": "securepass456",
-      "date created": "2024-04-14",
-      "buyer name": "Jane Smith",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN003",
-      "username": "admin_michael",
-      "password": "adminpass789",
-      "date created": "2024-04-13",
-      "buyer name": "Michael Johnson",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN004",
-      "username": "admin_emily",
-      "password": "pass1234",
-      "date created": "2024-04-12",
-      "buyer name": "Emily Brown",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN005",
-      "username": "admin_daniel",
-      "password": "danielpass987",
-      "date created": "2024-04-11",
-      "buyer name": "Daniel Wilson",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN006",
-      "username": "admin_olivia",
-      "password": "securepass123",
-      "date created": "2024-04-10",
-      "buyer name": "Olivia Martinez",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN007",
-      "username": "admin_william",
-      "password": "passadmin789",
-      "date created": "2024-04-09",
-      "buyer name": "William Taylor",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN008",
-      "username": "admin_sophia",
-      "password": "sophiapass123",
-      "date created": "2024-04-08",
-      "buyer name": "Sophia Anderson",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN009",
-      "username": "admin_liam",
-      "password": "liampass456",
-      "date created": "2024-04-07",
-      "buyer name": "Liam Garcia",
-      "status": "Active"
-    },
-    {
-      "admin id": "ADMIN010",
-      "username": "admin_isabella",
-      "password": "securepass789",
-      "date created": "2024-04-06",
-      "buyer name": "Isabella Hernandez",
-      "status": "Active"
+      "password": "password123"
     }
   ]
   
