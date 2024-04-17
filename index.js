@@ -24,10 +24,13 @@ app.get('/', async (req, res) =>{
     res.sendFile(__dirname + '/public/pages/index.html');
 })
 
-//dashboard page
+    //dashboard page
 app.get('/dashboard', async (req, res) =>{
     res.sendFile(__dirname + '/public/pages/dashboard.html');
 })
+
+    //manage page
+app.get('/manage', (req,res)=> res.sendFile(__dirname + '/public/pages/manage.html'))
 
     //page my info
 app.get('/myinfo', (req,res)=> res.sendFile(__dirname + '/public/pages/myInfo.html'))
