@@ -391,7 +391,7 @@ header {
 .function {
     display: grid;
     background-color: transparent;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 1rem;
 }
@@ -400,6 +400,56 @@ header {
     grid-column: 1;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#item1, #item2, #item5 {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#item1 .icon{
+    color: #d23100;
+    background-color: #d2310038;
+}
+
+#item2 .icon{
+    color: #4d7bfc;
+    background-color: #b2c5f870;
+}
+
+#item5 .icon{
+    color: #627254;
+    background-color: #a3d37970;
+}
+
+#item1 .icon, #item2 .icon, #item5 .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 35px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Biến thành hình tròn */
+}
+
+
+#item1 .text ,#item2 .text, #item5 .text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+#item1 .text p:first-child, #item2 .text p:first-child, #item5 .text p:first-child {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+#item1 .text ion-icon, #item2 .text ion-icon, #item2 .text ion-icon{
+    border-radius: 50%;
 }
 
 #item3{
@@ -412,7 +462,7 @@ header {
 #item4 {
     grid-column: 2;
     grid-row-start: 1;
-    grid-row-end: 4;
+    grid-row-end: 5;
 }
 
 .function .item {
@@ -440,7 +490,7 @@ header {
 #weatherWidget{
     max-height: 150px;
     height: 90%;
-    width: 90%;
+    width: 100%;
     padding: 0 15px;
     display: grid;
     grid-template-rows: 0.5fr 1fr 0.5fr;
@@ -450,7 +500,7 @@ header {
 
 .city-name{
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 3;
 }
 
 #weatherIcon{
@@ -466,6 +516,7 @@ header {
 
 #weatherWidget span{
     display: flex;
+    width: 100%;
     justify-content: flex-start;
     flex-direction: column;
 }
