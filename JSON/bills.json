@@ -1,0 +1,83 @@
+[
+    {
+      "invoice code": "INV0001",
+      "details": "Classic Sneakers (Size: 34) x 10",
+      "total amount": 499.90,
+      "date created": "2024-04-15",
+      "buyer name": "John Doe",
+      "status": "Paid"
+    },
+    {
+      "invoice code": "INV0002",
+      "details": "Classic Sneakers (Size: 34) x 5",
+      "total amount": 249.95,
+      "date created": "2024-04-14",
+      "buyer name": "Jane Smith",
+      "status": "Paid"
+    },
+    {
+      "invoice code": "INV0003",
+      "details": "Classic Sneakers (Size: 34) x 20",
+      "total amount": 999.80,
+      "date created": "2024-04-13",
+      "buyer name": "Michael Johnson",
+      "status": "Paid"
+    },
+    {
+      "invoice code": "INV0004",
+      "details": "Classic Sneakers (Size: 34) x 3",
+      "total amount": 149.97,
+      "date created": "2024-04-12",
+      "buyer name": "Emily Brown",
+      "status": "Pending"
+    },
+    {
+      "invoice code": "INV0005",
+      "details": "Classic Sneakers (Size: 34) x 8",
+      "total amount": 399.92,
+      "date created": "2024-04-11",
+      "buyer name": "Daniel Wilson",
+      "status": "Paid"
+    },
+    {
+      "invoice code": "INV0006",
+      "details": "Classic Sneakers (Size: 34) x 15",
+      "total amount": 749.85,
+      "date created": "2024-04-10",
+      "buyer name": "Olivia Martinez",
+      "status": "Pending"
+    },
+    {
+      "invoice code": "INV0007",
+      "details": "Classic Sneakers (Size: 34) x 2",
+      "total amount": 99.98,
+      "date created": "2024-04-09",
+      "buyer name": "William Taylor",
+      "status": "Paid"
+    },
+    {
+      "invoice code": "INV0008",
+      "details": "Classic Sneakers (Size: 34) x 12",
+      "total amount": 599.88,
+      "date created": "2024-04-08",
+      "buyer name": "Sophia Anderson",
+      "status": "Paid"
+    },
+    {
+      "invoice code": "INV0009",
+      "details": "Classic Sneakers (Size: 34) x 7",
+      "total amount": 349.93,
+      "date created": "2024-04-07",
+      "buyer name": "Liam Garcia",
+      "status": "Pending"
+    },
+    {
+      "invoice code": "INV0010",
+      "details": "Classic Sneakers (Size: 34) x 4",
+      "total amount": 199.96,
+      "date created": "2024-04-06",
+      "buyer name": "Isabella Hernandez",
+      "status": "Paid"
+    }
+  ]
+  

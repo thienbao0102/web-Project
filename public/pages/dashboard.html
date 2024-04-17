@@ -56,12 +56,6 @@
             <div class="welcome-box">
                 <h1>Dashboard</h1>
             </div>
-            <div class="search-box" id="fixedBox">
-                <span class="fixed-search">
-                    <input type="text" id="searchInput" placeholder="Search at here...">
-                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
-                </span>
-            </div>
             <div class="user-box">
                 <span class="notification"><ion-icon name="bag-outline"></ion-icon></span>
                 <span class="user-avt">
@@ -82,12 +76,24 @@
                 <canvas id="chartjs-line"></canvas>
             </div>
             <div class="function item-box">
-                <span class="item" id="item1"></span>
-                <span class="item" id="item2"></span>
-                <span class="item" id="item3"></span>
-                <span class="item" id="item4">
+                <div class="item" id="item1"></div>
+                <div class="item" id="item2"></div>
+                <div class="item" id="item3">
+                    <div id="weatherWidget">
+                        <p class="city-name" id="cityName">Ho Chi Minh</p>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Weather icon" id="weatherIcon" class="icon">
+                        <span>
+                            <span>
+                                <h3 class="temp" id="temp">36 &#8451</h3>
+                                <p class="feel-temp" id="feelTemp">Skin feel 42 &#8451</p>
+                            </span>
+                                <p class="weather-discription" id="weatherDesc">Clouds<i class="symbol"> | </i>Scattered clouds</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="item" id="item4">
                     
-                </span>
+                </div>
             </div>
             <div class="long-div item-box"></div>
             <div class="item-box"></div>
@@ -100,24 +106,6 @@
 
     </footer>
     <script>
-        function click() {
-            alert("clicked");
-        }
-        fixedBox = document.getElementById("fixedBox");
-        document.addEventListener("DOMContentLoaded", () =>{
-            var lastScrollTop = 0;
-            window.addEventListener("scroll", function (){
-                var st = window.pageYOffset || document.documentElement.scrollTop;
-                if (st > lastScrollTop || st == 0) {
-                    fixedBox.style.top = 0 + "px"
-                    console.log(lastScrollTop);
-                } else if (st < lastScrollTop) {
-                    fixedBox.style.top = lastScrollTop + "px"
-                    console.log(lastScrollTop);
-                }
-                lastScrollTop = st <= 0 ? 0 : st;
-            });
-        })
     </script>
     <!-- Chart script -->
     <script>
@@ -322,8 +310,63 @@
         });
     
     </script>
-    <!-- Jquery CDN -->
-    
+    <!-- weather widget script -->
+    <script>
+        const apiKey = 'e3b895715c1fc4eb1af19763fa617a4c';
+        const city = 'Hochiminh';
+
+        if ("geolocation" in navigator) {
+        // Geolocation có sẵn trong trình duyệt
+        // Yêu cầu trình duyệt cung cấp vị trí của client
+        navigator.geolocation.getCurrentPosition(function(position) {
+            // Lấy thông tin vị trí của client từ đối tượng position
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            
+            // Hiển thị vị trí lấy được
+            console.log("Latitude:", latitude);
+            console.log("Longitude:", longitude);
+            getWeather(latitude,longitude);
+        });
+        } else {
+        // Trình duyệt không hỗ trợ Geolocation
+        console.error("Geolocation is not supported by this browser.");
+        }
+
+        async function getWeather(lat,lon){
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data)
+                setWeatherWidget(data)
+            })
+            .catch(error => {
+                console.error('There was a problem with your fetch operation:', error);
+            });
+        }
+
+        function setWeatherWidget(weatherData){
+            const default_value = "--";
+            const cityName = document.getElementById("cityName");
+            const weatherIcon = document.getElementById("weatherIcon");
+            const temp = document.getElementById("temp");
+            const weatherDesc = document.getElementById("weatherDesc");
+            const feelTemp = document.getElementById("feelTemp");
+            cityName.innerHTML = weatherData.name || default_value;
+            weatherIcon.setAttribute('src', `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`);
+            temp.innerHTML = Math.round(weatherData.main.temp) + "&#8451" || default_value;
+            feelTemp.innerHTML ="Skin feel "+ Math.round(weatherData.main.feels_like) + "&#8451"|| default_value;
+            weatherDesc.innerHTML = weatherData.weather[0].main + '<i class="symbol"> | </i>' + weatherData.weather[0].description;
+            if(Math.round(weatherData.main.feels_like) >= 35){
+                feelTemp.style.backgroundColor = "#7EA1FF";
+            }
+        }
+    </script>
     <!-- Ion-icon CDN -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

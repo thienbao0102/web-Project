@@ -1,0 +1,392 @@
+[
+    {
+        "_id": "SHOE0001",
+        "sizes": {
+            "size1": 35,
+            "size2": 36,
+            "size3": 37
+        },
+        "type": "Sport",
+        "description": "Classic Sneakers with a modern twist, perfect for everyday wear.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(1).png"
+    },
+    {
+        "_id": "SHOE0002",
+        "sizes": {
+            "size1": 38,
+            "size2": 39,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Comfortable and stylish lifestyle shoes for casual outings.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(2).png"
+    },
+    {
+        "_id": "SHOE0003",
+        "sizes": {
+            "size1": 41,
+            "size2": 42,
+            "size3": 43
+        },
+        "type": "Sport",
+        "description": "High-performance sports shoes designed for active individuals.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(3).png"
+    },
+    {
+        "_id": "SHOE0004",
+        "sizes": {
+            "size1": 44,
+            "size2": 45,
+            "size3": 46
+        },
+        "type": "Sport",
+        "description": "Elegant Western-style shoes suitable for formal occasions.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(4).png"
+    },
+    {
+        "_id": "SHOE0005",
+        "sizes": {
+            "size1": 47,
+            "size2": 48,
+            "size3": 49
+        },
+        "type": "Sport",
+        "description": "Trendy lifestyle shoes with a unique design for fashion-forward individuals.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(5).png"
+    },
+    {
+        "_id": "SHOE0006",
+        "sizes": {
+            "size1": 35,
+            "size2": 37,
+            "size3": 39
+        },
+        "type": "Sport",
+        "description": "Durable sports shoes built to endure rigorous activities.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(6).png"
+    },
+    {
+        "_id": "SHOE0007",
+        "sizes": {
+            "size1": 40,
+            "size2": 42,
+            "size3": 44
+        },
+        "type": "Sport",
+        "description": "Classic Western-style boots for a timeless look.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(7).png"
+    },
+    {
+        "_id": "SHOE0008",
+        "sizes": {
+            "size1": 36,
+            "size2": 38,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Versatile lifestyle shoes suitable for various occasions.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(8).png"
+    },
+    {
+        "_id": "SHOE0009",
+        "sizes": {
+            "size1": 41,
+            "size2": 43,
+            "size3": 45
+        },
+        "type": "Sport",
+        "description": "Lightweight and breathable sports shoes for maximum comfort.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(9).png"
+    },
+    {
+        "_id": "SHOE0010",
+        "sizes": {
+            "size1": 38,
+            "size2": 39,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Stylish Western-inspired shoes for a modern look.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(10).png"
+    },
+    {
+        "_id": "SHOE0011",
+        "sizes": {
+            "size1": 35,
+            "size2": 36,
+            "size3": 37
+        },
+        "type": "Sport",
+        "description": "Breathable running shoes designed for long-distance training.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(11).png"
+    },
+    {
+        "_id": "SHOE0012",
+        "sizes": {
+            "size1": 38,
+            "size2": 39,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Trail running shoes with enhanced grip for outdoor adventures.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(12).png"
+    },
+    {
+        "_id": "SHOE0013",
+        "sizes": {
+            "size1": 41,
+            "size2": 42,
+            "size3": 43
+        },
+        "type": "Sport",
+        "description": "Cross-training shoes suitable for various workout routines.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(13).png"
+    },
+    {
+        "_id": "SHOE0014",
+        "sizes": {
+            "size1": 44,
+            "size2": 45,
+            "size3": 46
+        },
+        "type": "Sport",
+        "description": "High-performance basketball shoes designed for quick cuts and jumps.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(14).png"
+    },
+    {
+        "_id": "SHOE0015",
+        "sizes": {
+            "size1": 47,
+            "size2": 48,
+            "size3": 49
+        },
+        "type": "Sport",
+        "description": "Sturdy hiking shoes with ankle support for rugged terrain.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(15).png"
+    },
+    {
+        "_id": "SHOE0016",
+        "sizes": {
+            "size1": 35,
+            "size2": 37,
+            "size3": 39
+        },
+        "type": "Sport",
+        "description": "Flexible tennis shoes suitable for quick movements on the court.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(16).png"
+    },
+    {
+        "_id": "SHOE0017",
+        "sizes": {
+            "size1": 40,
+            "size2": 42,
+            "size3": 44
+        },
+        "type": "Sport",
+        "description": "Comfortable soccer cleats designed for agility and control.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(17).png"
+    },
+    {
+        "_id": "SHOE0018",
+        "sizes": {
+            "size1": 36,
+            "size2": 38,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Lightweight cycling shoes with a stiff sole for efficient power transfer.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(18).png"
+    },
+    {
+        "_id": "SHOE0019",
+        "sizes": {
+            "size1": 41,
+            "size2": 43,
+            "size3": 45
+        },
+        "type": "Sport",
+        "description": "Waterproof trail running shoes for wet and muddy conditions.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(19).png"
+    },
+    {
+        "_id": "SHOE0020",
+        "sizes": {
+            "size1": 38,
+            "size2": 39,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Skateboarding shoes with durable construction for skatepark sessions.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(20).png"
+    },
+    {
+        "_id": "SHOE0021",
+        "sizes": {
+            "size1": 35,
+            "size2": 36,
+            "size3": 37
+        },
+        "type": "Sport",
+        "description": "Versatile running shoes suitable for road and treadmill workouts.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(21).png"
+    },
+    {
+        "_id": "SHOE0022",
+        "sizes": {
+            "size1": 38,
+            "size2": 39,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Breathable golf shoes with excellent traction for stability on the course.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(22).png"
+    },
+    {
+        "_id": "SHOE0023",
+        "sizes": {
+            "size1": 41,
+            "size2": 42,
+            "size3": 43
+        },
+        "type": "Sport",
+        "description": "Sleek running shoes with responsive cushioning for a smooth ride.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(23).png"
+    },
+    {
+        "_id": "SHOE0024",
+        "sizes": {
+            "size1": 44,
+            "size2": 45,
+            "size3": 46
+        },
+        "type": "Sport",
+        "description": "Stable weightlifting shoes with a secure fit for heavy lifting.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(24).png"
+    },
+    {
+        "_id": "SHOE0025",
+        "sizes": {
+            "size1": 47,
+            "size2": 48,
+            "size3": 49
+        },
+        "type": "Sport",
+        "description": "Agile trail running shoes designed for technical terrain.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(25).png"
+    },
+    {
+        "_id": "SHOE0026",
+        "sizes": {
+            "size1": 35,
+            "size2": 37,
+            "size3": 39
+        },
+        "type": "Sport",
+        "description": "All-round fitness shoes suitable for gym workouts and classes.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(26).png"
+    },
+    {
+        "_id": "SHOE0027",
+        "sizes": {
+            "size1": 40,
+            "size2": 42,
+            "size3": 44
+        },
+        "type": "Sport",
+        "description": "Soccer shoes with a synthetic upper for precise ball control.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(27).png"
+    },
+    {
+        "_id": "SHOE0028",
+        "sizes": {
+            "size1": 36,
+            "size2": 38,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Running shoes with a supportive midsole for overpronation control.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(28).png"
+    },
+    {
+        "_id": "SHOE0029",
+        "sizes": {
+            "size1": 41,
+            "size2": 43,
+            "size3": 45
+        },
+        "type": "Sport",
+        "description": "Tennis shoes with durable outsoles for traction on hard courts.",
+        "sale": true,
+        "status": "In Stock",
+        "image": "image(29).png"
+    },
+    {
+        "_id": "SHOE0030",
+        "sizes": {
+            "size1": 38,
+            "size2": 39,
+            "size3": 40
+        },
+        "type": "Sport",
+        "description": "Training shoes with flexible uppers for natural movement during workouts.",
+        "sale": false,
+        "status": "In Stock",
+        "image": "image(30).png"
+    }
+]

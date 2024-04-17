@@ -9,7 +9,158 @@
     <link rel="stylesheet" href="../css/products.css">
     <title>Home</title>
 </head>
+<style>
+    .right{
+        display: flex;
+        justify-content: stretch;
+        flex-wrap: wrap;
+    }
+    .product-card {
+        display: flex;
+        flex-direction: column;
+        border-radius: 1rem;
+        padding: 16px;
+        width: 300px;
+        height: 470px;
+        background-color: #EEEEEE;
+        position: relative;
+        max-height: 500px;
+        box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+        margin: 0 1rem 1rem 1rem;
+        transition: 0.3s;
+    }
+
+    .product-card:hover{
+        box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.295);
+    }
+
+    .product-image {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .product-info {
+        margin-top: 16px;
+    }
+
+    .product-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .product-description {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 8px;
+    }
+
+    .product-price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    #productPrice{
+        display: flex;
+    }
+
+    #newPrice{
+        color: #E72929;
+        font-size: 20px;
+        font-weight: 600; 
+        padding-left: 10px;
+    }
+
+    .add-to-cart {
+        background-color: #31363F;
+        color: #EEEEEE;
+        border: none;
+        border-radius: 4px;
+        margin-top: 1rem;
+        border-radius: 10rem;
+        padding: 8px 16px;
+        width: 100%;
+        font-weight: 600;
+        font-size: 16px;
+        position: relative;
+        cursor: pointer;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+        background-color: #222831;
+    }
+
+    .sale-product::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 5px solid #E72929; /* Thay đổi màu và độ dày viền theo ý muốn */
+        border-radius: 1rem; /* Đảm bảo viền làm tròn theo góc của sản phẩm */
+        pointer-events: none; /* Đảm bảo viền không ảnh hưởng đến sự tương tác với sản phẩm */
+    }
+
+    .sale-product::before {
+        content: 'sale 20%';
+        display: flex;
+        text-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        position: absolute;
+        color: #EEEEEE;
+        font-size: 15px;
+        font-weight: 600;
+        top: 0px;
+        background-color: #E72929;
+        right: 0; /* Thay đổi màu và độ dày viền theo ý muốn */
+        border-radius: 0 1rem 0 1rem; /* Đảm bảo viền làm tròn theo góc của sản phẩm */
+        pointer-events: none;
+    }
+
+    .sale-product .product-price{
+        text-decoration: line-through;
+        text-decoration-thickness: 2px;
+    }
+
+    .popular-product::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 5px solid #76885B; /* Thay đổi màu và độ dày viền theo ý muốn */
+        border-radius: 1rem; /* Đảm bảo viền làm tròn theo góc của sản phẩm */
+        pointer-events: none; /* Đảm bảo viền không ảnh hưởng đến sự tương tác với sản phẩm */
+    }
+
+    .popular-product::before {
+        content: 'Popular 🔥';
+        display: flex;
+        text-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        position: absolute;
+        color: #EEEEEE;
+        font-size: 15px;
+        font-weight: 600;
+        top: 0px;
+        background-color: #76885B;
+        right: 0; /* Thay đổi màu và độ dày viền theo ý muốn */
+        border-radius: 0 1rem 0 1rem; /* Đảm bảo viền làm tròn theo góc của sản phẩm */
+        pointer-events: none;
+    }
+</style>
 <body>
+    <a href="#" id="btnScrollToTop"><button><img src="../system/srcolltotop.svg" alt=""></button></a>
     <nav class="navigation">
         <div class="logo">
             <a href=""><img src="../system/newlogo.png" alt="Stride Sync"></a>
@@ -18,7 +169,7 @@
             <div class="route">
                 <ul>
                     <a href="/"><li><ion-icon name="home-outline"></ion-icon> <p>Home</p> </li></a>
-                    <a href=""><li id="here"><ion-icon name="grid-outline"></ion-icon> <p>Products</p> </li></a>
+                    <a href="#"><li id="here"><ion-icon name="grid-outline"></ion-icon> <p>Products</p> </li></a>
                     <a href=""><li><ion-icon name="newspaper-outline"></ion-icon> <p>What New?</p> </li></a>
                     <a href=""><li><ion-icon name="help-circle-outline"></ion-icon> <p>About Us</p> </li></a>
                 </ul>
@@ -46,12 +197,7 @@
                 <h1>Welcome to Stride Sync.</h1>
                 <h4>Hello Mach Hoai, welcome back!</h4>
             </div>
-            <div class="search-box" id="fixedBox">
-                <span class="fixed-search">
-                    <input type="text" id="searchInput" placeholder="Search at here...">
-                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
-                </span>
-            </div>
+            
             <div class="user-box">
                 <span class="notification"><ion-icon name="bag-outline"></ion-icon></span>
                 <span class="user-avt">
@@ -60,34 +206,212 @@
             </div>
         </header>
         <div class="container">
-            <div class="filter">
-
+            <div class="ads">
+                <h1>Advertisement</h1>
             </div>
-            <div class="products">
-
+            <div class="left">
+                <div class="filter">
+                    <h2>Filter</h2>
+                    <input type="text" id="searchInput" placeholder="Search at here...">
+                    <div class="category">
+                        <p style="margin-top: 1rem;">Category:</p>
+                        <span>
+                            <label class="toggle-btn">
+                                <input type="checkbox" id="shoesType" value="type1">
+                                <div class="content">Type1</div>
+                            </label>
+                            <label class="toggle-btn">
+                                <input type="checkbox" id="shoesType" value="type2">
+                                <div class="content">Type2</div>
+                            </label>
+                            <label class="toggle-btn">
+                                <input type="checkbox" id="shoesType" value="type3">
+                                <div class="content">Type3</div>
+                            </label>
+                        </span>
+                    </div>
+                    <div id="priceRange" class="form-group">
+                        <span>
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" class="search-input" name="price">
+                        </span>
+                        <span>
+                            <input type="checkbox" id="checkbox" style="margin-right: 1rem;">
+                            <label for="checkbox">Price range</label>
+                        </span>
+                        <div id="priceRangeInput">
+                            <input type="number" id="minPrice" placeholder="Min">
+                            <p style="padding: 0.7rem 5px 5px 5px;">-</p>
+                            <input type="number" id="maxPrice" placeholder="Max">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="product-card popular-product">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card sale-product">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Product Name</h2>
+                        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <span id="productPrice">
+                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p id="newPrice">$50.99</p>
+                        </span>
+                        <button class="add-to-cart">Buy now</button>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </section>
     <footer>
 
     </footer>
-    <script>
-        fixedBox = document.getElementById("fixedBox");
-        document.addEventListener("DOMContentLoaded", () =>{
-            var lastScrollTop = 0;
-            window.addEventListener("scroll", function (){
-                var st = window.pageYOffset || document.documentElement.scrollTop;
-                if (st > lastScrollTop || st == 0) {
-                    fixedBox.style.top = 0 + "px"
-                    console.log(lastScrollTop);
-                } else if (st < lastScrollTop) {
-                    fixedBox.style.top = lastScrollTop + "px"
-                    console.log(lastScrollTop);
-                }
-                lastScrollTop = st <= 0 ? 0 : st;
-            });
+    <script>//script xử lí price range
+        const checkBox = document.getElementById('checkbox');
+        const maxPrice = document.getElementById('maxPrice');
+        const minPrice = document.getElementById('minPrice');
+
+        maxPrice.style.backgroundColor = "#12121212";
+        minPrice.style.backgroundColor = "#12121212";
+        maxPrice.disabled = true;
+        minPrice.disabled = true;
+
+        /* Xử lí ô check box của price range*/
+        checkBox.addEventListener("change", function() {
+            // Nếu checkbox được check
+            if (checkbox.checked) {
+                // Disable ô input price
+                price.value = '';
+                price.disabled = true;
+                price.style.backgroundColor = "#12121212";
+                maxPrice.style.backgroundColor = "#EEEEEE";
+                minPrice.style.backgroundColor = "#EEEEEE";
+                maxPrice.disabled = false;
+                minPrice.disabled = false;
+            } else {
+                // Enable ô input price
+                price.disabled = false;
+                price.style.backgroundColor = "#EEEEEE";
+                maxPrice.style.backgroundColor = "#12121212";
+                minPrice.style.backgroundColor = "#12121212";
+                minPrice.value = '';
+                maxPrice.value = '';
+            }
         })
     </script>
+    <script>//script scroll to top
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const btnScrollToTop = document.getElementById('btnScrollToTop');
+            window.addEventListener("scroll", () => {
+                console.log(window.scrollY)
+                if(window.scrollY > 0){
+                    btnScrollToTop.style.visibility = "visible";
+                    btnScrollToTop.style.opacity = 1;
+                }else{
+                    btnScrollToTop.style.visibility = "hidden";
+                    btnScrollToTop.style.opacity = 0;
+                }
+            })
+        })
+    </script>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
