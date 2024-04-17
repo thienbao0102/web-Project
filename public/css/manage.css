@@ -1,0 +1,557 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgba(228, 227, 227, 0.87);
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #222831;
+    border-radius: 10rem;
+}
+
+/*-----------navigation-----------*/
+
+.navigation{
+    height: 100%;
+    width: 65px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    background-color: #EEEEEE;
+    font-family: "Sono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:"MONO" 1;
+    transition: 0.5s;
+    z-index:100000;
+}
+
+.navigation:hover{
+    width: 240px;
+}
+
+.navigation :where(p, h4, #helpCenter){
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.navigation:hover{
+    width: 240px;
+}
+
+.navigation:hover.navigation :where(p, h4, #helpCenter){
+    visibility:visible;
+    opacity: 1;
+}
+
+.navigation .logo{
+    display: flex;
+    align-items: center;
+    height: 84px;
+    width: 100%;
+}
+
+.navigation .logo img{
+    width: 100%;
+    object-fit: fill;
+}
+
+.navigation .item
+{
+    width: 100%;
+    min-width: 200px;
+}
+
+.navigation .item :where(.route, .account)
+{
+    margin: 2rem 0;
+}
+
+.navigation .item a{
+    text-decoration: none;
+}
+
+.navigation .item ul{
+    margin: 0;
+    padding: 0;
+}
+
+.navigation .item ul li{
+    list-style-type: none;
+    color: #222831bd;
+    height: 46px;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    font-size: 1.2rem;
+    font-family: "Sono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:"MONO" 1;
+}
+
+.navigation .item ul li p {
+    position: relative;
+    margin: 0;
+}
+
+.item :where(.route, .account) ion-icon {
+    font-size: 25px;
+    height: 100%;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.account h4 {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.navigation .item ul li#here::before{
+    content: "";
+    background-color: #222831;
+    position: absolute;
+    height: 100%;
+    width: 5px;
+    border-radius: 0 5px 5px 0;
+    left: 0;
+}
+
+.navigation .item ul li:hover{
+    color: #222831;
+}
+
+.navigation .item ul li#here {
+    color: #222831;
+}
+
+.help-center{
+    visibility: hidden;
+    background-color: #76ABAE;
+    width: 216px;
+    margin-top: 2rem;
+    margin-inline: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    color: #222831;
+}
+
+.help-center span {
+    height: 60px;
+    width: 60px;
+    background-color: #EEEEEE;
+    position: absolute;
+    top: -26px;
+    border-radius: 50px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    box-shadow: 0px 21px 12px -5px rgba(0,0,0,0.1);
+}
+
+.help-center span ion-icon {
+    font-size: 25px;
+    margin: auto;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    background-color: #76ABAE;
+    color: #222831;
+}
+
+.help-center h3{
+    margin-top: 30px;
+}
+
+.help-center p{
+    text-wrap: balance ;
+    font-size: 15px;
+    text-align: center;
+    width: 120%;
+    z-index: 10;
+}
+
+.btn-help{
+    height: 40px;
+    z-index: 10;
+    background-color: #EEEEEE;
+    margin-top: 30px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    font-family: "Sono", monospace;
+    font-style: normal;
+    text-wrap: nowrap;
+    text-align: center;
+    box-shadow: 0px 21px 12px -5px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.btn-help:hover {
+    box-shadow: none;
+    transition: 0.3s;
+}
+
+
+.help-center #glass {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.help-center #glass::before,
+.help-center #glass::after {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    background-color: #eeeeeea6;
+}
+
+.help-center #glass::before {
+    height: 100px;
+    width: 100px;
+    top: -40px; 
+    left: -60px; 
+}
+
+.help-center #glass::after {
+    bottom: -70px;
+    right: -70px;
+    height: 150px;
+    width: 150px;
+}
+
+/*-----------Section-----------*/
+
+section{
+    margin-left: 65px;
+    padding: 10px 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.welcome-box h1{
+    font-size: 40px;
+}
+
+.welcome-box h4{
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.search-box{
+    position: absolute;
+    left: 50%;
+    z-index: 1000;
+}
+
+.search-box span {
+    display: flex;
+    height: 40px;
+    width: 380px;
+    padding: 10px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #EEEEEE;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+}
+
+.search-box span input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 85%;
+    height: 100%;
+    font-size: 15px;
+}
+
+.search-box span button{
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.user-box{
+    height: 50px;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-box  :where(.user-avt, .notification){
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.user-box #user-avatar{
+    height: 100%;
+    width: 100%;
+}
+
+/* --------Management container---------- */
+.container
+{
+    display: flex;
+    height: fit-content;
+}
+
+.container .search{
+    position: relative;
+    width: 40%;
+    box-shadow: 0px 0px 36px 18px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin: 3%;
+    height: fit-content;
+    padding: 10px 0px;
+}
+
+.container .search h1{
+    text-align: center;
+    margin: 10px;
+    font-size: 30px;
+}
+    /* css o input */
+.container .search :where(.main-search, .more-search, .ativated-point){
+    position: relative;
+    width: 80%;
+    margin: 10px 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: fit-content;
+    font-size: 16px;
+}
+
+.container .search .more-search{
+    display: none;
+}
+
+.container .search .more-search.active{
+    display: block;
+}
+
+.container .search input:not(#minPrice, #maxPrice){
+    height: 30px;
+    width: 100%;
+    padding: 0px 10px;
+    margin-bottom: 10px ;
+    border-radius: 15px;
+}
+
+.container .search :where(#minPrice, #maxPrice){
+    height: 30px;
+    width: 49.5%;
+    padding: 0px 10px;
+    margin-bottom: 10px ;
+    border-radius: 15px;
+}
+
+.container .search input::placeholder{
+    color: #0000BB;
+}
+
+    /* css nut search */
+.container .search .ativated-point .animation{
+    height: 34px;
+    width: 105px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
+}
+
+.container .search .ativated-point .animation button{
+    position: relative;
+    height: 30px;
+    width: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color:#00FF00;
+    border: none;
+    cursor: pointer;
+}
+.container .search .ativated-point .animation::after{
+    content: '';
+    position: absolute;
+    background: conic-gradient(red 0deg,transparent 180deg,green 180deg, transparent 360deg);
+    height: 105px;
+    width: 105px;
+    z-index: -1;
+    display: none;
+}
+.container .search .ativated-point .animation:hover:after {
+    display: block;
+    animation-duration: 0.7s;
+    animation-name: lineRun;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes lineRun{
+    form {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.container .search .ativated-point .extend-search{
+    position: absolute;
+    right: 20px;
+    top: 20%;
+    cursor: pointer;
+    
+}
+.container .search .ativated-point .extend-search.active{
+    transform: rotate(180deg);
+}
+
+    /* css phan update */
+.container .update{
+    position: relative;
+    width: 40%;
+    padding: 10px 0px;
+    box-shadow: 0px 0px 36px 18px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin: 3%;
+    height: fit-content;
+    display: none;
+}
+
+.container .update.active{
+    display: block;
+}
+
+.container .update h1{
+    text-align: center;
+    margin: 10px;
+}
+
+.container .update form{
+    width: 80%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container .update input:not(#size,#quantity){
+    height: 30px;
+    width: 100%;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.container .update #size{
+    width: 15%;
+    height: 30px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.container .update #quantity{
+    width: 84%;
+    height: 30px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.container .update .animation{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    height: 34px;
+    width: 105px;
+    border-radius: 12px;
+}
+
+.container .update button{
+    position: relative;
+    height: 30px;
+    width: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color:#00FF00;
+    border: none;
+    cursor: pointer;
+}
+.container .update .animation::after{
+    content: '';
+    position: absolute;
+    background: conic-gradient(red 0deg,transparent 180deg,green 180deg, transparent 360deg);
+    height: 105px;
+    width: 105px;
+    z-index: -1;
+    display: none;
+}
+
+.container .update .animation:hover:after {
+    display: block;
+    animation-duration: 0.7s;
+    animation-name: lineRun;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+    /* css cho phan san pham sau tim */
+/* .container .containerProduct{
+    width: 100%;
+    height: fit-content;
+} */
