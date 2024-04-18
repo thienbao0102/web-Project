@@ -27,3 +27,43 @@ size.addEventListener('change', ()=>{
         quantity.disabled = true;
     }
 })
+
+
+//search
+let list;
+function searchProduct(){
+    idOrName = document.getElementById('infoSearch');
+    sizeSearch = document.getElementById('sizeSearch');
+    minPrice = document.getElementById('minPrice');
+    maxPrice = document.getElementById('maxPrice');
+    quantitySearch = document.getElementById('quantity');
+    const searchData = {
+        'idOrName': idOrName.value,
+        'size': sizeSearch.value,
+        'minPrice': minPrice.value,
+        'maxPrice': maxPrice.value,
+        'quantity': quantity.value
+    }
+    console.log(searchData);
+    fetch('/api/searchProduct/',{
+        method: 'post',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(searchData)
+    })
+    .then(res => res.json())
+    .then(data=>{
+        if(data.st == 0){
+            list = data.dt;
+            console.table(list);
+        }
+        else{
+            alert("Search failed!")
+        }
+    })
+    .catch
+    {
+        console.log("err: " + Error)
+    }
+}

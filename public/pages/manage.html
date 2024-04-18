@@ -99,14 +99,14 @@
                     <input type="number" name="price" id="maxPrice" min="0" placeholder="to"><br>
 
                     <label for="size">Size you want search</label><br>
-                    <input type="number" name="size" id="size" min="0" placeholder="Enter size"><br>
+                    <input type="number" name="size" id="sizeSearch" min="0" placeholder="Enter size"><br>
 
                     <label for="quantity">Quantity Price you want search</label><br>
                     <input type="number" name="quantity" id="quantity" min="0" placeholder="Enter quantity "><br>
                 </div>
                 <div class="ativated-point">
                     <div class="animation">
-                        <button>Search</button>
+                        <button onclick="searchProduct()">Search</button>
                     </div>
                     <span class="extend-search" onclick="extendSearch()"><i
                             class="fa-solid fa-angles-right fa-rotate-90" style="color: #000000;"></i></span>
@@ -143,8 +143,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
+                        <tr v-for="shoe in list">
+                            <td>{{shoe._id}}</td>
                             <td>Áo thun nam</td>
                             <td>150.000đ</td>
                             <td>

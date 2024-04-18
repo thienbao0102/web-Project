@@ -49,6 +49,16 @@ app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages
 
 /*------------API------------*/
 
+//search
+app.post(`/api/searchProduct`,async(req,res)=>{
+    list = await controllers.querySearchProduct(req.body)
+    console.table(list.dt);
+    res.json({
+        dt: list.dt,
+        ms: list.ms,
+        st: list.st
+    })
+})
 
 
 

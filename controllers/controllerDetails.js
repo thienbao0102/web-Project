@@ -1,16 +1,15 @@
 const MongoClient = require('mongodb').MongoClient;
 const urlConnect = 'mongodb://localhost:27017'
-const nameDB = 'MyDatabase';
-const nameCollection = 'shoes';
+const nameDB = 'ProjectWeb';
 let client;
-let shoes;
+let db;
 
 //connect to Database
 async function connecToDatabase()
 {
     try {
         client = await MongoClient.connect(urlConnect);
-        shoes = client.db(nameDB).collection(nameCollection);
+        db = client.db(nameDB);
         console.log("Connect success!");        
     } catch (error) {
         console.log("connect failed!");
@@ -36,7 +35,26 @@ async function closeConnectToDatabase()
     }
 }
 
+//search
+async function search(query, nameCollection){
+    try {
+        const list = await db.collection(nameCollection).find(query).toArray();
+        console.log(list);
+        return{
+            dt: list,
+            ms: 'success',
+            st: 0
+        }
+    } catch (error) {
+        console.log("err: " + error);
+        return{
+            dt: '',
+            ms: 'failed',
+            st: -1
+        }
+    }
+}
 
 module.exports ={
-    connecToDatabase, closeConnectToDatabase
+    connecToDatabase, closeConnectToDatabase, search
 }
