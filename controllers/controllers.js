@@ -27,27 +27,27 @@ async function querySearchProduct(rawData) {
         if(rawData.category){ //category
             query.category = { $regex: rawData.category, $options: 'i' }
         }
+        if (rawData.quantity) {     //quantity
+            query.quantity = {
+                $eq: parseInt(rawData.quantity)
+            }
+        }
         if (rawData.minPrice && rawData.maxPrice) { //Min != null, max != null ->min>= X < max
             query.price = {
                 $gte: parseFloat(rawData.minPrice),
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
         }
-        if (rawData.minPrice && !rawData.maxPrice) { //Min != null, max == null -> X >= min
+        else if (rawData.minPrice && !rawData.maxPrice) { //Min != null, max == null -> X >= min
             query.price = {
                 $gte: parseFloat(rawData.minPrice)
             }
         }
-        if (!rawData.minPrice && rawData.maxPrice){ //Min == null, max != null -> X < max
+        else if (!rawData.minPrice && rawData.maxPrice){ //Min == null, max != null -> X < max
             query.price = {
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
-        }
-        if (rawData.quantity) {     //quantity
-            query.quantity = {
-                $eq: parseInt(rawData.quantity)
-            }
-        }
+        } 
         console.log(query)
 
         list = await controllerDetails.search(query,shoes);
