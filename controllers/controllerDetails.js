@@ -56,10 +56,10 @@ async function search(query, nameCollection){
     }
 }
 //get all shoes
-async function getAllShoes() {
+async function getAllShoes(nameCollection) {
     try
     {
-        const documents = await db.find().toArray();
+        const documents = await db.collection(nameCollection).find({}).toArray();
         return documents;
     } catch(err) {
         console.error("Error while pulling shoes. Error: ", err);
