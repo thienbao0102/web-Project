@@ -61,6 +61,20 @@ app.post(`/api/searchProduct`,async(req,res)=>{
 })
 
 
+    //get all products
+app.get('/api/getAllProducts', async (req,res)=> {
+    try{
+        const products = await controllerDetails.getAllShoes();
+        if (products.length < 1) {
+            res.status(404).json({ error: 'Không tìm thấy' });
+        } else {
+            res.json({products:products}, {message: "Success!"}, {status: 200});
+        }
+    }catch(err) {
+        console.error('An error occurred while processing the request:', err);
+        res.status(500).json({ error: 'Internal server error'});
+    }
+})
 
 app.get(`*`,(req,res)=>
 {

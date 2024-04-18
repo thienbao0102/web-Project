@@ -14,6 +14,7 @@ async function connecToDatabase()
     } catch (error) {
         console.log("connect failed!");
         console.error("error: " + error);
+        throw error;
     }
 }
 
@@ -54,7 +55,19 @@ async function search(query, nameCollection){
         }
     }
 }
+//get all shoes
+async function getAllShoes() {
+    try
+    {
+        const documents = await db.find().toArray();
+        return documents;
+    } catch(err) {
+        console.error("Error while pulling shoes. Error: ", err);
+        throw err;
+    }
+}
+
 
 module.exports ={
-    connecToDatabase, closeConnectToDatabase, search
+    connecToDatabase, closeConnectToDatabase, getAllShoes,search
 }

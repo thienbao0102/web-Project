@@ -304,7 +304,7 @@ header {
     align-items: center;
 }
 
-.user-box  :where(.user-avt, .notification){
+.user-box  :where(.user-avt, .cart){
     background-color: #EEEEEE;
     border-radius: 5px;
     display: flex;
@@ -314,6 +314,10 @@ header {
     height: 50px;
     width: 50px;
     box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.user-box .user-avt {
     overflow: hidden;
 }
 
