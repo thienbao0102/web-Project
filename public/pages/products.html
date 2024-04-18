@@ -135,7 +135,7 @@
         pointer-events: none;
     }
 
-    .sale-product .product-price{
+    .sale-product .old-price{
         text-decoration: line-through;
         text-decoration-thickness: 2px;
     }
@@ -265,7 +265,7 @@
                         <h2 class="product-title">Product Name</h2>
                         <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p class="product-price">$99.99</p>
                             <p id="newPrice">$50.99</p>
                         </span>
                         <button class="add-to-cart">Buy now</button>
@@ -277,7 +277,7 @@
                         <h2 class="product-title">Product Name</h2>
                         <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <span id="productPrice">
-                            <p class="product-price" id="currentPrice">$99.99</p>
+                            <p class="product-price old-price">$99.99</p>
                             <p id="newPrice">$50.99</p>
                         </span>
                         <button class="add-to-cart">Buy now</button>
@@ -324,7 +324,7 @@
                 Html += `<h2 class="product-title">${product.name}</h2>`;
                 Html += `<p class="product-description">${product.description}</p>`;
                 Html += `<span id="productPrice">`;
-                Html += `<p class="product-price" id="currentPrice">$${product.price}</p>`;
+                Html += `<p class="product-price old-price">$${product.price}</p>`;
                 Html += `<p id="newPrice"></p>`;
                 Html += `</span>`;
                 Html += `<button class="add-to-cart" data-id = "${product._id}">Buy now</button>`;

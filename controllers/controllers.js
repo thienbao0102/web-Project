@@ -15,6 +15,9 @@ async function querySearchProduct(rawData) {
                 { name: { $regex: rawData.idOrName, $options: 'i' } }
             ];
         }
+        if (rawData.name) { //name /id
+            query.name = { $regex: rawData.name, $options: 'i' }
+        }
         if(rawData.price){ //price
             query.price = {
                 $gte: parseFloat(rawData.price),

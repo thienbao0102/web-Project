@@ -342,14 +342,83 @@ header {
     background-color: #517577;
     width: 100%;
     background-color: #EEEEEE;
-    overflow: hidden;
-    height: 0;
+    overflow:auto;
+    max-height: 400px;
     transition: 0.5s;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.expand.expanded {
+.expanded {
     height: auto;
-    padding: 1rem;
+}
+
+#filter{
+    display: none;
+    margin: 1rem;
+}
+
+.search-result{
+    width: 90%;
+}
+
+.product-result {
+    display: flex;
+    max-height: 90px;
+    position: relative;
+    border-bottom:1px solid #222831 ;
+    padding-bottom: 5px;
+    margin-top: 5px;
+}
+
+.product-result.sale-product::after{
+    content: '-' attr(data-sale);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #E72929;
+    border-radius: 10rem;
+    padding: 2px;
+    color: #EEEEEE;
+}
+
+.product-result img{
+    max-height: 90px;
+    width: 80px;
+    object-fit: cover;
+}
+
+.product-result .product-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    justify-content: center;
+}
+
+.product-result span{
+    height: 30px;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 200;
+    color: #333;
+}
+
+
+.sale-product .old-price{
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+#newPrice{
+    color: #E72929;
+    font-size: 20px;
+    font-weight: 600; 
+    padding-left: 10px;
 }
 
 /* Ẩn checkbox */
