@@ -23,6 +23,7 @@
 }
 </style>
 <body>
+    <a href="#" id="btnScrollToTop"><button><img src="../system/srcolltotop.svg" alt=""></button></a>
     <nav class="navigation">
         <div class="logo">
             <a href=""><img src="../system/newlogo.png" alt="Stride Sync"></a>
@@ -60,10 +61,49 @@
                 <h4>Hello Mach Hoai, welcome back!</h4>
             </div>
             <div class="search-box" id="fixedBox">
-                <span class="fixed-search">
+                <span class="fixed-search" id="fixedSearch">
                     <input type="text" id="searchInput" placeholder="Search at here...">
                     <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
                 </span>
+                <div class="expand" id="expandDiv">
+                    <div id="filter">
+                        <div class="category">
+                            <p>Category:</p>
+                            <span>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="type1">
+                                    <div class="content">Type1</div>
+                                </label>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="type2">
+                                    <div class="content">Type2</div>
+                                </label>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="type3">
+                                    <div class="content">Type3</div>
+                                </label>
+                            </span>
+                        </div>
+                        <div id="priceRange" class="form-group">
+                            <span>
+                                <label for="price">Price:</label>
+                                <input type="number" id="price" class="search-input" name="price">
+                            </span>
+                            <span class="check-box">
+                                <input type="checkbox" id="checkbox" style="margin-right: 1rem;">
+                                <label for="checkbox">Price range</label>
+                            </span>
+                            <div id="priceRangeInput">
+                                <input type="number" id="minPrice" placeholder="Min">
+                                <p style="padding: 0.7rem 5px 5px 5px;">-</p>
+                                <input type="number" id="maxPrice" placeholder="Max">
+                            </div>
+                        </div>
+                        <button class="search-expand">Search</button>
+                    </div>
+                    <div class="search-result"></div>
+                </div>
+            </div>
             </div>
             <div class="user-box">
                 <a style="color: #222831;" href="/cart"><span class="cart cart-outline"><ion-icon name="bag-outline"></ion-icon></span></a>
@@ -80,20 +120,105 @@
 
     </footer>
     <script>
-        fixedBox = document.getElementById("fixedBox");
+        const fixedBox = document.getElementById("fixedBox");
+        const btnMoreOpt = document.getElementById("moreOpt")
+        const searchInput = document.getElementById("searchInput");
+        let searchExpand = !0;
+        let timerId; 
         document.addEventListener("DOMContentLoaded", () =>{
             var lastScrollTop = 0;
             window.addEventListener("scroll", function (){
                 var st = window.pageYOffset || document.documentElement.scrollTop;
                 if (st > lastScrollTop || st == 0) {
                     fixedBox.style.top = 0 + "px"
-                    console.log(lastScrollTop);
                 } else if (st < lastScrollTop) {
                     fixedBox.style.top = lastScrollTop + "px"
-                    console.log(lastScrollTop);
                 }
                 lastScrollTop = st <= 0 ? 0 : st;
             });
+
+            btnMoreOpt.addEventListener("click", function(){
+                const expandDiv = document.getElementById("expandDiv");
+                expandDiv.classList.toggle("expanded");
+                if(searchExpand){
+                    searchExpand = !!0
+                }else{
+                    searchExpand = !0
+                }
+                console.log(searchExpand)
+            });
+
+            searchInput.addEventListener("input", debounceInput);
+
+            function debounceInput(e) {     //hàm debounce dùng để chờ người dùng nhập xong mới tìm
+                clearTimeout(timerId);
+                timerId = setTimeout(() => {
+                    handleInput(e);
+            }, 1000); // Thời gian chờ là milliseconds
+
+            function handleInput(e) {   // Lấy giá trị của các ô input vào data để fetch
+                e.preventDefault();
+                if(searchInput.value && searchInput.value.trim() !="" && searchExpand){
+                    const data = {
+                        idOrName: searchInput.value,
+                    };
+                    getSearch(data);
+                }
+            }
+
+            async function getSearch(data) {
+                const queryParams = new URLSearchParams(data).toString();
+                fetch(`/api/indexSearch?${queryParams}`, {
+                    method: 'GET',
+                }) 
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data.dt);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi ở đây nếu cần thiết
+                });
+            }
+        }
+        })
+    </script>
+    <script>//script xử lí price range
+        const checkBox = document.getElementById('checkbox');
+        const maxPrice = document.getElementById('maxPrice');
+        const minPrice = document.getElementById('minPrice');
+
+        maxPrice.style.backgroundColor = "#12121212";
+        minPrice.style.backgroundColor = "#12121212";
+        maxPrice.disabled = true;
+        minPrice.disabled = true;
+
+        /* Xử lí ô check box của price range*/
+        checkBox.addEventListener("change", function() {
+            // Nếu checkbox được check
+            if (checkbox.checked) {
+                // Disable ô input price
+                price.value = '';
+                price.disabled = true;
+                price.style.backgroundColor = "#12121212";
+                maxPrice.style.backgroundColor = "#EEEEEE";
+                minPrice.style.backgroundColor = "#EEEEEE";
+                maxPrice.disabled = false;
+                minPrice.disabled = false;
+            } else {
+                // Enable ô input price
+                price.disabled = false;
+                price.style.backgroundColor = "#EEEEEE";
+                maxPrice.style.backgroundColor = "#12121212";
+                minPrice.style.backgroundColor = "#12121212";
+                minPrice.value = '';
+                maxPrice.value = '';
+            }
         })
     </script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

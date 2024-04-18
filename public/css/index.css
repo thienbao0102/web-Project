@@ -8,6 +8,31 @@ body{
     background-color: rgba(228, 227, 227, 0.87);
 }
 
+
+
+html {
+    scroll-behavior:smooth;
+}
+
+#btnScrollToTop button{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#btnScrollToTop{
+    visibility: hidden;
+    position: fixed;
+    height: 3rem;
+    width: 3rem;
+    z-index: 10000;
+    bottom: 1rem;
+    right: 1rem;
+    opacity: 0;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
 /*-----------navigation-----------*/
 
 .navigation{
@@ -245,7 +270,6 @@ section{
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     position: relative;
 }
 
@@ -261,22 +285,33 @@ header {
 .search-box{
     position: absolute;
     left: 50%;
+    width: 380px;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    border-radius: 5px;
+    transition: 0.5s;
 }
 
-.search-box span {
+.search-box:hover{
+    width: 400px;
+}
+
+.search-box span{
     display: flex;
     height: 40px;
-    width: 380px;
-    padding: 10px;
     height: 100%;
-    justify-content: center;
     align-items: center;
     border-radius: 5px;
     background-color: #EEEEEE;
-    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
 }
 
-.search-box span input{
+.search-box span.fixed-search{
+    
+    padding: 10px;
+    justify-content: center;
+}
+
+
+.search-box input{
     background-color: transparent;
     border: none;
     outline: none;
@@ -289,11 +324,150 @@ header {
     width: 30px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
     height: 30px;
     font-size: 20px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.search-box span button:hover{
+    background-color: #22283115;
+}
+
+.expand{
+    background-color: #517577;
+    width: 100%;
+    background-color: #EEEEEE;
+    overflow: hidden;
+    height: 0;
+    transition: 0.5s;
+}
+
+.expand.expanded {
+    height: auto;
+    padding: 1rem;
+}
+
+/* Ẩn checkbox */
+.toggle-btn input {
+    display: none;
+}
+  
+  /* Thiết lập kiểu của toggle button */
+.toggle-btn {
+    display: inline-block;
+}
+
+.category{
+    width: 100%;
+}
+
+.category span{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 0.5rem;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+.content {
+    padding: 8px 15px;
+    border: 1px solid #76ABAE;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 12px;
+    text-align: center;
+}
+
+#shoesType:checked + .content {
+    background-color: #76ABAE;
+    border: 1px solid #517577; /* Viền màu xanh khi checkbox được chọn */
+}
+
+#priceRange{
+    display: flex;
+    flex-direction: column;
+}
+
+#checkbox{
+    width: 20px;
+}
+
+.check-box {
+    justify-content: start;
+}
+
+#priceRange input {
+    position: relative;
+    outline: none;
+    padding: 10px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid #517577;
+    border-radius: 10rem;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+}
+
+#priceRange span
+{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+#priceRange span:first-child {
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+}
+
+#priceRange span:first-child input{
+    width: 100%;
+}
+
+#priceRangeInput {
+    display: flex;
+    align-items: center;
+}
+
+#priceRangeInput input{
+   width: 100%; 
+   padding-left: 1rem;
+}
+
+#priceRange #checkbox{
+    margin-top: 0;
+}
+
+#priceRange input:focus {
+    background-color: #fff;
+    border: 1px solid #76ABAE;
+}
+
+.search-expand {
+    background-color: #31363F;
+    color: #EEEEEE;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    border-radius: 10rem;
+    padding: 8px 16px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background-color 0.3s ease;
 }
 
 .user-box{
