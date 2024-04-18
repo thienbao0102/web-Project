@@ -8,10 +8,17 @@ body{
     background-color: rgba(228, 227, 227, 0.87);
 }
 
-
-
 html {
     scroll-behavior:smooth;
+}
+
+html::-webkit-scrollbar{
+    width: 5px;
+}
+
+html::-webkit-scrollbar-thumb{
+    background-color: #222831;
+    border-radius: 10rem;
 }
 
 #btnScrollToTop button{
@@ -289,6 +296,7 @@ header {
     box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
     border-radius: 5px;
     transition: 0.5s;
+    overflow: hidden;
 }
 
 .search-box:hover{
