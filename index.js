@@ -95,6 +95,21 @@ app.get('/api/getAllProducts', async (req,res)=> {
         res.status(500).json({ error: 'Internal server error'});
     }
 })
+app.put('/api/updateShoes', async (req, res) => {
+    try {
+        const data = req.body; // Lấy dữ liệu từ body của request
+        const updatedProduct = await controllers.updateShoes(data); // Gọi hàm updateProduct để cập nhật sản phẩm
+
+        if (!updatedProduct) {
+            res.status(404).json({ error: 'Product not found' });
+        } else {
+            res.json({ message: "Update successful" });
+        }
+    } catch (err) {
+        console.error('Error processing the request:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 app.get(`*`,(req,res)=>
 {

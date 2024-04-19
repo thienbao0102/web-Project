@@ -45,7 +45,7 @@ Function:
 
 //update admin
     updateShoes(shoes, updateField){
-        fetch(method : delete) 
+        fetch(method : put) 
     }
 
 //delete admin

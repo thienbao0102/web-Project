@@ -126,7 +126,7 @@
                     <input type="file" name="uploadFile" id="uploadFile"><br>
                 </form>
                 <div class="animation">
-                    <button>Update</button>
+                    <button onclick="updateProduct()">Update</button>
                 </div>
             </div>
         </div>
@@ -169,6 +169,50 @@
     <script src="../javascript/manage.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        function updateProduct() {
+            const name = document.getElementById('nameUpdate').value;
+            const price = document.getElementById('priceUpdate').value;
+            const size = document.getElementById('sizeUpdate').value;
+            const quantity = document.getElementById('quantityUpdate').value;
+            const updateForm = document.getElementById('updateForm');
+            
+            const productData = {
+                shoes: {
+                    // Các thuộc tính của sản phẩm cần được gửi đến server
+                    name,
+                    price,
+                    size,
+                    quantity
+                },
+                updateFields: {
+                    // Các trường cần được cập nhật trên sản phẩm
+                    name: name,
+                    price: price,
+                    size: size,
+                    quantity: quantity
+                }
+            };
+    
+            fetch('/api/updateShoes', { // Thay đổi URL tại đây
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(productData)
+            })
+            .then(response => response.json())
+            .then(data=> {                
+                alert(data.message);
+                //console.log("Status:", response.status);
+            })
+            .catch
+            {
+                console.log(Error);
+            }
+        }
+    </script>
+    
 </body>
 
 </html>

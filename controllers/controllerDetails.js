@@ -66,8 +66,24 @@ async function getAllShoes(nameCollection) {
         throw err;
     }
 }
-
-
+async function update(query, updateFields) {
+    try {
+        const result = await db.collection(nameCollection).updateMany(query, { $set: updateFields });
+        console.log(result.modifiedCount + " documents updated successfully.");
+        return {
+            message: 'success',
+            status: 200,
+            data: result
+        };
+    } catch (error) {
+        console.error("Error updating documents: ", error);
+        return {
+            message: 'failed',
+            status: 500,
+            error: error
+        };
+    }
+}
 module.exports ={
-    connecToDatabase, closeConnectToDatabase, getAllShoes,search
+    connecToDatabase, closeConnectToDatabase, getAllShoes,search, update
 }
