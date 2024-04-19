@@ -9,37 +9,46 @@ const bills = 'bills';
 async function querySearchProduct(rawData) {
     try {
         const query = {};
-        if (rawData.idOrName) {
+        if (rawData.idOrName) { //name /id
             query.$or = [
                 { _id: { $regex: rawData.idOrName, $options: 'i' } },
                 { name: { $regex: rawData.idOrName, $options: 'i' } }
             ];
-            console.table(query)
-            console.log(query)
         }
-        if (rawData.minPrice && rawData.maxPrice) {
+        if (rawData.name) { //name /id
+            query.name = { $regex: rawData.name, $options: 'i' }
+        }
+        if(rawData.price){ //price
             query.price = {
-                $gte: parseFloat(rawData.minPrice),
-                $lte: parseFloat(rawData.maxPrice)
-            }
+                $gte: parseFloat(rawData.price),
+                $lt: parseFloat(rawData.price) + 1
+            };
         }
-        else if (rawData.minPrice && !rawData.maxPrice) {
-            query.price = {
-                $gte: parseFloat(rawData.minPrice)
-            }
+        if(rawData.category){ //category
+            query.category = { $regex: rawData.category, $options: 'i' }
         }
-        else if (!rawData.minPrice && rawData.maxPrice){
-            query.price = {
-                $lte: parseFloat(rawData.maxPrice)
-            }
-        }
-
-        if (rawData.quantity) {
+        if (rawData.quantity) {     //quantity
             query.quantity = {
                 $eq: parseInt(rawData.quantity)
             }
         }
-        console.log(query);
+        if (rawData.minPrice && rawData.maxPrice) { //Min != null, max != null ->min>= X < max
+            query.price = {
+                $gte: parseFloat(rawData.minPrice),
+                $lt: parseFloat(rawData.maxPrice) + 1
+            }
+        }
+        else if (rawData.minPrice && !rawData.maxPrice) { //Min != null, max == null -> X >= min
+            query.price = {
+                $gte: parseFloat(rawData.minPrice)
+            }
+        }
+        else if (!rawData.minPrice && rawData.maxPrice){ //Min == null, max != null -> X < max
+            query.price = {
+                $lt: parseFloat(rawData.maxPrice) + 1
+            }
+        } 
+        console.log(query)
 
         list = await controllerDetails.search(query,shoes);
         return{

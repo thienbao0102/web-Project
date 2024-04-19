@@ -8,6 +8,15 @@ html {
     scroll-behavior:smooth;
 }
 
+html::-webkit-scrollbar{
+    width: 5px;
+}
+
+html::-webkit-scrollbar-thumb{
+    background-color: #222831;
+    border-radius: 10rem;
+}
+
 #btnScrollToTop{
     visibility: hidden;
     position: fixed;
