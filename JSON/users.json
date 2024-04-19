@@ -2,74 +2,83 @@
     {
       "_id": "USER0001",
       "name": "Derek Prohaska",
-      "email": "Marion.Glover26@hotmail.com",
+      "email": "Marion.Glover26@gmail.com",
       "gender": "Male",
       "phone number": "(350) 368-5981 x130",
-      "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1248.jpg"
+      "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1248.jpg",
+      "password": "password1"
     },
     {
         "_id": "USER0002",
         "name": "Antonia Mann",
-        "email": "Oswaldo_Witting@yahoo.com",
+        "email": "Oswaldo_Witting@gmail.com",
         "gender": "Male",
         "phone number": "237.850.5984 x39764",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/977.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/977.jpg",
+        "password": "password2"
     },
     {
         "_id": "USER0003",
         "name": "Ora Gleason",
-        "email": "Felton.Predovic76@hotmail.com",
+        "email": "Felton.Predovic76@gmail.com",
         "gender": "Male",
         "phone number": "0978123456",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/673.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/673.jpg",
+        "password": "password3"
     },
     {
         "_id": "USER0004",
         "name": "Tyrone Moore",
-        "email": "Verlie.Braun81@yahoo.com",
+        "email": "Verlie.Braun81@gmail.com",
         "gender": "Male",
         "phone number": "496-731-6379",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/686.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/686.jpg",
+        "password": "password4"
     },
     {
         "_id": "USER0005",
         "name": "Hattie Kris",
-        "email": "Waldo.Yundt@yahoo.com",
+        "email": "Waldo.Yundt@gmail.com",
         "gender": "Male",
         "phone number": "(937) 794-9336 x47732",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1166.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1166.jpg",
+        "password": "password5"
     },
     {
         "_id": "USER0006",
         "name": "Lowell Legros",
-        "email": "Maritza_Emmerich@yahoo.com",
+        "email": "Maritza_Emmerich@gmail.com",
         "gender": "Male",
         "phone number": "1-981-905-2003 x367",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/679.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/679.jpg",
+        "password": "password6"
     },
     {
         "_id": "USER0007",
         "name": "Hugo Ankunding",
-        "email": "Will.Tremblay23@hotmail.com",
+        "email": "Will.Tremblay23@gmail.com",
         "gender": "Female",
         "phone number": "(546) 438-1211 x68610",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1110.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1110.jpg",
+        "password": "password7"
     },
     {
         "_id": "USER0008",
         "name": "Zachary Emard",
-        "email": "Cornell_Anderson66@hotmail.com",
+        "email": "Cornell_Anderson66@gmail.com",
         "gender": "Female",
         "phone number": "631-860-6312 x939",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/546.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/546.jpg",
+        "password": "password8"
     },
     {
         "_id": "USER0009",
         "name": "Ryan Abbott",
-        "email": "Jamison.Runolfsdottir85@yahoo.com",
+        "email": "Jamison.Runolfsdottir85@gmail.com",
         "gender": "Male",
         "phone number": "870.880.6475 x2850",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/804.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/804.jpg",
+        "password": "password9"
     },
     {
         "_id": "USER0010",
@@ -77,6 +86,7 @@
         "email": "Meda_Denesik@gmail.com",
         "gender": "Male",
         "phone number": "1-874-449-3646 x83268",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/78.jpg"
+        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/78.jpg",
+        "password": "password10"
     }
 ]

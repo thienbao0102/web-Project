@@ -67,7 +67,7 @@
                         Email
                         <p class="email"></p>
                     </label><br>
-                    <input type="email" placeholder="Enter your email"  id="email"><br>
+                    <input type="email" placeholder="Enter your email"  id="email"><br><br>
                     <label for="password" >
                         Password
                         <p class="password"></p>
@@ -78,7 +78,7 @@
                         <i class="fa-solid fa-eye-slash" style="color: #000000;" onclick="showPassword('password',0)"></i>
                     </div><br>
                     <p class="forgotPassword">Forgot Password?</p>
-                    <button type="button" onclick="validationLogin()">Login</button>
+                    <button type="button" onclick="Login()">Login</button>
                 </form>
             </div>
             <div class="register">
@@ -87,25 +87,25 @@
                         Full Name
                         <p class="fullName"></p>
                     </label><br>
-                    <input type="text" id="fullName" placeholder="Enter your name" ><br>
+                    <input type="text" id="fullName" placeholder="Enter your name" ><br><br>
 
                     <label for="email"  >
                         Email
                         <p class="registerEmail"></p>
                     </label><br>
-                    <input type="email" id="registerEmail" placeholder="Enter your email" ><br>
+                    <input type="email" id="registerEmail" placeholder="Enter your email" ><br><br>
 
                     <label for="" class="gender">Gender</label><br>
-                    <input type="radio" id="male" name="gender" checked>
+                    <input type="radio" id="male" name="gender" checked value="male">
                     <span>Male</span>
-                    <input type="radio" id="famale" name="gender">
-                    <span>famale</span><br><br>
+                    <input type="radio" id="famale" name="gender" value="famale">
+                    <span>famale</span><br>
 
                     <label for="phone_number" >
                         Phone Number
                         <p class="phoneNumber"></p>
                     </label><br>
-                    <input type="text" id="phoneNumber" placeholder="Enter your phone number" ><br>
+                    <input type="text" id="phoneNumber" placeholder="Enter your phone number" ><br><br>
 
                     <label for="Password" >
                         Password
@@ -117,7 +117,7 @@
                         <i class="fa-solid fa-eye-slash" style="color: #000000;" onclick="showPassword('registerPassword',1)"></i>
                     </div><br>
                     
-                    <button type="button" onclick="validationRegister()">Sign In</button>
+                    <button type="button" onclick="SignUp()">Sign In</button>
                 </form>
             </div>
             <div id="change">

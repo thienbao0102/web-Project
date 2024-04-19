@@ -2,6 +2,7 @@
     {
       "_id": "ADMIN001",
       "username": "admin_john",
+      "email": "admin@gmail.com",
       "password": "password123"
     }
   ]

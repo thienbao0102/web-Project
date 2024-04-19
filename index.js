@@ -50,9 +50,8 @@ app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages
 /*------------API------------*/
 
 //search
-app.post(`/api/searchProduct`,async(req,res)=>{
-    list = await controllers.querySearchProduct(req.body)
-    console.table(list.dt);
+app.post(`/api/searchProduct`, async(req,res)=>{
+    const list = await controllers.querySearchProduct(req.body)
     res.json({
         dt: list.dt,
         ms: list.ms,
@@ -60,6 +59,25 @@ app.post(`/api/searchProduct`,async(req,res)=>{
     })
 })
 
+//login
+app.post('/api/login', async(req,res)=>{
+    const list = await controllers.queryLogin(req.body);
+    res.json({
+        dt: list.dt,
+        ms: list.ms,
+        st: list.st
+    })
+})
+
+//api signup
+app.post('/api/SignUp', async(req,res)=>{
+    const result = await controllers.signUpNewAccount(req.body);
+    res.json({
+        dt: result.dt,
+        ms: result.ms,
+        st: result.st
+    })
+})
 
     //get all products
 app.get('/api/getAllProducts', async (req,res)=> {

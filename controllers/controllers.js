@@ -1,6 +1,6 @@
 const controllerDetails = require('./controllerDetails')
 //ten collection
-const admin = 'admin';
+const admin = 'admins';
 const shoes = 'shoes';
 const users = 'users';
 const bills = 'bills';
@@ -56,6 +56,99 @@ async function querySearchProduct(rawData) {
         }
     }
 }
+
+//query to login
+async function queryLogin(rawData){
+    try {
+        const query = {};
+        query.email = {$regex: `^${rawData.email}$`, $options: 'i'};
+        var user;
+        var checkUser;
+        //la user
+        user = await controllerDetails.search(query, users);
+        checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)
+        
+        if(checkUser){
+            console.log("check users " + checkUser);
+            return{
+                dt:user.dt[0]._id,
+                ms:"user",
+                st:0
+            }
+        }
+        //la admin
+        user = await controllerDetails.search(query, admin);
+        checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)
+        if(checkUser){
+            console.log("check users " + checkUser);
+            return{
+                dt:user.dt[0]._id,
+                ms:"admin",
+                st:1
+            }
+        }
+        //khong co tai khoan
+        return{
+            dt:'',
+            ms:"No Account",
+            st: 2
+        }
+
+    } catch (error) {
+        console.log("err: " + error);
+        return{
+            dt:'',
+            ms:"Failed",
+            st:-1
+        }
+    }
+}
+
+//sign up
+async function signUpNewAccount(rawData){
+    try {
+        //check email da ton tai chua
+        const query = {};
+        query.email = {$regex: rawData.email, $options: 'i'};
+        const emailExits = await controllerDetails.search(query, users);
+        if(emailExits.length > 0){
+            console.log("da ton tai")
+            return{
+                dt:'',
+                ms:'email was exits',
+                st:1
+            }
+        }
+        //hash pass
+        const passHash = await controllerDetails.hashPassword(rawData.password);
+        //create id
+        const newId = await controllerDetails.createId();
+        console.log("new id: " + newId);
+        const newUser = {
+            '_id': newId,
+            'name': rawData.name,
+            'email':rawData.email,
+            'gender': rawData.gender,
+            'phone number': rawData.phone,
+            'password': passHash
+        }
+        const result = await controllerDetails.createNewUser(newUser, users);
+        return {
+            dt: result.dt,
+            ms: result.ms,
+            st: result.st
+
+        };
+    } catch (error) {
+        console.log("err: " + error);
+        return{
+            dt:'',
+            ms:'Error',
+            st: -1
+        }
+    }
+    
+}
 module.exports = {
-    querySearchProduct
+    querySearchProduct, queryLogin, signUpNewAccount
 }
