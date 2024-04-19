@@ -65,7 +65,6 @@ async function querySearchProduct(rawData) {
         }
     }
 }
-<<<<<<< HEAD
 async function updateShoes(shoes, updateFields) {
     try {
         let shoesToUpdate = await querySearchProduct(shoes);
@@ -104,10 +103,6 @@ async function updateShoes(shoes, updateFields) {
         };
     }
 }
-module.exports = {
-    querySearchProduct,updateShoes
-=======
-
 //query to login
 async function queryLogin(rawData){
     try {
@@ -201,6 +196,5 @@ async function signUpNewAccount(rawData){
     
 }
 module.exports = {
-    querySearchProduct, queryLogin, signUpNewAccount
->>>>>>> 8ccb75f18909394d2b0ac096dff6d5961407086a
+    querySearchProduct, queryLogin, signUpNewAccount,updateShoes
 }
