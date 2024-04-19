@@ -1,9 +1,9 @@
+const bcrypt = require("bcrypt");
 const MongoClient = require('mongodb').MongoClient;
-const urlConnect = 'mongodb://localhost:27017'
+const urlConnect = 'mongodb://localhost:27017';
 const nameDB = 'ProjectWeb';
 let client;
 let db;
-
 //connect to Database
 async function connecToDatabase()
 {
@@ -36,11 +36,37 @@ async function closeConnectToDatabase()
     }
 }
 
+//hash password
+async function hashPassword(rawPass){
+    const salt = await bcrypt.genSalt(10);
+    const passHash = await bcrypt.hash(rawPass,salt);
+    return passHash;
+}
+
+//check password
+async function checkPass(passInput,passHash){
+    const comparePass = await bcrypt.compare(passInput,passHash);
+    return comparePass;
+}
+
+//create id
+async function createId(){
+    const list = await search({},'users');
+    maxId = 0;
+    for(i = 0; i < list.dt.length ; i++){
+        const userId = parseInt(list.dt[i]._id.substring(4));
+        if(userId > maxId){
+            maxId = userId;
+        }
+    }
+    const newId = 'USER' + String(maxId + 1).padStart(4,'0');
+    return newId;
+}
+
 //search
 async function search(query, nameCollection){
     try {
         const list = await db.collection(nameCollection).find(query).toArray();
-        console.log(list);
         return{
             dt: list,
             ms: 'success',

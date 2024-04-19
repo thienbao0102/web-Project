@@ -358,7 +358,7 @@ header {
 
 .container form input:not(#male, #famale) {
     width: 100%;
-    margin: 15px 0px;
+    margin: 5px 0px;
     line-height: 25px;
     padding: 0px 5px;
 }
@@ -396,7 +396,7 @@ header {
     font-size: 13px;
     position: absolute;
     font-weight: 400;
-    bottom: -15px;
+    bottom: -52px;
     display: none;
     width: fit-content;
     left: 0px;
