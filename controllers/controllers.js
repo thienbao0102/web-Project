@@ -65,7 +65,44 @@ async function querySearchProduct(rawData) {
         }
     }
 }
+async function updateShoes(shoes, updateFields) {
+    try {
+        let shoesToUpdate = await querySearchProduct(shoes);
+        const setUpdateField = {};
 
+        // Kiểm tra và thiết lập các trường cần cập nhật
+        if (updateFields.name !== null && updateFields.name !== '') {
+            setUpdateField.name = updateFields.name;
+        }
+        if (updateFields.size !== null && updateFields.size !== '') {
+            setUpdateField.size = updateFields.size;
+        }
+        if (updateFields.price !== null && updateFields.price !== '') {
+            setUpdateField.price = updateFields.price;
+        }
+        if (updateFields.quantity !== null && updateFields.quantity !== '') {
+            setUpdateField.quantity = updateFields.quantity;
+        }
+
+        // Tiến hành cập nhật
+        const result = await controllerDetails.update({ $or: shoesToUpdate.dt },setUpdateField);
+
+        // Trả về số lượng bản ghi đã được cập nhật thành công
+        console.log(result.modifiedCount + " shoes updated successfully.");
+        return {
+            data: result.modifiedCount,
+            message: 'Update successful!',
+            status: 200
+        };
+    } catch (error) {
+        console.error("Error updating shoes: ", error);
+        return {
+            data: '',
+            message: 'Update failed!',
+            status: -1
+        };
+    }
+}
 //query to login
 async function queryLogin(rawData){
     try {
@@ -158,6 +195,7 @@ async function signUpNewAccount(rawData){
     }
     
 }
+
 module.exports = {
-    querySearchProduct, queryLogin, signUpNewAccount
+    querySearchProduct, queryLogin, signUpNewAccount,updateShoes
 }
