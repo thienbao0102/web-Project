@@ -553,59 +553,11 @@ header {
     /* css cho phan san pham sau tim */
 .containerProduct{
     width: 100%;
-    height: fit-content;
     position: relative;
-    margin-top: 20px;
+    margin-top: 2rem;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
 }
-
-.containerProduct table{
-    width: 90%;
-    text-align: center;
-    font-size: 18px;
-}
-
-.containerProduct table thead{
-    position: sticky;
-}
-
-.containerProduct table tr{
-    position: relative;
-}
-
-.containerProduct table tr::after{
-    position: absolute;
-    content: '';
-    bottom: 0px;
-    height: 1px;
-    width: 100%;
-    background-color: black;
-    left: 0px;
-}
-
-.containerProduct table tr td{
-    position: relative;
-}
-
-.containerProduct table tr td img{
-    height: 100px;
-    width: 120px;
-    margin: 5px 0px;
-    background-color: #00FF00;
-}
-
-.containerProduct table tr td button{
-    height: 40px;
-    width: 80px;
-    border-radius: 10px;
-    border: none;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-
-/* product */
 
 .product-card {
     display: flex;
@@ -714,4 +666,69 @@ header {
     right: 0; /* Thay đổi màu và độ dày viền theo ý muốn */
     border-radius: 0 1rem 0 1rem; /* Đảm bảo viền làm tròn theo góc của sản phẩm */
     pointer-events: none;
+}
+
+.toggle-btn input {
+    display: none;
+}
+  
+  /* Thiết lập kiểu của toggle button */
+.toggle-btn {
+    display: inline-block;
+}
+
+.category{
+    width: 100%;
+}
+
+.category span{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 0.5rem;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+.content {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.content::after{
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    border-radius: 1rem;
+}
+
+.choosed-shoes:checked + .content::after {
+    border: 2px solid #5c8fff; /* Viền màu xanh khi checkbox được chọn */
+}
+
+.containerProduct .text {
+    width: 80%;
+    display: flex;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.containerProduct .text .select-all-text{
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+.containerProduct .text .selected-text{
+    margin-left: auto;
+}
+
+.containerProduct .text .selected-text i{
+    color: #E72929;
+}
+
+.containerProduct .text .select-text{
+    cursor: pointer;
 }
