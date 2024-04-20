@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/cart.css">
     <title>Home</title>
 </head>
 <style>
@@ -46,7 +46,6 @@
     <section>
         <header>
             <div class="welcome-box">
-                <h1>My cart</h1>
             </div>
             <div class="search-box" id="fixedBox">
                 <span class="fixed-search">
@@ -61,7 +60,69 @@
             </div>
         </header>
         <div class="container">
-            
+            <div class="my-cart">
+                <h1>My cart</h1>
+                <p style="margin-top: 1rem; font-size: 20px;">There are no products in your cart</p>
+                <!-- <div class="product-card-h">
+                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <div>
+                            <div class="data">
+                                <h2 class="product-title">Product Name</h2>
+                                <span class="item">
+                                    <p>Size</p>
+                                    <select name="size" id="cartSizeBox">
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                        <option value="41">41</option>
+                                        <option value="42">42</option>
+                                        <option value="43">43</option>
+                                        <option value="44">44</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                    <p>Quantity</p>
+                                    <select name="quantity" id="cartQuantityBox">
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                        <option value="41">41</option>
+                                        <option value="42">42</option>
+                                        <option value="43">43</option>
+                                        <option value="44">44</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <span id="productPrice">
+                                <p class="product-price old-price">$99.99</p>
+                                <p id="newPrice">$50.99</p>
+                            </span>
+                        </div>
+                        <ion-icon name="trash-outline" id="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
+                    </div>
+                </div> -->
+            </div>
+            <div class="summary">
+                <h1>Summary</h1>
+                <div class="content-billing">
+                    <span>
+                        <p class="title">Subtotal</p>
+                        <p id="subtotal">100$</p>
+                    </span>
+                    <span>
+                        <p class="title">Estimated Delivery & Handling</p>
+                        <p class="">Free</p>
+                    </span>
+                    <span>
+                        <p class="title">VAT</p>
+                        <p class="">8%</p>
+                    </span>
+                </div>
+                <div class="total">
+                    <h4>Total</h4>
+                    <p id=" cartTotal">108$</p>
+                </div>
+                <button class="check-out">Check-out</button>
+            </div>
         </div>
     </section>
     <footer>

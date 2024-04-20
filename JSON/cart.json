@@ -1,0 +1,53 @@
+[
+    {
+        "_id":"USER0001",
+        "item": {
+            "SHOE0001": {
+                "quantity" : 1,
+                "size": "42"
+            },
+            "SHOE0001":{
+                "quantity" : 1,
+                "size": "43"
+            },
+            "SHOE0002":{
+                "quantity" : 1,
+                "size": "43"
+            }
+        }
+    },
+    {
+        "_id":"USER0002",
+        "item": {
+            "SHOE0001": {
+                "quantity" : 1,
+                "size": "42"
+            },
+            "SHOE0001":{
+                "quantity" : 1,
+                "size": "43"
+            },
+            "SHOE0003":{
+                "quantity" : 1,
+                "size": "43"
+            }
+        }
+    },
+    {
+        "_id":"USER0003",
+        "item": {
+            "SHOE0001": {
+                "quantity" : 1,
+                "size": "42"
+            },
+            "SHOE0001":{
+                "quantity" : 1,
+                "size": "43"
+            },
+            "SHOE0004":{
+                "quantity" : 1,
+                "size": "43"
+            }
+        }
+    }
+]

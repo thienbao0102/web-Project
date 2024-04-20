@@ -111,5 +111,5 @@ async function update(query, updateFields) {
     }
 }
 module.exports ={
-    connecToDatabase, closeConnectToDatabase, getAllShoes,search, update
+    connecToDatabase, closeConnectToDatabase, getAllShoes,search, update, hashPassword, checkPass
 }

@@ -40,12 +40,12 @@ app.get('/products', (req,res)=> {
     res.sendFile(__dirname + '/public/pages/products.html');
 })
     //cart page
-app.get('/cart', (req,res)=> {
+app.get('/my-cart', (req,res)=> {
     res.sendFile(__dirname + '/public/pages/cart.html');
 })
 
     //page login and register
-app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages/login_register.html'))
+app.get('/login', (req,res)=> res.sendFile(__dirname + '/public/pages/login_register.html'))
 
 /*------------API------------*/
 

@@ -131,35 +131,17 @@
             </div>
         </div>
         <div class="containerProduct">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Size-Quantity</th>
-                            <th>Image Product</th>
-                            <th>Func</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="shoe in list">
-                            <td>{{shoe._id}}</td>
-                            <td>Áo thun nam</td>
-                            <td>150.000đ</td>
-                            <td>
-                                <p>35-60</p>
-                                <p>46-80</p>
-                            </td>
-                            <td><img src="" alt=""></td>
-                            <td>
-                                <button id="delete" style="background: red;">Delete</button>
-                                <button id="showFormUpdate" style="background: yellow;" onclick="showFormUpdate()">Update</button>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+            <div class="product-card popular-product">
+                <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <h2 class="product-title">Product Name</h2>
+                    <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <span id="productPrice">
+                        <p class="product-price">$99.99</p>
+                        <p id="newPrice">$50.99</p>
+                    </span>
+                </div>
+            </div>
         </div>
     </section>
     <footer>
