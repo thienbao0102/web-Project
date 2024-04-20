@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+//const bcrypt = require("bcrypt");
 const MongoClient = require('mongodb').MongoClient;
 const urlConnect = 'mongodb://localhost:27017';
 const nameDB = 'ProjectWeb';
@@ -110,6 +110,25 @@ async function update(query, updateFields) {
         };
     }
 }
+async function deleteId(query) {
+    try {
+        const result = await db.collection(nameCollection).deleteMany(query);
+        console.log(result.deletedCount + " documents deleted successfully.");
+        return {
+            message: 'Shoes deleted successfully',
+            status: 200,
+            data: result
+        };
+    } catch (error) {
+        console.error("Error deleting documents: ", error);
+        return {
+            message: 'Failed to delete shoes',
+            status: 500,
+            error: error
+        };
+    }
+}
+
 module.exports ={
-    connecToDatabase, closeConnectToDatabase, getAllShoes,search, update
+    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, deleteId
 }

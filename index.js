@@ -128,6 +128,33 @@ app.put('/api/updateShoes', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+app.delete('/api/delete/:id', async (req, res) => {
+    const shoesId = req.params.id;
+
+    try {
+        // Thực hiện tìm kiếm sản phẩm
+        const searchResult = await controllers.querySearchProduct({ id: shoesId });
+
+        // Kiểm tra nếu có kết quả từ việc tìm kiếm
+        if (searchResult.dt) {
+            // Lấy thông tin sản phẩm từ kết quả tìm kiếm
+            const productId = searchResult.dt._id;
+
+            // Thực hiện xóa sản phẩm
+            const deleteResult = await controllerDetails.deleteId(productId);
+
+            // Trả về kết quả xóa
+            res.status(deleteResult.status).json(deleteResult);
+        } else {
+            // Không tìm thấy sản phẩm
+            res.status(404).json({ message: 'Product not found' });
+        }
+    } catch (error) {
+        console.error("Error deleting shoes: ", error);
+        res.status(500).json({ message: 'Failed to delete shoes', error: error });
+    }
+});
+
 
 app.get(`*`,(req,res)=>
 {

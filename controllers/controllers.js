@@ -195,6 +195,7 @@ async function signUpNewAccount(rawData){
     }
     
 }
+
 module.exports = {
     querySearchProduct, queryLogin, signUpNewAccount,updateShoes
 }
