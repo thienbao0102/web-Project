@@ -47,6 +47,11 @@ app.get('/cart', (req,res)=> {
     //page login and register
 app.get('/login_orregister', (req,res)=> res.sendFile(__dirname + '/public/pages/login_register.html'))
 
+    //productDetail
+app.get('/product', async(req,res)=>{
+    res.sendFile(__dirname + '/public/pages/productDetail.html')
+})
+
 /*------------API------------*/
 
 //search

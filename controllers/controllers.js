@@ -131,7 +131,7 @@ async function signUpNewAccount(rawData){
         //hash pass
         const passHash = await controllerDetails.hashPassword(rawData.password);
         //create id
-        const newId = await controllerDetails.createId();
+        const newId = await controllerDetails.createId('USER',users);
         console.log("new id: " + newId);
         const newUser = {
             '_id': newId,

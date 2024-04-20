@@ -50,16 +50,16 @@ async function checkPass(passInput,passHash){
 }
 
 //create id
-async function createId(){
-    const list = await search({},'users');
+async function createId(str, nameCollection){
+    const list = await search({},nameCollection);
     maxId = 0;
     for(i = 0; i < list.dt.length ; i++){
-        const userId = parseInt(list.dt[i]._id.substring(4));
+        const userId = parseInt(list.dt[i]._id.substring(str.length));
         if(userId > maxId){
             maxId = userId;
         }
     }
-    const newId = 'USER' + String(maxId + 1).padStart(4,'0');
+    const newId = str + String(maxId + 1).padStart(4,'0');
     return newId;
 }
 
