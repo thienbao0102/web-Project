@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/productDetail.css">
+    <title>Product</title>
+</head>
+
+<body>
+    <a href="#" id="btnScrollToTop"><button><img src="../system/srcolltotop.svg" alt=""></button></a>
+    <nav class="navigation">
+        <div class="logo">
+            <a href=""><img src="../system/newlogo.png" alt="Stride Sync"></a>
+        </div>
+        <div class="item">
+            <div class="route">
+                <ul>
+                    <a href="/">
+                        <li id="here"><ion-icon name="home-outline"></ion-icon>
+                            <p>Home</p>
+                        </li>
+                    </a>
+                    <a href="/products">
+                        <li><ion-icon name="grid-outline"></ion-icon>
+                            <p>Products</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="newspaper-outline"></ion-icon>
+                            <p>What New?</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="help-circle-outline"></ion-icon>
+                            <p>About Us</p>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <div class="account">
+                <h4>ACCOUNT</h4>
+                <ul>
+                    <a href="/myinfo">
+                        <li><ion-icon name="person-outline"></ion-icon>
+                            <p>My Info</p>
+                        </li>
+                    </a>
+                    <a href="/cart">
+                        <li><ion-icon name="cart-outline"></ion-icon>
+                            <p>My Orders</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="settings-outline"></ion-icon>
+                            <p>Setting</p>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <div id="helpCenter" class="help-center">
+                <span><ion-icon name="mail-outline"></ion-icon></span>
+                <h3>Contact Us</h3>
+                <p>Having trouble in StrideSync. Please contact us for more questions.</p>
+                <button class="btn-help">Go to contact</button>
+                <span id="glass"></span>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <header>
+            <div class="welcome-box">
+                <h1>Welcome to Stride Sync.</h1>
+                <h4>Hello Mach Hoai, welcome back!</h4>
+            </div>
+            <div class="search-box" id="fixedBox">
+                <span class="fixed-search" id="fixedSearch">
+                    <input type="text" id="searchInput" placeholder="Search at here...">
+                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
+                </span>
+                <div class="expand" id="expandDiv">
+                    <div id="filter">
+                        <div class="category">
+                            <p>Category:</p>
+                            <span>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="type1">
+                                    <div class="content">Type1</div>
+                                </label>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="type2">
+                                    <div class="content">Type2</div>
+                                </label>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="type3">
+                                    <div class="content">Type3</div>
+                                </label>
+                            </span>
+                        </div>
+                        <div id="priceRange" class="form-group">
+                            <span>
+                                <label for="price">Price:</label>
+                                <input type="number" id="price" class="search-input" name="price">
+                            </span>
+                            <span class="check-box">
+                                <input type="checkbox" id="checkbox" style="margin-right: 1rem;">
+                                <label for="checkbox">Price range</label>
+                            </span>
+                            <div id="priceRangeInput">
+                                <input type="number" id="minPrice" placeholder="Min">
+                                <p style="padding: 0.7rem 5px 5px 5px;">-</p>
+                                <input type="number" id="maxPrice" placeholder="Max">
+                            </div>
+                        </div>
+                        <button class="search-expand">Search</button>
+                    </div>
+                    <div class="search-result" id="searchResult">
+
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="user-box">
+                <a style="color: #222831;" href="/cart"><span class="cart cart-outline"><ion-icon
+                            name="bag-outline"></ion-icon></span></a>
+                <span class="user-avt">
+                    <img id="user-avatar" src="../avt.png" alt="">
+                </span>
+            </div>
+        </header>
+        <div class="container">
+            
+        </div>
+    </section>
+    <footer>
+    </footer>
+    <script src="../javascript/productDetail.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
