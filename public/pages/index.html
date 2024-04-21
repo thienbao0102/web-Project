@@ -41,7 +41,7 @@
                 <h4>ACCOUNT</h4>
                 <ul>
                     <a href="/myinfo"><li><ion-icon name="person-outline"></ion-icon> <p>My Info</p> </li></a>
-                    <a href="/cart"><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
+                    <a href="/my-cart"><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
                     <a href=""><li><ion-icon name="settings-outline"></ion-icon> <p>Setting</p> </li></a>
                 </ul>
             </div>
@@ -108,7 +108,7 @@
             </div>
             </div>
             <div class="user-box">
-                <a style="color: #222831;" href="/cart"><span class="cart cart-outline"><ion-icon name="bag-outline"></ion-icon></span></a>
+                <a style="color: #222831;" href="/my-cart"><span class="cart cart-outline"><ion-icon name="bag-outline"></ion-icon></span></a>
                 <span class="user-avt">
                     <img id="user-avatar" src="../avt.png" alt="">
                 </span>
@@ -210,7 +210,7 @@
                     Html += `<a href="" style="text-decoration: none; color: #222831;">`;
                     Html += checkTag(product);
                     console.log(Html);
-                    Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                    Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image" loading="lazy">`;
                     Html += `<div class="product-info">`;
                     Html += `<h4 class="product-title">${product.name}</h4>`;
                     Html += `<span id="productPrice">`;

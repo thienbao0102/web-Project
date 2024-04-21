@@ -319,7 +319,7 @@
                 products.forEach(product => {
                 Html += checkTag(product);
                 console.log(Html);
-                Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                Html += `<img src="${product.imageURL}" loading="lazy" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
                 Html += `<div class="product-info">`;
                 Html += `<h2 class="product-title">${product.name}</h2>`;
                 Html += `<p class="product-description">${product.description}</p>`;
