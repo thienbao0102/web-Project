@@ -288,7 +288,7 @@ header {
     align-items: center;
     border-radius: 5px;
     background-color: #EEEEEE;
-    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
 .search-box span input{
@@ -342,16 +342,23 @@ header {
 {
     display: flex;
     height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .container .search{
     position: relative;
     width: 40%;
-    box-shadow: 0px 0px 36px 18px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
     border-radius: 20px;
-    margin: 3%;
     height: fit-content;
     padding: 10px 0px;
+    background-color: #EEEEEE;
+}
+
+.container .search:hover{
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
 .container .search h1{
@@ -554,9 +561,15 @@ header {
 .containerProduct{
     width: 100%;
     position: relative;
-    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.products-result{
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .product-card {
@@ -568,19 +581,19 @@ header {
     background-color: #EEEEEE;
     position: relative;
     max-height: 500px;
-    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15); */
     margin: 0 1rem 1rem 1rem;
     transition: 0.3s;
 }
 
 .product-card:hover{
-    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.295);
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
 }
 
 .product-image {
     max-height: 268px;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 .product-info {
@@ -694,6 +707,23 @@ header {
     transition: 0.2s;
 }
 
+.fake-checkbox{
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    border-radius: 10rem;
+    background-color: transparent;
+    color: #EEEEEE;
+}
+
+.fake-checkbox img {
+    width: 100%;
+    height: 100%; /* Đảm bảo ảnh lấp đầy kích thước của checkbox */
+    object-fit: cover;
+    opacity: 0;
+    filter: invert(100%);
+}
+
 .content::after{
     content: '';
     top: 0;
@@ -705,8 +735,9 @@ header {
 }
 
 .choosed-shoes:checked + .content::after {
-    border: 2px solid #5c8fff; /* Viền màu xanh khi checkbox được chọn */
+    border: 2px solid #3559E0; /* Viền màu xanh khi checkbox được chọn */
 }
+
 
 .containerProduct .text {
     width: 80%;
@@ -714,21 +745,22 @@ header {
     position: relative;
     left: 50%;
     transform: translate(-50%);
+    margin: 2rem 0 1rem 0;
 }
 
 .containerProduct .text .select-all-text{
-    margin-left: 2rem;
     cursor: pointer;
+    background-color: #22283115;
+    padding: 0.5rem 1rem;
+    border-radius: 10rem;
+    color: #3559E0;
 }
 
 .containerProduct .text .selected-text{
     margin-left: auto;
+    padding: 0.5rem 1rem;
 }
 
 .containerProduct .text .selected-text i{
     color: #E72929;
-}
-
-.containerProduct .text .select-text{
-    cursor: pointer;
 }

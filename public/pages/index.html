@@ -102,7 +102,7 @@
                         <button class="search-expand">Search</button>
                     </div>
                     <div class="search-result" id="searchResult">
-                        display: none;
+                        
                     </div>
                 </div>
             </div>
@@ -215,7 +215,7 @@
                     Html += `<h4 class="product-title">${product.name}</h4>`;
                     Html += `<span id="productPrice">`;
                     Html += `<p class="product-price old-price">$${product.price}</p>`;
-                    Html += `<p id="newPrice"></p>`;
+                    Html += calSalePrice(product);
                     Html += `</span>`;
                     Html += `</div>`;
                     Html += `</div>`;
@@ -225,6 +225,14 @@
                 // Chèn vào phần tử có id là "container"
                 var container = document.getElementById('searchResult');
                 container.innerHTML = Html;
+            }
+
+            function calSalePrice(product) {
+                if(product.sale !== false  && !isNaN(product.sale))
+                {
+                    return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+                }
+                return `<p id="newPrice"></p>`;
             }
 
             function checkTag(product){

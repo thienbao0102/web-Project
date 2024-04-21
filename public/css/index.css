@@ -402,12 +402,14 @@ header {
     flex-direction: column;
     margin-left: 1rem;
     justify-content: center;
+    width: 60%;
 }
 
 .product-result span{
     height: 30px;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: start;
+    margin-top: 0.3rem;
 }
 
 .product-price {

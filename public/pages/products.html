@@ -325,7 +325,7 @@
                 Html += `<p class="product-description">${product.description}</p>`;
                 Html += `<span id="productPrice">`;
                 Html += `<p class="product-price old-price">$${product.price}</p>`;
-                Html += `<p id="newPrice"></p>`;
+                Html += calSalePrice(product);
                 Html += `</span>`;
                 Html += `<button class="add-to-cart" data-id = "${product._id}">Buy now</button>`;
                 Html += `</div>`;
@@ -335,6 +335,14 @@
             // Chèn vào phần tử có id là "container"
             var container = document.getElementById('products');
             container.innerHTML += Html;
+        }
+
+        function calSalePrice(product) {
+            if(product.sale !== false  && !isNaN(product.sale))
+            {
+                return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+            }
+            return `<p id="newPrice"></p>`;
         }
 
         function checkTag(product){

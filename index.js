@@ -87,7 +87,6 @@ app.get('/api/indexSearch', async (req, res) => {
     try{
         const data = req.query;
         const products = await controllers.querySearchProduct(data);
-        console.log(products)
         if (products.length < 1) {
             res.status(404).json({ error: 'Không tìm thấy' });
         } else {
