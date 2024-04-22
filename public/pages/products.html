@@ -359,11 +359,9 @@
 
         function renderProducts(products) {
             let Html = ' ';
-            console.table(products)
             if (products !== null) {
                 products.forEach(product => {
                 Html += checkTag(product);
-                console.log(Html);
                 Html += `<img src="${product.imageURL}" loading="lazy" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
                 Html += `<div class="product-info">`;
                 Html += `<h2 class="product-title">${product.name}</h2>`;
