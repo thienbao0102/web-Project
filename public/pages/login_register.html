@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../css/login_register.css">
     <title>Login And Sign-Up</title>
 </head>
-<body>
+
+<body onload="checkUserSignIn()">
     <nav class="navigation">
         <div class="logo">
             <a href=""><img src="../system/newlogo.png" alt="Stride Sync"></a>
@@ -18,18 +22,46 @@
         <div class="item">
             <div class="route">
                 <ul>
-                    <a href="/"><li id="here"><ion-icon name="home-outline"></ion-icon> <p>Home</p> </li></a>
-                    <a href=""><li><ion-icon name="grid-outline"></ion-icon> <p>Products</p> </li></a>
-                    <a href=""><li><ion-icon name="newspaper-outline"></ion-icon> <p>What New?</p> </li></a>
-                    <a href=""><li><ion-icon name="help-circle-outline"></ion-icon> <p>About Us</p> </li></a>
+                    <a href="/">
+                        <li id="here"><ion-icon name="home-outline"></ion-icon>
+                            <p>Home</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="grid-outline"></ion-icon>
+                            <p>Products</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="newspaper-outline"></ion-icon>
+                            <p>What New?</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="help-circle-outline"></ion-icon>
+                            <p>About Us</p>
+                        </li>
+                    </a>
                 </ul>
             </div>
             <div class="account">
                 <h4>ACCOUNT</h4>
                 <ul>
-                    <a href="/myinfo"><li><ion-icon name="person-outline"></ion-icon> <p>My Info</p> </li></a>
-                    <a href=""><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
-                    <a href=""><li><ion-icon name="settings-outline"></ion-icon> <p>Setting</p> </li></a>
+                    <a onclick="redirectRouter()">
+                        <li><ion-icon name="person-outline"></ion-icon>
+                            <p class="redirtUser">My Info</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="cart-outline"></ion-icon>
+                            <p>My Orders</p>
+                        </li>
+                    </a>
+                    <a href="" style="display: none;">
+                        <li><ion-icon name="settings-outline"></ion-icon>
+                            <p>Management</p>
+                        </li>
+                    </a>
                 </ul>
             </div>
             <div id="helpCenter" class="help-center">
@@ -62,38 +94,39 @@
         </header>
         <div class="container">
             <div class="login">
-                <form >
-                    <label for="email" >
+                <form>
+                    <label for="email">
                         Email
                         <p class="email"></p>
                     </label><br>
-                    <input type="email" placeholder="Enter your email"  id="email"><br><br>
-                    <label for="password" >
+                    <input type="email" placeholder="Enter your email" id="email"><br><br>
+                    <label for="password">
                         Password
                         <p class="password"></p>
-                    </label><br>                   
+                    </label><br>
                     <div class="bounary_pasword">
-                        <input type="password" placeholder="Enter your password"  id="password">
+                        <input type="password" placeholder="Enter your password" id="password">
                         <i class="fa-solid fa-eye" style="color: #000000;" onclick="showPassword('password',0)"></i>
-                        <i class="fa-solid fa-eye-slash" style="color: #000000;" onclick="showPassword('password',0)"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000;"
+                            onclick="showPassword('password',0)"></i>
                     </div><br>
                     <p class="forgotPassword">Forgot Password?</p>
                     <button type="button" onclick="Login()">Login</button>
                 </form>
             </div>
             <div class="register">
-                <form >
-                    <label for="full_name" >
+                <form>
+                    <label for="full_name">
                         Full Name
                         <p class="fullName"></p>
                     </label><br>
-                    <input type="text" id="fullName" placeholder="Enter your name" ><br><br>
+                    <input type="text" id="fullName" placeholder="Enter your name"><br><br>
 
-                    <label for="email"  >
+                    <label for="email">
                         Email
                         <p class="registerEmail"></p>
                     </label><br>
-                    <input type="email" id="registerEmail" placeholder="Enter your email" ><br><br>
+                    <input type="email" id="registerEmail" placeholder="Enter your email"><br><br>
 
                     <label for="" class="gender">Gender</label><br>
                     <input type="radio" id="male" name="gender" checked value="male">
@@ -101,30 +134,34 @@
                     <input type="radio" id="famale" name="gender" value="famale">
                     <span>famale</span><br>
 
-                    <label for="phone_number" >
+                    <label for="phone_number">
                         Phone Number
                         <p class="phoneNumber"></p>
                     </label><br>
-                    <input type="text" id="phoneNumber" placeholder="Enter your phone number" ><br><br>
+                    <input type="text" id="phoneNumber" placeholder="Enter your phone number"><br><br>
 
-                    <label for="Password" >
+                    <label for="Password">
                         Password
                         <p class="registerPassword"></p>
                     </label><br>
                     <div class="bounary_pasword">
-                        <input type="password" id="registerPassword" placeholder="Enter your password" >
-                        <i class="fa-solid fa-eye" style="color: #000000;" onclick="showPassword('registerPassword',1)"></i>
-                        <i class="fa-solid fa-eye-slash" style="color: #000000;" onclick="showPassword('registerPassword',1)"></i>
+                        <input type="password" id="registerPassword" placeholder="Enter your password">
+                        <i class="fa-solid fa-eye" style="color: #000000;"
+                            onclick="showPassword('registerPassword',1)"></i>
+                        <i class="fa-solid fa-eye-slash" style="color: #000000;"
+                            onclick="showPassword('registerPassword',1)"></i>
                     </div><br>
-                    
+
                     <button type="button" onclick="SignUp()">Sign In</button>
                 </form>
             </div>
             <div id="change">
                 <p id="textContent">Hello, Friend</p><br>
                 <p id="textMore" style="font-size: 20px; color: rgb(174, 173, 173);">Click arrow to Register</p>
-                <span id="next" onclick="changeStatus(1)"><i class="fa-solid fa-arrow-right-long" style="color: #ffffff;"></i></span>
-                <span id="pre" onclick="changeStatus(-1)"><i class="fa-solid fa-arrow-left-long" style="color: #ffffff;"></i></span>
+                <span id="next" onclick="changeStatus(1)"><i class="fa-solid fa-arrow-right-long"
+                        style="color: #ffffff;"></i></span>
+                <span id="pre" onclick="changeStatus(-1)"><i class="fa-solid fa-arrow-left-long"
+                        style="color: #ffffff;"></i></span>
             </div>
         </div>
     </section>
@@ -135,4 +172,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>

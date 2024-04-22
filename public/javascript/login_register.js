@@ -227,3 +227,38 @@ function SignUp(){
         }
     })
 }
+
+// check user đã đăng nhập hay chưa
+const redireRoute = document.querySelector('.redirtUser');
+function checkUserSignIn(){
+    const checkSignin = localStorage.getItem('_id');
+    console.log("Checksignin: " + checkSignin);
+    if(checkSignin == null){
+        redireRoute.textContent = 'Login';
+        return;
+    }
+    redireRoute.textContent = 'My Info';
+    accessManagement();
+}
+
+//xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
+function redirectRouter(){
+    if(redireRoute.textContent == 'Login & SignUp'){
+        window.location.href = '/login_orregister';
+    }
+    else if(redireRoute.textContent == 'My Info'){
+        window.location.href = '/myinfo';
+    }
+}
+
+//admin truy cap vao trang quan ly
+const allowAccess = document.querySelector('.isAdmin');
+function accessManagement(){
+    const roleUser = localStorage.getItem('role');
+    console.log(roleUser)
+    if(roleUser == 'isAdmin'){
+        allowAccess.style.display = 'block';
+        return;
+    }
+    allowAccess.style.display = 'none';
+}

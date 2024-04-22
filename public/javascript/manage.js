@@ -1,6 +1,10 @@
 //xo thanh tim kiem xuong
 const moreSearch = document.querySelector('.more-search');
 const btnMoreSearch = document.querySelector('.extend-search');
+const FormUpdate = document.querySelector('.update');//form update
+const titleH1Update = document.querySelector('.title');//the h1 cua form update
+const size = document.getElementById('sizeUpdate');//input size
+const quantity = document.getElementById('quantityUpdate');//input quantity
 
 function extendSearch(){
     
@@ -9,14 +13,12 @@ function extendSearch(){
 }
 
 //hien thi o cap nhat
-const FormUpdate = document.querySelector('.update');
-function showFormUpdate(){
+function showFormUpdate(_Id){
     FormUpdate.classList.toggle('active');
+    titleH1Update.textContent = 'Update - ' + _Id; 
 }
 
 //cho phép nhap quantity khi da nhap size
-const size = document.getElementById('sizeUpdate');
-const quantity = document.getElementById('quantityUpdate')
 
 size.addEventListener('change', ()=>{
     console.log(size.value);
@@ -27,7 +29,6 @@ size.addEventListener('change', ()=>{
         quantity.disabled = true;
     }
 })
-
 
 //search
 let list;

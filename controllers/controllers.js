@@ -109,11 +109,12 @@ async function queryLogin(rawData){
         const query = {};
         query.email = {$regex: `^${rawData.email}$`, $options: 'i'};
         var user;
-        var checkUser;
+        var checkUser = false;
         //la user
         user = await controllerDetails.search(query, users);
-        checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)
-        
+        if(user.dt.length > 0){
+            checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)    
+        }    
         if(checkUser){
             console.log("check users " + checkUser);
             return{
@@ -124,7 +125,9 @@ async function queryLogin(rawData){
         }
         //la admin
         user = await controllerDetails.search(query, admin);
-        checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)
+        if(user.dt.length > 0){
+            checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)
+        }
         if(checkUser){
             console.log("check users " + checkUser);
             return{
@@ -141,7 +144,7 @@ async function queryLogin(rawData){
         }
 
     } catch (error) {
-        console.log("err: " + error);
+        console.log("err: queryLogin " + error);
         return{
             dt:'',
             ms:"Failed",

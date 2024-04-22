@@ -1,4 +1,4 @@
-//const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const MongoClient = require('mongodb').MongoClient;
 const urlConnect = 'mongodb://localhost:27017';
 const nameDB = 'ProjectWeb';
