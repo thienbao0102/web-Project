@@ -129,37 +129,13 @@
                     <button onclick="updateProduct()">Update</button>
                 </div>
             </div>
-        </div>
-        <div class="containerProduct">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Size-Quantity</th>
-                            <th>Image Product</th>
-                            <th>Func</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="shoe in list">
-                            <td>{{shoe._id}}</td>
-                            <td>Áo thun nam</td>
-                            <td>150.000đ</td>
-                            <td>
-                                <p>35-60</p>
-                                <p>46-80</p>
-                            </td>
-                            <td><img src="" alt=""></td>
-                            <td>
-                                <button id="delete" style="background: red;"onclick="confirmDelete()">Delete</button>
-                                <button id="showFormUpdate" style="background: yellow;" onclick="showFormUpdate(123)">Update</button>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+        </div>  
+        <div class="containerProduct" id="containerProduct">
+            <!-- <span class="text">
+                <p class="select-text">Select</p>
+                <p class="select-all-text">Select all</p>
+                <p class="selected-text">Selected <i>8</i>  items</p>
+            </span> -->
         </div>
     </section>
     <footer>
@@ -212,33 +188,190 @@
         }
 
         function confirmDelete() {
-        // Xác nhận xóa sản phẩm
-        const infoSearch= document.getElementById('infoSearch').value;
-        const confirmDelete = confirm("Are you sure you want to delete this product?");
-        if(confirmDelete)
-            {
-                deleteProduct(infoSearch);
-            }else {
-                console.log(`Delete cancelled.`)
-            }
+            // Xác nhận xóa sản phẩm
+            const infoSearch= document.getElementById('infoSearch').value;
+            const confirmDelete = confirm("Are you sure you want to delete this product?");
+            if(confirmDelete)
+                {
+                    deleteProduct(infoSearch);
+                }else {
+                    console.log(`Delete cancelled.`)
+                }
         }
         // Gửi yêu cầu DELETE đến API
         function deleteProduct(productId){
-        fetch(`/api/delete/${productId}`, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Xử lý kết quả từ server
-            alert(data.message);
-            // Reload trang hoặc cập nhật giao diện sau khi xóa sản phẩm thành công
-            location.reload();
-        })
-        .catch(error => {
-            console.log(Error);
-            alert('An error occurred while deleting the product.');
-        });
-    }
+            fetch(`/api/delete/${productId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Xử lý kết quả từ server
+                alert(data.message);
+                // Reload trang hoặc cập nhật giao diện sau khi xóa sản phẩm thành công
+                location.reload();
+            })
+            .catch(error => {
+                console.log(Error);
+                alert('An error occurred while deleting the product.');
+            });
+        }
+
+        function searchProduct() {
+            const data = {
+                name: name || "",
+            }
+            getSearch(data)
+        }
+
+        function getSearch(data) {
+            const queryParams = new URLSearchParams(data).toString();
+            fetch(`/api/indexSearch?${queryParams}`, {
+                method: 'GET',
+            }) 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data.dt);
+                renderProducts(data.dt)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Xử lý lỗi ở đây nếu cần thiết
+            });
+        }
+
+        function renderProducts(products) {
+            let Html = ' ';
+            if(products !== null && products.length > 0){
+                Html += `<span class="text">`
+                Html += `<p class="select-all-text" id = "btnSelectAll">Select all</p>`
+                Html += `<p class="selected-text" id = "selectedText">Selected <i id = "numSelected">0</i> items</p>`
+                Html += `</span>`;
+                Html += `<div class="products-result">`;
+                products.forEach(product => {
+                    Html += `<label class="toggle-btn">`;
+                    Html += `<input type="checkbox" class="choosed-shoes" value="${product._id}">`;
+                    Html += checkTag(product);
+                    Html += `<label class= "fake-checkbox">
+                                <input type="checkbox" class="fakeCheckBox">
+                                <img src="../system/checkmark-outline.svg" alt="">
+                            </label>`;
+                    Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                    Html += `<div class="product-info">`;
+                    Html += `<h2 class="product-title">${product.name}</h2>`;
+                    Html += `<p class="product-description">${product.description}</p>`
+                    Html += `<p class="product-description">Sale: ${product.sale || 0}</p>`
+                    Html += `<span id="productPrice">`;
+                    Html += `<p class="product-price old-price">$${product.price}</p>`;
+                    Html += calSalePrice(product);
+                    Html += `</span>`;
+                    Html += `</div>`;
+                    Html += `</div>`;
+                    Html += `</label>`;
+                });
+                Html += `</div>`;
+            }
+            // Chèn vào phần tử có id là "container"
+            var container = document.getElementById('containerProduct');
+            container.innerHTML = Html;
+
+            attachClickEvent();
+        }
+
+        function calSalePrice(product) {
+            if(product.sale !== false  && !isNaN(product.sale))
+            {
+                return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+            }
+            return `<p id="newPrice"></p>`;
+        }
+
+        function checkTag(product){
+            if(product.sale !== false  && !isNaN(product.sale))
+            {
+                return `<div class="product-card sale-product content" data-sale="${product.sale}%">`
+            }
+            if(product.isPopular !== false)
+            {
+                return `<div class="product-card popular-product content">`
+            }
+            return `<div class="product-card content">`;
+        }
+
+        const selectedIds = [];
+            
+        function attachClickEvent() {
+            const productCards = document.querySelectorAll('.toggle-btn');
+            productCards.forEach(productCard => {
+                const checkbox = productCard.querySelector('.choosed-shoes');
+                const fakeCheckbox = productCard.querySelector('.fake-checkbox');
+                // Thêm sự kiện click cho cả checkbox và fakeCheckbox
+                checkbox.addEventListener("click", (e) => {
+                    handleCheckboxClick(e.target, fakeCheckbox);
+                });
+
+                fakeCheckbox.addEventListener("click", (e) => {
+                    handleCheckboxClick(checkbox, fakeCheckbox);
+                });
+            });
+            handleSelectAllBtn();
+        }
+
+        function handleSelectAllBtn(){
+            const btnSelectAll = document.getElementById("btnSelectAll");
+            const selectedText = document.getElementById("selectedText");
+            
+            let isClicked = false;
+            
+            btnSelectAll.addEventListener("click", () => {
+                const checkBoxes = document.querySelectorAll('.choosed-shoes');
+                
+                checkBoxes.forEach(checkBox => {
+                    checkBox.checked = !isClicked;
+                    handleCheckboxClick(checkBox, checkBox.parentElement.querySelector('.fake-checkbox'));
+                });
+                
+                isClicked = !isClicked;
+            });
+        }
+
+        function handleCheckboxClick(checkbox, fakeCheckbox) {
+            const id = checkbox.value;
+            const imgFakeCheckbox = fakeCheckbox.querySelector('img');
+            if (imgFakeCheckbox) { // Kiểm tra xem có phần tử <img> trong fakeCheckbox không trước khi truy cập
+                const index = selectedIds.findIndex(item => item._id === id);
+                if (checkbox.checked) {
+                    fakeCheckbox.style.backgroundColor = "#3559E0";
+                    imgFakeCheckbox.style.opacity = 1;
+                    // Nếu sản phẩm được chọn và chưa có trong mảng selectedIds, thêm id vào mảng
+                    if (index === -1) {
+                        selectedIds.push({ _id: id });
+                    }
+                } else {
+                    fakeCheckbox.style.backgroundColor = "transparent";
+                    imgFakeCheckbox.style.opacity = 0;
+                    // Nếu sản phẩm bị hủy chọn và có trong mảng selectedIds, loại bỏ id khỏi mảng
+                    if (index !== -1) {
+                        selectedIds.splice(index, 1);
+                    }
+                }
+                handleNumSelected();
+            }
+        }
+
+        function handleNumSelected() {
+            const numSelected = document.getElementById("numSelected");
+            if(selectedIds < 0){
+                return;
+            }
+            numSelected.innerHTML = selectedIds.length;
+        }
+        
+
     </script>
     
 </body>

@@ -48,7 +48,6 @@ async function querySearchProduct(rawData) {
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
         } 
-        console.log(query)
 
         list = await controllerDetails.search(query,shoes);
         return{
