@@ -1,6 +1,7 @@
 const fixedBox = document.getElementById("fixedBox");
 const btnMoreOpt = document.getElementById("moreOpt")
 const searchInput = document.getElementById("searchInput");
+//const category = document.getElementById("price");
 let searchExpand = !0;
 let timerId;
 document.addEventListener("DOMContentLoaded", () => {
@@ -70,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data.dt);
                 renderProducts(data.dt)
             })
             .catch(error => {
@@ -81,18 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderProducts(products) {
         let Html = ' ';
-        console.table(products)
         if (products !== null && products.length > 0) {
             products.forEach(product => {
                 Html += `<a href="" style="text-decoration: none; color: #222831;">`;
                 Html += checkTag(product);
-                console.log(Html);
                 Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
                 Html += `<div class="product-info">`;
                 Html += `<h4 class="product-title">${product.name}</h4>`;
                 Html += `<span id="productPrice">`;
                 Html += `<p class="product-price old-price">$${product.price}</p>`;
-                Html += `<p id="newPrice"></p>`;
+                Html += calSalePrice(product);
                 Html += `</span>`;
                 Html += `</div>`;
                 Html += `</div>`;
@@ -102,6 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Chèn vào phần tử có id là "container"
         var container = document.getElementById('searchResult');
         container.innerHTML = Html;
+    }
+
+    function calSalePrice(product) {
+        if(product.sale !== false  && !isNaN(product.sale))
+        {
+            return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+        }
+        return `<p id="newPrice"></p>`;
     }
 
     function checkTag(product) {
