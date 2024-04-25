@@ -622,6 +622,16 @@ header {
     margin-top: 3rem;
 }
 
+.products-group .text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.products-group .text a{
+    color: #222831;
+}
+
 .products-in-group{
     display: flex;
     overflow: auto;
