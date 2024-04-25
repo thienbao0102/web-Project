@@ -226,12 +226,12 @@
                             <p class="redirtUser">My Info</p>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="/my-cart">
                         <li><ion-icon name="cart-outline"></ion-icon>
                             <p>My Orders</p>
                         </li>
                     </a>
-                    <a href="" style="display: none;">
+                    <a href="/dashboard" class="isAdmin" style="display: none;">
                         <li><ion-icon name="settings-outline"></ion-icon>
                             <p>Management</p>
                         </li>
@@ -506,7 +506,7 @@
         // check user đã đăng nhập hay chưa
         const redireRoute = document.querySelector('.redirtUser');
         function checkUserSignIn() {
-            const checkSignin = localStorage.getItem('_id');
+            const checkSignin = sessionStorage.getItem('_id');
             console.log("Checksignin: " + checkSignin);
             if (checkSignin == null) {
                 redireRoute.textContent = 'Login';
@@ -518,7 +518,7 @@
 
         //xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
         function redirectRouter() {
-            if (redireRoute.textContent == 'Login & SignUp') {
+            if (redireRoute.textContent == 'Login') {
                 window.location.href = '/login_orregister';
             }
             else if (redireRoute.textContent == 'My Info') {
@@ -529,7 +529,7 @@
         //admin truy cap vao trang quan ly
         const allowAccess = document.querySelector('.isAdmin');
         function accessManagement() {
-            const roleUser = localStorage.getItem('role');
+            const roleUser = sessionStorage.getItem('role');
             console.log(roleUser)
             if (roleUser == 'isAdmin') {
                 allowAccess.style.display = 'block';

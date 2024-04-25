@@ -180,12 +180,11 @@ async function signUpNewAccount(rawData){
             'phone number': rawData.phone,
             'password': passHash
         }
-        const result = await controllerDetails.createNewUser(newUser, users);
+        const result = await controllerDetails.createNewObj(newUser, users);
         return {
             dt: result.dt,
             ms: result.ms,
             st: result.st
-
         };
     } catch (error) {
         console.log("err: " + error);

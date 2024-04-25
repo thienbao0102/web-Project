@@ -129,6 +129,25 @@ async function deleteId(query) {
     }
 }
 
+//create new object
+async function createNewObj(query, nameCollection){
+    try {
+        result = await db.collection(nameCollection).insertOne(query);
+        return{
+            dt: '',
+            ms: 'Create Success',
+            st: 0
+        }
+        
+    } catch (error) {
+        console.log("err: " + error)
+        return{
+            dt: '',
+            ms: 'Create Failed!',
+            st: -1
+        }
+    }
+}
 module.exports ={
-    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, deleteId
+    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, deleteId, createNewObj
 }
