@@ -519,4 +519,20 @@ header {
 #shoesType:checked + .content {
     background-color: #76ABAE;
     border: 1px solid #517577; /* Viền màu xanh khi checkbox được chọn */
-  }
+}
+.container.right{
+    position: relative;
+}
+.container .sort {
+    width: 100%;
+    position: relative;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+#sort {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-left: 1rem;
+}

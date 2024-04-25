@@ -273,16 +273,16 @@
                         <p style="margin-top: 1rem;">Category:</p>
                         <span>
                             <label class="toggle-btn">
-                                <input type="checkbox" id="shoesType" value="type1">
-                                <div class="content">Type1</div>
+                                <input type="checkbox" id="shoesType" value="Sport">
+                                <div class="content">Sport</div>
                             </label>
                             <label class="toggle-btn">
-                                <input type="checkbox" id="shoesType" value="type2">
-                                <div class="content">Type2</div>
+                                <input type="checkbox" id="shoesType" value="Formal">
+                                <div class="content">Formal</div>
                             </label>
                             <label class="toggle-btn">
-                                <input type="checkbox" id="shoesType" value="type3">
-                                <div class="content">Type3</div>
+                                <input type="checkbox" id="shoesType" value="Casual">
+                                <div class="content">Casual</div>
                             </label>
                         </span>
                     </div>
@@ -304,6 +304,15 @@
                 </div>
             </div>
             <div class="right" id="products">
+                <div class="sort">
+                    <select name="sort" id="sort">
+                        <option value="">Sort</option>
+                        <option value="AtoZ">A-Z</option>
+                        <option value="ZtoA">Z-A</option>
+                        <option value="Price-HtoL">Price: High to Low</option>
+                        <option value="Price-LtoH">Price: Low to High</option>
+                    </select>
+                </div>
                 <div class="product-card popular-product">
                     <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
                     <div class="product-info">
@@ -338,13 +347,52 @@
     <!-- script tuong tac server -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            getProducts()
+            handleInput()
         })
 
+        function handleInput() {   // Lấy giá trị của các ô input vào data để fetch
+            // Lấy các tham số truy vấn từ URL
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            console.log(urlParams);
+            const searchValue = urlParams.get('search');
+            const typeValue = urlParams.get('type');
+            const priceValue = urlParams.get('price');
+            const minPriceSearch = urlParams.get('minPrice');
+            const maxPriceSearch = urlParams.get('maxPrice');
+            const price = document.getElementById('price');
+            const data = {};
+            if (searchValue && searchValue.trim() != "") {
+                const searchInput = document.getElementById("searchInput");
+                searchInput.value = searchValue;
+                data.name = searchValue;
+            }
+            if (priceValue && priceValue.trim() != "") {
+                price.value = priceValue;
+                data.price = priceValue;
+                
+            }
+            if (minPriceSearch && minPriceSearch.trim() != "") {
+                minPrice.value = minPriceSearch;
+                data.minPrice = minPriceSearch;
+                checkBox.checked = true;
+                handlePriceRange();
+            }
+            if (maxPriceSearch && maxPriceSearch.trim() != "") {
+                maxPrice.value = maxPriceSearch;
+                data.maxPrice = maxPriceSearch;
+                checkBox.checked = true;
+                handlePriceRange();
+            }
+            getSearch(data)
 
-        async function getProducts() {
-            await fetch(`/api/getAllProducts`, {
-                method: 'get',
+            data.category += typeValue;
+        }
+
+        async function getSearch(data) {
+            const queryParams = new URLSearchParams(data).toString();
+            fetch(`/api/indexSearch?${queryParams}`, {
+                method: 'GET',
             })
                 .then(response => {
                     if (!response.ok) {
@@ -353,17 +401,19 @@
                     return response.json();
                 })
                 .then(data => {
-                    renderProducts(data.products);
+                    renderProducts(data.dt)
                 })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi ở đây nếu cần thiết
+                });
         }
 
         function renderProducts(products) {
             let Html = ' ';
-            console.table(products)
             if (products !== null) {
                 products.forEach(product => {
                 Html += checkTag(product);
-                console.log(Html);
                 Html += `<img src="${product.imageURL}" loading="lazy" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
                 Html += `<div class="product-info">`;
                 Html += `<h2 class="product-title">${product.name}</h2>`;
@@ -413,6 +463,10 @@
 
         /* Xử lí ô check box của price range*/
         checkBox.addEventListener("change", function () {
+            handlePriceRange() 
+        })
+
+        function handlePriceRange() {
             // Nếu checkbox được check
             if (checkbox.checked) {
                 // Disable ô input price
@@ -432,7 +486,7 @@
                 minPrice.value = '';
                 maxPrice.value = '';
             }
-        })
+        }
     </script>
     <script>//script scroll to top
         document.addEventListener("DOMContentLoaded", () => {
@@ -448,7 +502,7 @@
             })
         })
     </script>
-    <script>
+    <script>//checkuser
         // check user đã đăng nhập hay chưa
         const redireRoute = document.querySelector('.redirtUser');
         function checkUserSignIn() {

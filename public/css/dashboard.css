@@ -362,7 +362,14 @@ header {
 {
     background-color: #EEEEEE;
     padding: 30px;
+    position: relative;
     box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+}
+
+#chartjs-line{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .container .chart:hover{
@@ -400,6 +407,11 @@ header {
     grid-column: 1;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#item1, #item2, #item3, #item5{
+    min-width: 350px;
+    max-height: 120px;
 }
 
 #item1, #item2, #item5 {
