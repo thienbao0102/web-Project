@@ -152,7 +152,7 @@ checkBox.addEventListener("change", function () {
 // check user đã đăng nhập hay chưa
 const redireRoute = document.querySelector('.redirtUser');
 function checkUserSignIn(){
-    const checkSignin = localStorage.getItem('_id');
+    const checkSignin = sessionStorage.getItem('_id');
     console.log("Checksignin: " + checkSignin);
     if(checkSignin == null){
         redireRoute.textContent = 'Login';
@@ -164,7 +164,7 @@ function checkUserSignIn(){
 
 //xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
 function redirectRouter(){
-    if(redireRoute.textContent == 'Login & SignUp'){
+    if(redireRoute.textContent == 'Login'){
         window.location.href = '/login_orregister';
     }
     else if(redireRoute.textContent == 'My Info'){
@@ -175,7 +175,7 @@ function redirectRouter(){
 //admin truy cap vao trang quan ly
 const allowAccess = document.querySelector('.isAdmin');
 function accessManagement(){
-    const roleUser = localStorage.getItem('role');
+    const roleUser = sessionStorage.getItem('role');
     console.log(roleUser)
     if(roleUser == 'isAdmin'){
         allowAccess.style.display = 'block';

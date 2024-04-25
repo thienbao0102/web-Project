@@ -224,24 +224,7 @@
         }
 
         function getSearch(data) {
-            const queryParams = new URLSearchParams(data).toString();
-            fetch(`/api/indexSearch?${queryParams}`, {
-                method: 'GET',
-            }) 
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data.dt);
-                renderProducts(data.dt)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Xử lý lỗi ở đây nếu cần thiết
-            });
+            
         }
 
         function renderProducts(products) {
