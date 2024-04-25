@@ -95,6 +95,25 @@ app.get('/api/searchProduct', async (req, res) => {
 });
 
 
+app.get('/api/indexSearch', async (req, res) => {
+    try{
+        const data = req.query;
+        const products = await controllers.querySearchProduct(data);
+        if (products.length < 1) {
+            res.status(404).json({ error: 'Không tìm thấy' });
+        } else {
+            res.json({
+                dt: products.dt,
+                ms: products.ms,
+                st: products.st
+            })
+        }
+    }catch(err) {
+        console.error('An error occurred while processing the request:', err);
+        res.status(500).json({ error: 'Internal server error'});
+    }
+});
+
 //get all products
 app.get('/api/getAllProducts', async (req, res) => {
     try {
