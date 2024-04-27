@@ -288,7 +288,7 @@ header {
 }
 
 .welcome-box h1{
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .welcome-box h4{
@@ -613,6 +613,10 @@ header {
     margin-top: 2rem;
 }
 
+.container h2 {
+    margin-bottom: 1rem;
+}
+
 .container-product-slides{
     width: 100%;
     display: grid;
@@ -710,6 +714,7 @@ header {
     padding: 0;
     margin-top: 2rem;
 }
+
 .products-group{
     position: relative;
 }
@@ -719,6 +724,30 @@ header {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
+}
+
+.container-product-groups .products-group .carousel-item.active{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container-product-groups .products-group .carousel-item-next{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container-product-groups .products-group .carousel-control-next, .container-product-groups .products-group .carousel-control-prev{
+    width: 2rem;
+}
+
+.container-product-groups .carousel-control-next-icon, .container-product-groups .carousel-control-prev-icon{
+    filter: invert(50%);
+}
+
+.container-product-groups .carousel-inner{
+    padding-bottom: 2rem;
 }
 
 .container-product-groups .products-group .text{
@@ -770,7 +799,6 @@ header {
     min-width: 300px;
     background-color: #EEEEEE;
     position: relative;
-    max-height: 500px;
     margin: 0.5rem;
     transition: 0.3s;
 }
@@ -780,9 +808,10 @@ header {
 }
 
 .container .product-image {
-    max-height: 268px;
+    max-height: 208px;
     width: 100%;
     border-radius: 8px;
+    object-fit: cover;
 }
 
 .container .product-info {

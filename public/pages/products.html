@@ -340,6 +340,10 @@
 
             </div>
         </div>
+        <div class="pagination">
+            <ul id="pagination">
+            </ul>
+        </div>
     </section>
     <footer>
 
@@ -348,6 +352,10 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             handleInput()
+            currentPage = getCurrentPageFromLocalStorage() || 1;
+            if (currentPage) {
+                handlePageNumberClick(parseInt(currentPage));
+            }
         })
 
         function handleInput() {   // Lấy giá trị của các ô input vào data để fetch
@@ -391,16 +399,19 @@
             //data.category += typeValue;
         }
 
+        let documents = [] //Chua san pham tra ve
+
         async function getSearch(data) {
             const queryParams = new URLSearchParams(data).toString();
-            console.log("query params: " + queryParams);
             fetch(`/api/indexSearch?${queryParams}`, {
                 method: 'GET',
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data.dt)
-                    renderProducts(data.dt)
+                    documents = data.dt;
+                    perPageProducts = documents.slice((currentPage - 1) * perPage, (currentPage - 1) * perPage + perPage);
+                    renderProducts(perPageProducts);
+                    renderPageNum(documents);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -428,7 +439,7 @@
             }
             // Chèn vào phần tử có id là "container"
             var container = document.getElementById('products');
-            container.innerHTML += Html;
+            container.innerHTML = Html;
         }
 
         function calSalePrice(product) {
@@ -537,7 +548,65 @@
             allowAccess.style.display = 'none';
         }
     </script>
+    <script>//Xu li phan trang
+        const pg = document.getElementById('pagination');
+        
+        let currentPage = 1;
+        let perPage = 20;
+        let totalPage = 0;
+        let perPageProducts = [];
 
+        function renderPageNum(list) {
+            totalPage = Math.round(list.length / perPage);
+
+            let html = ' ';
+            if(totalPage > 1){
+                html += '<li onclick ="handlePrevPageClick()"><ion-icon name="chevron-back-outline"></ion-icon></li>'
+                for(let i = 1; i <= totalPage; i++){
+                    html += `<li id = "li${i}" onclick = "handlePageNumberClick(${i})">${i}</li>`;
+                }
+                html += '<li onclick = "handleNextPageClick()"><ion-icon name="chevron-forward-outline"></ion-icon></li>'
+            }
+            pg.innerHTML = html
+        }
+
+        function handlePageNumberClick(number){
+            currentPage = number
+            saveCurrentPageToLocalStorage(currentPage);
+
+            const activeLi = document.querySelector('.pagination .active');
+            if (activeLi) {
+                activeLi.classList.remove('active');
+            }
+            const newActiveLi = document.getElementById(`li${number}`);
+            newActiveLi.classList.add('active');
+
+            perPageProducts = documents.slice((currentPage - 1) * perPage, (currentPage - 1) * perPage + perPage);
+            renderProducts(perPageProducts)
+        }
+
+        function handlePrevPageClick(){
+            if(currentPage > 1){
+                currentPage -= 1;
+                handlePageNumberClick(currentPage);
+            }
+        }
+        function handleNextPageClick(){
+            if(currentPage < totalPage){
+                currentPage += 1;
+                handlePageNumberClick(currentPage);
+            }
+        }
+
+        function saveCurrentPageToLocalStorage(pageNumber) {
+            localStorage.setItem('currentPage', pageNumber);
+        }
+
+        // Lấy trạng thái trang từ localStorage
+        function getCurrentPageFromLocalStorage() {
+            return localStorage.getItem('currentPage');
+        }
+    </script> 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
