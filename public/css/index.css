@@ -609,34 +609,127 @@ header {
 .container{
     width: 100%;
     max-width: none;
-    margin-top: 2rem;
     padding: 0;
+    margin-top: 2rem;
 }
 
-.container-content{
+.container-product-slides{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.container-product-slides .products-group{
+    overflow: hidden;
+    max-height: 575px;
+}
+
+.container-product-slides .products-in-group{
+    overflow: hidden;
+    border-radius: 1rem;
+    color: #222831;
+}
+
+.container-product-slides .products-group .text{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -3rem;
+    transition: 0.5s;
+}
+
+.container-product-slides .products-group:hover .text{
+    top: 2rem;
+}
+
+.container-product-slides a{
+    text-decoration: none;
+    color: #222831;
+}
+
+.container-product-slides .products-in-group{
+    height: 100%;
+    width: 100%;
+}
+
+.container-product-slides .carousel-item img{
+    height: 100%;
+    width: 100%;
+    max-height: 575px;
+    object-fit: cover;
+}
+
+.container-product-slides .carousel-indicators button{
+    background-color: #22283175;
+}
+
+.container-product-slides .carousel-caption{
+    color: #222831;
+    bottom: -150px;
+    transition: 0.5s;
+}
+
+.container-product-slides .carousel-caption p{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Số dòng tối đa bạn muốn hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container-product-slides .carousel-caption h5{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Số dòng tối đa bạn muốn hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container-product-slides .carousel-control-prev-icon{
+    filter: invert(50%);
+}
+
+.container-product-slides .carousel-control-next-icon{
+    filter: invert(50%);
+}
+
+.container-product-slides .products-group:hover .carousel-caption {
+    bottom: 0;
+}
+
+.container-product-groups{
     width: 100%;
     padding: 0;
+    margin-top: 2rem;
 }
-
 .products-group{
-    margin-top: 3rem;
+    position: relative;
 }
 
-.products-group .text{
+.container-product-groups .products-group{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.container-product-groups .products-group .text{
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.products-group .text a{
+.container-product-groups .products-group .text a{
     color: #222831;
-}
-
-.products-in-group{
-    display: flex;
-    overflow: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
 }
 
 .products-in-group::-webkit-scrollbar{
@@ -653,6 +746,19 @@ header {
     width: 2px;
 }
 
+.container-product-groups .products-in-group{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.container-product-groups .product-card{
+    flex-grow: 2;
+    flex-basis: auto;
+    max-width: 300px;
+}
+
 /*--------Product----------*/
 
 .container .product-card {
@@ -665,10 +771,8 @@ header {
     background-color: #EEEEEE;
     position: relative;
     max-height: 500px;
-    margin: 0 1rem 1rem 1rem;
+    margin: 0.5rem;
     transition: 0.3s;
-    margin: 0;
-    margin-right: 1rem;
 }
 
 .container .product-card:hover {
@@ -780,6 +884,41 @@ header {
     border-radius: 0 1rem 0 1rem;
     /* Đảm bảo viền làm tròn theo góc của sản phẩm */
     pointer-events: none;
+}
+
+.container .sale-product.popular-product.active::before{
+    content: 'Sale ' attr(data-sale);
+    display: flex;
+    text-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    position: absolute;
+    color: #EEEEEE;
+    font-size: 15px;
+    font-weight: 600;
+    top: 0px;
+    background-color: #E72929;
+    right: 0;
+    /* Thay đổi màu và độ dày viền theo ý muốn */
+    border-radius: 0 1rem 0 1rem;
+    /* Đảm bảo viền làm tròn theo góc của sản phẩm */
+    pointer-events: none;
+}
+
+.container .sale-product.popular-product.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 5px solid #E72929;
+    /* Thay đổi màu và độ dày viền theo ý muốn */
+    border-radius: 1rem;
+    /* Đảm bảo viền làm tròn theo góc của sản phẩm */
+    pointer-events: none;
+    /* Đảm bảo viền không ảnh hưởng đến sự tương tác với sản phẩm */
 }
 
 .container .sale-product .old-price {

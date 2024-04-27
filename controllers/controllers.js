@@ -47,8 +47,15 @@ async function querySearchProduct(rawData) {
             query.price = {
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
-        } 
-
+        }
+        if(rawData.isPopular = 'true'){ //category
+            query.isPopular = true
+        }
+        if(rawData.sale == 'true'){ //category
+            query.sale = {
+                $gte: 1
+            }
+        }
         list = await controllerDetails.search(query,shoes);
         return{
             dt: list.dt,
