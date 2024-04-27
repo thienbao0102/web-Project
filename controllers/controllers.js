@@ -47,8 +47,15 @@ async function querySearchProduct(rawData) {
             query.price = {
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
-        } 
-
+        }
+        if(rawData.isPopular = 'true'){ //category
+            query.isPopular = true
+        }
+        if(rawData.sale == 'true'){ //category
+            query.sale = {
+                $gte: 1
+            }
+        }
         list = await controllerDetails.search(query,shoes);
         return{
             dt: list.dt,
@@ -180,12 +187,11 @@ async function signUpNewAccount(rawData){
             'phone number': rawData.phone,
             'password': passHash
         }
-        const result = await controllerDetails.createNewUser(newUser, users);
+        const result = await controllerDetails.createNewObj(newUser, users);
         return {
             dt: result.dt,
             ms: result.ms,
             st: result.st
-
         };
     } catch (error) {
         console.log("err: " + error);
@@ -198,6 +204,71 @@ async function signUpNewAccount(rawData){
     
 }
 
+//delete
+async function deleteListProduct(rawData){
+    try {
+        console.log(rawData);
+        const result = await controllerDetails.deleteProducts(rawData, shoes);
+        return{
+            dt: result.dt,
+            ms: result.ms,
+            st: result.st
+        }
+    } catch (error) {
+        console.log("Err: " + error);
+        return{
+            dt:'',
+            ms: 'error',
+            st: -1
+        }
+    }
+}
+
+async function updateShoes(rawData, fileName){
+    try {
+        const updateFields = {};
+        console.log('>>>File name: '+ fileName);
+        const lisIds = rawData.listId.split(',');
+        console.log('>>>list id: ' + typeof(lisIds))
+        if(rawData.name){
+            updateFields.name = rawData.name;           
+            console.log(rawData.name);
+        }
+        if(rawData.price){
+            updateFields.price = rawData.price;
+            console.log(rawData.price);
+        }
+        if(rawData.size){
+            updateFields.size = rawData.size;
+            console.log(rawData.size);
+        }
+        if(rawData.quantity){
+            updateFields.quantity = rawData.quantity;
+            console.log(rawData.quantity);
+        }
+        //check hinh anh
+        if(fileName || fileName !=''){
+            updateFields.imageURL = '/productPic/' + fileName;
+        }
+        console.log(updateFields);
+        const updateData = {$set : updateFields };
+        console.log(updateData);
+        const result = await controllerDetails.update(lisIds, updateData, shoes);
+        return{
+            st: result.st,
+            ms: result.ms,
+            dt: result.dt
+        }
+    } catch (error) {
+        console.log("err: " + error);
+        return{
+            st: -1,
+            ms: 'Failed',
+            dt:''
+        }
+    }
+}
+
 module.exports = {
-    querySearchProduct, queryLogin, signUpNewAccount,updateShoes
+    querySearchProduct, queryLogin, signUpNewAccount,updateShoes, deleteListProduct
 }

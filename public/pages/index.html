@@ -9,6 +9,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap"
         rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/index.css">
     <title>Home</title>
 </head>
@@ -19,7 +21,8 @@
         right: -10px;
         position: absolute;
         font-size: 0.8rem;
-        border-radius: 50%;
+        border-radius: 10rem;
+        line-height: 1;
         padding: 5px;
         color: #EEEEEE;
         background-color: #222831;
@@ -81,7 +84,7 @@
                 <span><ion-icon name="mail-outline"></ion-icon></span>
                 <h3>Contact Us</h3>
                 <p>Having trouble in StrideSync. Please contact us for more questions.</p>
-                <button class="btn-help">Go to contact</button>
+                <button class="btn-help" onclick="goToContact()">Go to contact</button>
                 <span id="glass"></span>
             </div>
         </div>
@@ -131,10 +134,9 @@
                                 <input type="number" id="maxPrice" placeholder="Max">
                             </div>
                         </div>
-                        <button class="search-expand">Search</button>
+                        <button class="search-expand" onclick="redirectRouterToProducts()">Search</button>
                     </div>
                     <div class="search-result" id="searchResult">
-
                     </div>
                 </div>
             </div>
@@ -147,13 +149,345 @@
                 </span>
             </div>
         </header>
+        <div class="advertisements">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="..." class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long4.png';" alt="ADS">
+                        <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="..." class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long5.png';" alt="ADS">
+                        <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="..." class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long6.png';" alt="ADS">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
         <div class="container">
+            <div class="container-product-slides">
+                <a href="">
+                    <div class="product-group1 products-group">
+                        <div class="text">
+                            <h3>Sport</h3>
+                        </div>
+                        <div class="products-in-group">
+                            <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-665455a5-45de-40fb-945f-c1852b82400d/react-infinity-run-flyknit-mens-running-shoe-zX42Nc.jpg" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long4.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        <h5>Nike React Infinity Run Flyknit</h5>
+                                        <p>Classic Sneakers with a modern twist, perfect for everyday wear.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-5cc7de3b-2afc-49c2-a1e4-0508997d09e6/react-miler-mens-running-shoe-DgF6nr.jpg" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long5.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        <h5>Nike React Miler</h5>
+                                        <p>Comfortable and stylish lifestyle shoes for casual outings.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-33b0a0a5-c171-46cc-ad20-04a768703e47/air-zoom-pegasus-37-womens-running-shoe-Jl0bDf.jpg" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long6.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Nike Air Zoom Pegasus 37</h5>
+                                            <p>High-performance sports shoes designed for active individuals.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="product-group2 products-group">
+                        <div class="text">
+                            <h3>Sandals & slides</h3>
+                        </div>
+                        <div class="products-in-group">
+                            <div id="carouselExampleCaptions3" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/0c5b6be1-c799-414f-81f7-be02ecbbe208/offcourt-slides-ZBxx9j.png" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long4.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Nike Offcourt</h5>
+                                            <p>These slides are designed to help you relax and recharge. Innovative dual-layered foam underfoot pairs with a plush strap to bring the comfort, while the iconic AF-1 pivot circle pattern on the outsole and block-letter branding casually nod to heritage hoops. What are you waiting for? Get lounging.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/baf6d4fe-b7cd-489f-b3c7-2a78ec4f78e3/calm-mules-KJZKd1.png" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long5.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Nike Calm</h5>
+                                            <p>Enjoy a calm, comfortable experience—wherever your day off takes you. Made from soft yet responsive foam, these lightweight mules are easy to style and easy to pack. While the water-friendly design makes them ideal for the beach or pool, the minimalist look is elevated enough to wear around the city. Plus, a removable heel strap adjusts for the perfect fit. Time to slide in and check out.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/0a7a15ed-0c51-4262-88ac-eba8e3783091/asuna-3-slides-fX8tl7.png" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long6.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Nike Asuna 3</h5>
+                                            <p>The Asuna gets a utilitarian twist in its third rendition. Its iconic side lacing system takes a step back for a padded strap with a minimalist closure that makes customising your fit even simpler. The adjustable strap accommodates your foot's shape and size, as well as your comfiest socks. These aren't your average pool slides—but you'll want to wear them there, too.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="product-group3 products-group">
+                        <div class="text">
+                            <h3>Casual</h3>
+                        </div>
+                        <div class="products-in-group">
+                            <div id="carouselExampleCaptions4" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/44f222ab-96b6-43b9-82e7-9a1bd888611d/court-vision-low-shoes-q0sr67.png" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        <h5>Nike Court Vision Low</h5>
+                                        <p>In love with the retro look of '80s basketball but have a thing for the fast-paced culture of today's game? Meet the Court Vision Low. A classic remixed, its crisp upper and stitched overlays keep the soul of the original style. The plush, low-cut collar keeps it sleek and comfortable for your world.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b7d9211c-26e7-431a-ac24-b0540fb3c00f/air-force-1-07-shoes-WrLlWX.png" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long5.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        <h5>Nike Air Force 1 '07</h5>
+                                        <p>The radiance lives on in the Nike Air Force 1 '07, the basketball original that puts a fresh spin on what you know best: durably stitched overlays, clean finishes and the perfect amount of flash to make you shine.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/c76e2119-acb7-4944-9085-d4f5ae2bda4a/go-flyease-easy-on-off-shoes-3svRCL.png" class="d-block w-100"  onerror="this.onerror=null; this.src='../system/ads/ads-long6.png';" alt="ADS">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Nike Go FlyEase</h5>
+                                            <p>Ditch the laces and get outside. These kicks feature Nike's revolutionary FlyEase technology, making on-and-off a breeze. With a heel that pivots open for a totally hands-free entry, they're great for people with limited mobility—or anyone who wants a quicker way to get going.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="container-product-groups">
+                <div class="product-group-popular products-group" id="Trending">
 
+                </div>
+                <div class="product-group-sale products-group" id="Sale">
+                    
+                </div>
+            </div>
         </div>
     </section>
     <footer>
 
     </footer>
+
+    <script>
+        searchInput.addEventListener('keydown', function(event) {
+            // Kiểm tra xem phím được ấn có phải là phím Enter không (mã phím là 13)
+            if (event.key === 'Enter') {
+                redirectRouterToProducts()
+            }
+        });
+
+        function redirectRouterToProducts() {
+            let route = '/products?'
+            if (searchInput.value && searchInput.value.trim() != "") {
+                route += `search=${searchInput.value}&`
+            }
+            if (price.value && price.value.trim() != "") {
+                route += `price=${price.value}&`
+            }
+            if (minPrice.value && minPrice.value.trim() != "") {
+                route += `minPrice=${minPrice.value}&`
+            }
+            if (maxPrice.value && maxPrice.value.trim() != "") {
+                route += `maxPrice=${maxPrice.value}&`
+            }
+            window.location.href = route;
+            //`/products?search=${searchInput.value}&type=0&price=${price.value}&minPrice=${minPrice.value}&maxPrice=${maxPrice.value}`
+        }
+    </script>
+    <script>
+        function goToContact(){
+            window.location.href = '/contact';
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            handleInput("Trending");
+            handleInput("Sale");
+        })
+
+        function handleInput(divId) {   // Lấy giá trị của các ô input vào data để fetch
+            const data = {};
+
+            if(divId == "Trending"){
+                data.isPopular = true;
+                getSearch(data, divId)
+            }else{
+                data.sale = true;
+                getSearch(data, divId)
+            }
+        }
+
+        async function getSearch(data, divId) {
+            const queryParams = new URLSearchParams(data).toString();
+            fetch(`/api/indexSearch?${queryParams}`, {
+                method: 'GET',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    renderProducts(data.dt, divId)
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi ở đây nếu cần thiết
+                });
+        }
+
+        function renderProducts(products, divId) {
+            let Html = ' ';
+            if (products !== null) {
+                Html += `<div class="text">
+                            <h3>${divId}</h3>
+                            <a href="">see more</a>
+                        </div>
+                        <div class="products-in-group products-box">`
+                products.forEach(product => {
+                Html += checkTag(product);
+                Html += `<img src="${product.imageURL}" loading="lazy" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                Html += `<div class="product-info">`;
+                Html += `<h2 class="product-title">${product.name}</h2>`;
+                Html += `<p class="product-description">${product.description}</p>`;
+                Html += `<span id="productPrice">`;
+                Html += `<p class="product-price old-price">$${product.price}</p>`;
+                Html += calSalePrice(product);
+                Html += `</span>`;
+                Html += `<button class="add-to-cart" data-id = "${product._id}">Buy now</button>`;
+                Html += `</div>`;
+                Html += `</div>`;
+            });
+            }
+            // Chèn vào phần tử có id là "container"
+            console.log(divId)
+            var container = document.getElementById(`${divId}`);
+            container.innerHTML += Html;
+            handlePopularSaleProducts()
+        }
+
+        function calSalePrice(product) {
+            if(product.sale !== false  && !isNaN(product.sale))
+            {
+                return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+            }
+            return `<p id="newPrice"></p>`;
+        }
+
+        function checkTag(product){
+            if(product.sale !== false  && !isNaN(product.sale))
+            {
+                if (product.isPopular === true) {
+                    return `<div class="product-card popular-product sale-product" data-sale="${product.sale}%">`;
+                }
+                return `<div class="product-card sale-product" data-sale="${product.sale}%">`;
+            }
+            if (product.isPopular === true) {
+                return `<div class="product-card popular-product">`;
+            }
+            return `<div class="product-card">`;
+        }
+
+        function handlePopularSaleProducts (){
+            const productGroups = document.querySelectorAll('.products-box');
+            productGroups.forEach(productGroup => {
+                const productCards = productGroup.querySelectorAll('.sale-product.popular-product');
+                productCards.forEach((productCard) => {
+                    setInterval(()=>{
+                        setTimeout(() => {
+                        // Thêm lớp .active
+                        productCard.classList.add('active');
+
+                        // Sử dụng setTimeout một lần nữa để loại bỏ lớp .active sau 5 giây
+                        setTimeout(() => {
+                            productCard.classList.remove('active');
+                        }, 2000);
+                    }, 2000);
+                    },4000)
+                })
+            })
+        }
+    </script>
     <script src="../javascript/indexHome.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

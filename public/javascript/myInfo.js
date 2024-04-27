@@ -19,3 +19,15 @@ changeColor.forEach((el)=>{
         }
     })
 })
+
+//admin truy cap vao trang quan ly
+const allowAccess = document.querySelector('.isAdmin');
+function accessManagement() {
+    const roleUser = sessionStorage.getItem('role');
+    console.log(roleUser)
+    if (roleUser == 'isAdmin') {
+        allowAccess.style.display = 'block';
+        return;
+    }
+    allowAccess.style.display = 'none';
+}

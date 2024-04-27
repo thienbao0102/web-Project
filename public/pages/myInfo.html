@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../css/myInfo.css">
     <title>Home</title>
 </head>
-<body>
+
+<body onload="accessManagement()">
     <nav class="navigation">
         <div class="logo">
             <a href=""><img src="../system/newlogo.png" alt="Stride Sync"></a>
@@ -17,18 +21,46 @@
         <div class="item">
             <div class="route">
                 <ul>
-                    <a href="/"><li ><ion-icon name="home-outline"></ion-icon> <p>Home</p> </li></a>
-                    <a href=""><li><ion-icon name="grid-outline"></ion-icon> <p>Products</p> </li></a>
-                    <a href=""><li><ion-icon name="newspaper-outline"></ion-icon> <p>What New?</p> </li></a>
-                    <a href=""><li><ion-icon name="help-circle-outline"></ion-icon> <p>About Us</p> </li></a>
+                    <a href="/">
+                        <li><ion-icon name="home-outline"></ion-icon>
+                            <p>Home</p>
+                        </li>
+                    </a>
+                    <a href="/products">
+                        <li><ion-icon name="grid-outline"></ion-icon>
+                            <p>Products</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="newspaper-outline"></ion-icon>
+                            <p>What New?</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li><ion-icon name="help-circle-outline"></ion-icon>
+                            <p>About Us</p>
+                        </li>
+                    </a>
                 </ul>
             </div>
             <div class="account">
                 <h4>ACCOUNT</h4>
                 <ul>
-                    <a href="/myinfo"><li id="here"><ion-icon name="person-outline"></ion-icon> <p>My Info</p> </li></a>
-                    <a href=""><li><ion-icon name="cart-outline"></ion-icon> <p>My Orders</p> </li></a>
-                    <a href=""><li><ion-icon name="settings-outline"></ion-icon> <p>Setting</p> </li></a>
+                    <a href="/myinfo">
+                        <li id="here"><ion-icon name="person-outline"></ion-icon>
+                            <p>My Info</p>
+                        </li>
+                    </a>
+                    <a href="/my-cart">
+                        <li><ion-icon name="cart-outline"></ion-icon>
+                            <p>My Orders</p>
+                        </li>
+                    </a>
+                    <a href="/dashboard" class="isAdmin" style="display: none;">
+                        <li><ion-icon name="settings-outline"></ion-icon>
+                            <p>Management</p>
+                        </li>
+                    </a>
                 </ul>
             </div>
             <div id="helpCenter" class="help-center">
@@ -75,7 +107,7 @@
                     <h1>Account Information</h1>
                     <input type="text" id="fullname"><br>
                     <input type="text" id="email" disabled><br>
-                    <input type="text" id="phonenumber" ><br>
+                    <input type="text" id="phonenumber"><br>
                     <label for="">Gender</label><br>
                     <input type="radio" id="male" name="gender">
                     <label for="male">Male</label>
@@ -104,4 +136,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>

@@ -92,43 +92,66 @@ async function getAllShoes(nameCollection) {
         throw err;
     }
 }
-async function update(query, updateFields) {
+//update
+async function update(query, updateData, nameCollection) {
     try {
-        const result = await db.collection(nameCollection).updateMany(query, { $set: updateFields });
+        const result = await db.collection(nameCollection).updateMany({_id:{$in: query}}, updateData);
         console.log(result.modifiedCount + " documents updated successfully.");
         return {
-            message: 'success',
-            status: 200,
-            data: result
+            ms: 'Update Success!',
+            st: 0,
+            dt: ''
         };
     } catch (error) {
         console.error("Error updating documents: ", error);
         return {
-            message: 'failed',
-            status: 500,
-            error: error
+            ms: 'Failed',
+            st: -1,
+            dt: ''
         };
     }
 }
-async function deleteId(query) {
+//delete product
+async function deleteProducts(query, nameCollection) {
     try {
-        const result = await db.collection(nameCollection).deleteMany(query);
+        const result = await db.collection(nameCollection).deleteMany({_id: {$in: query}});
         console.log(result.deletedCount + " documents deleted successfully.");
         return {
-            message: 'Shoes deleted successfully',
-            status: 200,
-            data: result
+            ms: 'Shoes deleted successfully',
+            st: 0,
+            dt: ''
         };
     } catch (error) {
         console.error("Error deleting documents: ", error);
         return {
-            message: 'Failed to delete shoes',
-            status: 500,
-            error: error
+            ms: 'Failed to delete shoes',
+            st: 500,
+            dt: ''
         };
     }
 }
 
+//create new object
+async function createNewObj(query, nameCollection){
+    try {
+        result = await db.collection(nameCollection).insertOne(query);
+        return{
+            dt: '',
+            ms: 'Create Success',
+            st: 0
+        }
+        
+    } catch (error) {
+        console.log("err: " + error)
+        return{
+            dt: '',
+            ms: 'Create Failed!',
+            st: -1
+        }
+    }
+}
+
+
 module.exports ={
-    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, deleteId
+    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, createNewObj,deleteProducts
 }
