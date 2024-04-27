@@ -158,8 +158,6 @@ app.delete('/api/delete/:id', async (req, res) => {
         res.status(500).json({ message: 'Failed to delete shoes', error: error });
     }
 });
-
-
 app.get(`*`,(req,res)=>
 {
     res.sendFile(__dirname + '/public/pages/404-page.html');
