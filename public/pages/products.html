@@ -384,23 +384,22 @@
                 checkBox.checked = true;
                 handlePriceRange();
             }
+
+            console.log(data);
             getSearch(data)
 
-            data.category += typeValue;
+            //data.category += typeValue;
         }
 
         async function getSearch(data) {
             const queryParams = new URLSearchParams(data).toString();
+            console.log("query params: " + queryParams);
             fetch(`/api/indexSearch?${queryParams}`, {
                 method: 'GET',
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(res => res.json())
                 .then(data => {
+                    console.log(data.dt)
                     renderProducts(data.dt)
                 })
                 .catch(error => {

@@ -1,7 +1,8 @@
-const express = require('express')
+const express = require('express');
+const multer  = require('multer');
 const bodyParser = require('body-parser');
-const controllers = require('./controllers/controllers')
-const controllerDetails = require('./controllers/controllerDetails')
+const controllers = require('./controllers/controllers');
+const controllerDetails = require('./controllers/controllerDetails');
 
 const app = express()
 const port = 3000
@@ -10,11 +11,24 @@ app.use(express.static('public'));
 //app.use(express.static('public/pages/scipts'));
 //app.use(express.static('public/images/svg'));
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 //khai bao dung public cho folder public
 app.use(express.static('public/images'))
+
+// upload images
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        return cb(null, './public/images/productPic');
+    },
+    filename: (req, file, cb) => {
+        return cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+// Create the multer instance
+const upload = multer({ storage: storage });
 
 //ket noi database
 controllerDetails.connecToDatabase();
@@ -132,46 +146,28 @@ app.get('/api/getAllProducts', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 })
-app.put('/api/updateShoes', async (req, res) => {
-    try {
-        const data = req.body; // Lấy dữ liệu từ body của request
-        const updatedProduct = await controllers.updateShoes(data); // Gọi hàm updateProduct để cập nhật sản phẩm
-
-        if (!updatedProduct) {
-            res.status(404).json({ error: 'Product not found' });
-        } else {
-            res.json({ message: "Update successful" });
-        }
-    } catch (err) {
-        console.error('Error processing the request:', err);
-        res.status(500).json({ error: 'Internal server error' });
+app.put('/api/updateShoes',upload.single('file') ,async (req, res) => {
+    var filename = '';
+    if(req.file)
+    {
+        filename = req.file.filename
     }
+    console.log('>>>File name: '+ filename);
+    console.log(req.body);
+    const result = await controllers.updateShoes(req.body, filename);
+    res.json({
+        dt: result.dt,
+        st: result.st,
+        ms: result.ms
+    })
 });
-app.delete('/api/delete/:id', async (req, res) => {
-    const shoesId = req.params.id;
-
-    try {
-        // Thực hiện tìm kiếm sản phẩm
-        const searchResult = await controllers.querySearchProduct({ id: shoesId });
-
-        // Kiểm tra nếu có kết quả từ việc tìm kiếm
-        if (searchResult.dt) {
-            // Lấy thông tin sản phẩm từ kết quả tìm kiếm
-            const productId = searchResult.dt._id;
-
-            // Thực hiện xóa sản phẩm
-            const deleteResult = await controllerDetails.deleteId(productId);
-
-            // Trả về kết quả xóa
-            res.status(deleteResult.status).json(deleteResult);
-        } else {
-            // Không tìm thấy sản phẩm
-            res.status(404).json({ message: 'Product not found' });
-        }
-    } catch (error) {
-        console.error("Error deleting shoes: ", error);
-        res.status(500).json({ message: 'Failed to delete shoes', error: error });
-    }
+app.delete('/api/delete', async (req, res) => {
+    const result = await controllers.deleteListProduct(req.body);
+    res.json({
+        dt: result.dt,
+        ms: result.ms,
+        st: result.st
+    })
 });
 
 
