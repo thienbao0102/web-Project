@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike V2K Run - Stride Sync</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        nav ul li img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+        main {
+            padding: 20px 0;
+        }
+
+        .product-detail {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-detail .container {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            font-size: 20px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #333;
+        }
+
+        .product-description p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .product-description ul {
+            margin-left: 20px;
+        }
+
+        .product-description ul li {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Stride Sync</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-detail">
+            <div class="container">
+                <div class="product-image">
+                    <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                </div>
+                <div class="product-info">
+                    <h1>Nike V2K Run</h1>
+                    <p>Shoes</p>
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="price">3.519.000₫</p>
+                    <form action="#">
+                        <label for="size">Size:</label>
+                        <select id="size" name="size">
+                            <option value="EU35.5">EU 35.5</option>
+                            <option value="EU36">EU 36</option>
+                            <option value="EU36.5">EU 36.5</option>
+                            <option value="EU37.5">EU 37.5</option>
+                            <option value="EU38">EU 38</option>
+                            <option value="EU38.5">EU 38.5</option>
+                            <option value="EU39">EU 39</option>
+                            <option value="EU40">EU 40</option>
+                            <option value="EU40.5">EU 40.5</option>
+                            <option value="EU41">EU 41</option>
+                            <option value="EU42">EU 42</option>
+                        </select>
+                        <button type="submit">Add to cart</button>
+                    </form>
+                    <div class="product-description">
+                        <p>**Thiết kế theo phong cách của bạn.**</p>
+                        <p>Lựa chọn kích cỡ phù hợp và bắt đầu hành trình của bạn với đôi giày Nike V2K Run. Thiết kế hiện đại, thời trang cùng chất liệu cao cấp giúp bạn tự tin thể hiện phong cách riêng của mình.</p>
+                        <ul>
+                            <li>Chất liệu cao cấp, bền bỉ</li>
+                            <li>Thiết kế hiện đại, thời trang</li>
+                            <li>Thoải mái khi mang</li>
+                            <li>Thích hợp cho nhiều hoạt động</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Stride Sync. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

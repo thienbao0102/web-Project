@@ -189,3 +189,50 @@ function accessManagement(){
     }
     allowAccess.style.display = 'none';
 }
+        
+let currentPage = 1;
+let perPage = 10;
+let totalPage = 0;
+let perPageProducts = [];
+
+// function renderPageNum(list) {
+//     totalPage = Math.round(list.length / perPage);
+
+//     let html = ' ';
+//     if(totalPage > 1){
+//         html += '<li onclick ="handlePrevPageClick()"><ion-icon name="chevron-back-outline"></ion-icon></li>'
+//         for(let i = 1; i <= totalPage; i++){
+//             html += `<li id = "li${i}" onclick = "handlePageNumberClick(${i})">${i}</li>`;
+//         }
+//         html += '<li onclick = "handleNextPageClick()"><ion-icon name="chevron-forward-outline"></ion-icon></li>'
+//     }
+//     pg.innerHTML = html
+// }
+
+function handlePageNumberClick(number){
+    currentPage = number
+    saveCurrentPageToLocalStorage(currentPage);
+
+    const activeLi = document.querySelector('.pagination .active');
+    if (activeLi) {
+        activeLi.classList.remove('active');
+    }
+    const newActiveLi = document.getElementById(`li${number}`);
+    newActiveLi.classList.add('active');
+
+    perPageProducts = documents.slice((currentPage - 1) * perPage, (currentPage - 1) * perPage + perPage);
+    renderProducts(perPageProducts)
+}
+
+function handlePrevPageClick(){
+    if(currentPage > 1){
+        currentPage -= 1;
+        handlePageNumberClick(currentPage);
+    }
+}
+function handleNextPageClick(){
+    if(currentPage < totalPage){
+        currentPage += 1;
+        handlePageNumberClick(currentPage);
+    }
+}
