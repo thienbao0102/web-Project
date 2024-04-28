@@ -273,15 +273,15 @@
                         <p style="margin-top: 1rem;">Category:</p>
                         <span>
                             <label class="toggle-btn">
-                                <input type="checkbox" id="shoesType" value="Sport">
+                                <input type="checkbox" id="shoesType" value="sport">
                                 <div class="content">Sport</div>
                             </label>
                             <label class="toggle-btn">
-                                <input type="checkbox" id="shoesType" value="Formal">
+                                <input type="checkbox" id="shoesType" value="formal">
                                 <div class="content">Formal</div>
                             </label>
                             <label class="toggle-btn">
-                                <input type="checkbox" id="shoesType" value="Casual">
+                                <input type="checkbox" id="shoesType" value="casual">
                                 <div class="content">Casual</div>
                             </label>
                         </span>
@@ -395,6 +395,7 @@
             }
             if (category && category.trim() != "") {
                 data.category = category;
+                handleCategory(category)
             }
             getSearch(data)
 
@@ -499,6 +500,17 @@
                 maxPrice.value = '';
             }
         }
+
+        function handleCategory(categories) {
+            const shoesType = document.querySelectorAll('#shoesType');
+            const categoryList = categories.split(',').map(category => category.trim()); // Chuyển đổi chuỗi categories thành một mảng các category
+
+            shoesType.forEach((shoeType) => {
+                if (categoryList.includes(shoeType.value)) { // Kiểm tra xem giá trị của shoeType có trong categoryList không
+                    shoeType.checked = true;
+                }
+            });
+        }
     </script>
     <script>//script scroll to top
         document.addEventListener("DOMContentLoaded", () => {
@@ -559,9 +571,7 @@
         let perPageProducts = [];
 
         function renderPageNum(list) {
-            
             totalPage = Math.ceil(list.length / perPage);
-            console.log(totalPage)
             let html = ' ';
             if(totalPage > 1){
                 html += '<li onclick ="handlePrevPageClick()"><ion-icon name="chevron-back-outline"></ion-icon></li>'
