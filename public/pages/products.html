@@ -368,6 +368,7 @@
             const priceValue = urlParams.get('price');
             const minPriceSearch = urlParams.get('minPrice');
             const maxPriceSearch = urlParams.get('maxPrice');
+            const category = urlParams.get('category');
             const price = document.getElementById('price');
             const data = {};
             if (searchValue && searchValue.trim() != "") {
@@ -392,8 +393,9 @@
                 checkBox.checked = true;
                 handlePriceRange();
             }
-
-            console.log(data);
+            if (category && category.trim() != "") {
+                data.category = category;
+            }
             getSearch(data)
 
             //data.category += typeValue;
@@ -557,8 +559,9 @@
         let perPageProducts = [];
 
         function renderPageNum(list) {
-            totalPage = Math.round(list.length / perPage);
-
+            
+            totalPage = Math.ceil(list.length / perPage);
+            console.log(totalPage)
             let html = ' ';
             if(totalPage > 1){
                 html += '<li onclick ="handlePrevPageClick()"><ion-icon name="chevron-back-outline"></ion-icon></li>'

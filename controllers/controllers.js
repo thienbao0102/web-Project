@@ -25,7 +25,11 @@ async function querySearchProduct(rawData) {
             };
         }
         if(rawData.category){ //category
-            query.category = { $regex: rawData.category, $options: 'i' }
+            let categories = rawData.category;
+            if (typeof categories === 'string') {
+                categories = categories.split(',').map(category => category.trim());
+            }
+            query.category = { $in: categories.map(category => new RegExp(category, 'i')) };
         }
         if (rawData.quantity) {     //quantity
             query.quantity = {
@@ -48,14 +52,15 @@ async function querySearchProduct(rawData) {
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
         }
-        if(rawData.isPopular = 'true'){ //category
+        if(rawData.isPopular === 'true'){
             query.isPopular = true
         }
-        if(rawData.sale == 'true'){ //category
+        if(rawData.sale ==='true'){
             query.sale = {
                 $gte: 1
             }
         }
+        console.log(query);
         list = await controllerDetails.search(query,shoes);
         return{
             dt: list.dt,
