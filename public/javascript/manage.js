@@ -59,22 +59,22 @@ function searchProduct() {
     const queryParams = new URLSearchParams(searchData).toString();
     console.log("queryParams: " + queryParams);
     fetch(`/api/searchProduct?${queryParams}`, {
-        method: 'GET',
+        method: 'GET'
     })
-        .then(res => res.json())
-        .then(data => {
-            if (data.st == 0) {
-                list = data.dt;
-                renderProducts(list);
-            }
-            else {
-                alert("Search failed!")
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Xử lý lỗi ở đây nếu cần thiết
-        });
+    .then(res => res.json())
+    .then(data => {
+        if (data.st == 0) {
+             list = data.dt;
+            renderProducts(list);
+        }
+        else {
+            alert("Search failed!")
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Xử lý lỗi ở đây nếu cần thiết
+    })
 }
 
 async function updateProduct() {
@@ -101,20 +101,20 @@ async function updateProduct() {
         method: 'PUT',
         body: formData,
     })
-    .then(response => response.json())
-    .then(data => {
-        alert(data.ms);
-        list.splice(0);
-        searchProduct();
-        selectedIds.splice(0);
-        hideFormUpdate();
-        listSizeUpdate.splice(0);
-    })
-    .catch(error => {
-        console.log('An error occurred. Please try again later');
-        console.error('Error:', error);
-        // Xử lý lỗi ở đây nếu cần thiết
-    });
+        .then(response => response.json())
+        .then(data => {
+            alert(data.ms);
+            list.splice(0);
+            searchProduct();
+            selectedIds.splice(0);
+            hideFormUpdate();
+            listSizeUpdate.splice(0);
+        })
+        .catch(error => {
+            console.log('An error occurred. Please try again later');
+            console.error('Error:', error);
+            // Xử lý lỗi ở đây nếu cần thiết
+        });
 
 }
 
@@ -144,7 +144,10 @@ function deleteProduct(listIds) {
             // Xử lý kết quả từ server
             alert(data.ms);
             // fetch laij data
+            list.splice(0);
             searchProduct()
+            selectedIds.splice(0);
+            listSizeUpdate.splice(0);
         })
         .catch(error => {
             console.log(Error);
@@ -288,20 +291,20 @@ function renderInfor(id) {
     //show price
     document.getElementById('priceUpdate').value = listSize.price;
     //popular
-    if(listSize.isPopular){
+    if (listSize.isPopular) {
         document.getElementById('popular').checked = true;
         console.log('listSize.isPopular -t: ' + listSize.isPopular);
     }
-    else{
+    else {
         document.getElementById('popular').checked = false;
         console.log('listSize.isPopular -f: ' + listSize.isPopular);
     }
 
     //sale
-    if(listSize.sale > 0){
+    if (listSize.sale > 0) {
         document.getElementById('sale').value = listSize.sale;
     }
-    else{
+    else {
         document.getElementById('sale').value = 0;
     }
     //render size
@@ -328,24 +331,24 @@ function addQuantityForSize() {
 }
 
 //ẩn khi listid vê 0
-function hideFormUpdate(){
-    if(selectedIds.length == 0){
+function hideFormUpdate() {
+    if (selectedIds.length == 0) {
         FormUpdate.classList.remove('active');
         return;
     }
-    if(selectedIds.length >= 1 && FormUpdate.classList.contains('active')){
+    if (selectedIds.length >= 1 && FormUpdate.classList.contains('active')) {
         FormUpdate.classList.remove('active');
         showFormUpdate();
     }
-    
+
 }
 
 //change quantity của sản phẩm
-function quantityOfSize(){
-    if(selectedIds.length == 1){
+function quantityOfSize() {
+    if (selectedIds.length == 1) {
         const listSize = list.filter(item => item._id == selectedIds[0]._id)[0].sizes;
-        Object.entries(listSize).forEach(([item, itemData]) =>{
-            if(item == size.value){ 
+        Object.entries(listSize).forEach(([item, itemData]) => {
+            if (item == size.value) {
                 quantity.value = itemData.quantity;
                 return;
             }

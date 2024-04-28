@@ -24,18 +24,18 @@ function insertProduct(){
     formData.append('description',description);
     formData.append('sizes',JSON.stringify(listInforSize));
     
-    // fetch('/api/insertProduct',{
-    //     method: 'post',
-    //     body: formData
-    // })
-    // .then(res => res.json())
-    // .then(data =>{
-    //     alert(data.ms);
-    // })
-    // .catch(error => {
-    //     console.error('Error:', error);
-    //     location.reload();
-    // });
+    fetch('/api/insertProduct',{
+        method: 'post',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data =>{
+        alert(data.ms);
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 /*________Client_________*/ 
 //add size and quantity of size

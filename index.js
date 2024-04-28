@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const multer = require('multer');
 const bodyParser = require('body-parser');
 const controllers = require('./controllers/controllers');
 const controllerDetails = require('./controllers/controllerDetails');
@@ -73,8 +74,9 @@ app.get('/insert', async (req, res) => {
 /*------------API------------*/
 
 //search
-app.post(`/api/searchProduct`, async(req,res)=>{
-    const list = await controllers.querySearchProduct(req.body)
+app.get(`/api/searchProduct`, async(req,res)=>{
+    console.log(req.query)
+    const list = await controllers.querySearchProduct(req.query)
     res.json({
         dt: list.dt,
         ms: list.ms,
@@ -133,21 +135,6 @@ app.get('/api/getAllProducts', async (req,res)=> {
     }catch(err) {
         console.error('An error occurred while processing the request:', err);
         res.status(500).json({ error: 'Internal server error'});
-    }
-})
-app.put('/api/updateShoes', async (req, res) => {
-    try {
-        const data = req.body; // Lấy dữ liệu từ body của request
-        const updatedProduct = await controllers.updateShoes(data); // Gọi hàm updateProduct để cập nhật sản phẩm
-
-        if (!updatedProduct) {
-            res.status(404).json({ error: 'Product not found' });
-        } else {
-            res.json({ message: "Update successful" });
-        }
-    } catch (err) {
-        console.error('Error processing the request:', err);
-        res.status(500).json({ error: 'Internal server error' });
     }
 })
 
