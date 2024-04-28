@@ -66,6 +66,11 @@ app.get('/product', async (req, res) => {
     res.sendFile(__dirname + '/public/pages/productDetail.html')
 })
 
+//insert page
+app.get('/insert', async (req, res) => {
+    res.sendFile(__dirname + '/public/pages/insertProducts.html')
+})
+
 /*------------API------------*/
 
 //login
@@ -142,14 +147,14 @@ app.get('/api/getAllProducts', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 })
+
+//update 
 app.put('/api/updateShoes',upload.single('file') ,async (req, res) => {
     var filename = '';
-    if(req.file)
+    if(req.file != undefined)
     {
-        filename = req.file.filename
+        filename = req.file.filename;
     }
-    console.log('>>>File name: '+ filename);
-    console.log(req.body);
     const result = await controllers.updateShoes(req.body, filename);
     res.json({
         dt: result.dt,
@@ -157,6 +162,8 @@ app.put('/api/updateShoes',upload.single('file') ,async (req, res) => {
         ms: result.ms
     })
 });
+
+//delete
 app.delete('/api/delete', async (req, res) => {
     const result = await controllers.deleteListProduct(req.body);
     res.json({
@@ -166,7 +173,22 @@ app.delete('/api/delete', async (req, res) => {
     })
 });
 
+//create
+app.post('/api/insertProduct',upload.single('file') ,async (req, res) => {
+    var filename = '';
+    if(req.file != undefined)
+    {
+        filename = req.file.filename;
+    }
+    const result = await controllers.insertProduct(req.body, filename);
+    res.json({
+        dt: result.dt,
+        st: result.st,
+        ms: result.ms
+    })
+});
 
+//khong tim thay file
 app.get(`*`, (req, res) => {
     res.sendFile(__dirname + '/public/pages/404-page.html');
 })

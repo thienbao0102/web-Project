@@ -1,11 +1,13 @@
-//xo thanh tim kiem xuong
 const moreSearch = document.querySelector('.more-search');
 const btnMoreSearch = document.querySelector('.extend-search');
 const FormUpdate = document.querySelector('.update');//form update
 const titleH1Update = document.querySelector('.title');//the h1 cua form update
-const size = document.getElementById('sizeUpdate');//input size
+const size = document.getElementById('mySelection');//size
 const quantity = document.getElementById('quantityUpdate');//input quantity
+let list = [];
+let listSizeUpdate = [];
 
+//xo thanh tim kiem xuong
 function extendSearch() {
 
     moreSearch.classList.toggle('active');
@@ -14,24 +16,32 @@ function extendSearch() {
 
 //hien thi o cap nhat
 function showFormUpdate() {
+    if (selectedIds.length <= 0) {
+        alert("You must select a product to update")
+        return;
+    }
     FormUpdate.classList.toggle('active');
+    console.log(selectedIds[0]._id)
+    if (selectedIds.length == 1) {
+        document.getElementById('allowUpdate').style.display = 'block';
+        renderInfor(selectedIds[0]._id)
+        return;
+    }
+
+    document.getElementById('allowUpdate').style.display = 'none';
+    //show name
+    document.getElementById('nameUpdate').value = '';
+    //show price
+    document.getElementById('priceUpdate').value = '';
+    //popular
+    document.getElementById('popular').checked = false;
+    //sale
+    document.getElementById('sale').value = '';
+
 }
-
-//cho phép nhap quantity khi da nhap size
-
-size.addEventListener('change', () => {
-    console.log(size.value);
-    if (size.value > 0 && size.value <= 60) {
-        quantity.disabled = false;
-    }
-    else {
-        quantity.disabled = true;
-    }
-})
 
 /*_____________Phan API_______________ */
 //search
-let list;
 function searchProduct() {
     idOrName = document.getElementById('infoSearch');
     sizeSearch = document.getElementById('sizeSearch');
@@ -43,7 +53,7 @@ function searchProduct() {
         'size': sizeSearch.value,
         'minPrice': minPrice.value,
         'maxPrice': maxPrice.value,
-        'quantity': quantity.value
+        'quantity': quantitySearch.value
     }
     console.log(searchData);
     const queryParams = new URLSearchParams(searchData).toString();
@@ -54,8 +64,8 @@ function searchProduct() {
         .then(res => res.json())
         .then(data => {
             if (data.st == 0) {
-                renderProducts(data.dt)
-                console.table(data.dt);
+                list = data.dt;
+                renderProducts(list);
             }
             else {
                 alert("Search failed!")
@@ -70,19 +80,22 @@ function searchProduct() {
 async function updateProduct() {
     const name = document.getElementById('nameUpdate').value;
     const price = document.getElementById('priceUpdate').value;
-    const size = document.getElementById('sizeUpdate').value;
-    const quantity = document.getElementById('quantityUpdate').value;
     const uploadFile = document.getElementById('uploadFile').files[0];
+    const popular = document.getElementById('popular').checked;
+    const sale = document.getElementById('sale').value;
     const listId = selectedIds.map(selectedId => selectedId._id)
     const formData = new FormData();
     formData.append('listId', listId);
-    formData.append('name',name);
-    formData.append('price',price);
-    formData.append('size',size);
-    formData.append('quantity',quantity);
-    formData.append('file',uploadFile);
+    formData.append('name', name);
+    formData.append('price', price);
+    formData.append('popular', popular);
+    formData.append('sale', sale);
+    formData.append('file', uploadFile);
+    formData.append('sizeQuantity', JSON.stringify(listSizeUpdate))
 
-    console.log(formData.has("file"));
+    console.log('>>>Checked: ' + popular);
+    console.log("listSize: ");
+    console.log(listSizeUpdate)
 
     fetch('/api/updateShoes', { // Thay đổi URL tại đây
         method: 'PUT',
@@ -91,19 +104,25 @@ async function updateProduct() {
     .then(response => response.json())
     .then(data => {
         alert(data.ms);
-        location.reload();
+        list.splice(0);
+        searchProduct();
+        selectedIds.splice(0);
+        hideFormUpdate();
+        listSizeUpdate.splice(0);
     })
-    .catch
-    {
+    .catch(error => {
         console.log('An error occurred. Please try again later');
-    }
+        console.error('Error:', error);
+        // Xử lý lỗi ở đây nếu cần thiết
+    });
+
 }
 
 function confirmDelete() {
     // Xác nhận xóa sản phẩm
     const confirmDelete = confirm(`Are you sure you want to delete ${selectedIds.length} product?`);
     if (confirmDelete) {
-        
+
         const listId = selectedIds.map(selectedId => selectedId._id)
         console.table(listId)
         deleteProduct(listId);
@@ -115,22 +134,22 @@ function confirmDelete() {
 function deleteProduct(listIds) {
     fetch(`/api/delete`, {
         method: 'DELETE',
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(listIds)
     })
-    .then(response => response.json())
-    .then(data => {
-        // Xử lý kết quả từ server
-        alert(data.ms);
-        // Reload trang hoặc cập nhật giao diện sau khi xóa sản phẩm thành công
-        location.reload();
-    })
-    .catch(error => {
-        console.log(Error);
-        alert('An error occurred while deleting the product.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            // Xử lý kết quả từ server
+            alert(data.ms);
+            // fetch laij data
+            searchProduct()
+        })
+        .catch(error => {
+            console.log(Error);
+            alert('An error occurred while deleting the product.');
+        });
 }
 
 /*_____________Phan Client_______________ */
@@ -145,7 +164,7 @@ function renderProducts(products) {
         Html += `</span>`;
         Html += `<div class="products-result">`;
         products.forEach(product => {
-            Html += `<label class="toggle-btn">`;
+            Html += `<label class="toggle-btn" onchange="hideFormUpdate()">`;
             Html += `<input type="checkbox" class="choosed-shoes" value="${product._id}">`;
             Html += checkTag(product);
             Html += `<label class= "fake-checkbox">
@@ -258,4 +277,78 @@ function handleNumSelected() {
         return;
     }
     numSelected.innerHTML = selectedIds.length;
+}
+
+//hien thi danh sach size
+function renderInfor(id) {
+    const listSize = list.filter(item => item._id === id)[0];
+    let html = '';
+    //show name
+    document.getElementById('nameUpdate').value = listSize.name;
+    //show price
+    document.getElementById('priceUpdate').value = listSize.price;
+    //popular
+    if(listSize.isPopular){
+        document.getElementById('popular').checked = true;
+        console.log('listSize.isPopular -t: ' + listSize.isPopular);
+    }
+    else{
+        document.getElementById('popular').checked = false;
+        console.log('listSize.isPopular -f: ' + listSize.isPopular);
+    }
+
+    //sale
+    if(listSize.sale > 0){
+        document.getElementById('sale').value = listSize.sale;
+    }
+    else{
+        document.getElementById('sale').value = 0;
+    }
+    //render size
+    for (var size in listSize.sizes) {
+        html += `<option value="${size}">${size}</option>`
+    }
+    document.getElementById('mySelection').innerHTML = html;
+    //show quantity of size
+    quantityOfSize()
+}
+
+//them size vao mang update size
+function addQuantityForSize() {
+    const sizeUpdateValue = size.value;
+    console.log('sizeUpdateValue ' + sizeUpdateValue)
+    const objSizeUpdate = {
+        'size': sizeUpdateValue,
+        'quantity': quantity.value
+    }
+    if (listSizeUpdate.filter(size => size.size === objSizeUpdate.size).length === 0) {
+        listSizeUpdate.push(objSizeUpdate);
+    }
+
+}
+
+//ẩn khi listid vê 0
+function hideFormUpdate(){
+    if(selectedIds.length == 0){
+        FormUpdate.classList.remove('active');
+        return;
+    }
+    if(selectedIds.length >= 1 && FormUpdate.classList.contains('active')){
+        FormUpdate.classList.remove('active');
+        showFormUpdate();
+    }
+    
+}
+
+//change quantity của sản phẩm
+function quantityOfSize(){
+    if(selectedIds.length == 1){
+        const listSize = list.filter(item => item._id == selectedIds[0]._id)[0].sizes;
+        Object.entries(listSize).forEach(([item, itemData]) =>{
+            if(item == size.value){ 
+                quantity.value = itemData.quantity;
+                return;
+            }
+        })
+    }
 }

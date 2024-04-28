@@ -18,13 +18,13 @@ async function querySearchProduct(rawData) {
         if (rawData.name) { //name /id
             query.name = { $regex: rawData.name, $options: 'i' }
         }
-        if(rawData.price){ //price
+        if (rawData.price) { //price
             query.price = {
                 $gte: parseFloat(rawData.price),
                 $lt: parseFloat(rawData.price) + 1
             };
         }
-        if(rawData.category){ //category
+        if (rawData.category) { //category
             query.category = { $regex: rawData.category, $options: 'i' }
         }
         if (rawData.quantity) {     //quantity
@@ -43,21 +43,21 @@ async function querySearchProduct(rawData) {
                 $gte: parseFloat(rawData.minPrice)
             }
         }
-        else if (!rawData.minPrice && rawData.maxPrice){ //Min == null, max != null -> X < max
+        else if (!rawData.minPrice && rawData.maxPrice) { //Min == null, max != null -> X < max
             query.price = {
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
-        } 
+        }
 
-        list = await controllerDetails.search(query,shoes);
-        return{
+        list = await controllerDetails.search(query, shoes);
+        return {
             dt: list.dt,
             ms: list.ms,
             st: list.st
         }
     } catch (error) {
         console.log("err: " + error)
-        return{
+        return {
             dt: '',
             ms: 'Search failed!',
             st: -1
@@ -84,7 +84,7 @@ async function updateShoes(shoes, updateFields) {
         }
 
         // Tiến hành cập nhật
-        const result = await controllerDetails.update({ $or: shoesToUpdate.dt },setUpdateField);
+        const result = await controllerDetails.update({ $or: shoesToUpdate.dt }, setUpdateField);
 
         // Trả về số lượng bản ghi đã được cập nhật thành công
         console.log(result.modifiedCount + " shoes updated successfully.");
@@ -103,79 +103,79 @@ async function updateShoes(shoes, updateFields) {
     }
 }
 //query to login
-async function queryLogin(rawData){
+async function queryLogin(rawData) {
     try {
         const query = {};
-        query.email = {$regex: `^${rawData.email}$`, $options: 'i'};
+        query.email = { $regex: `^${rawData.email}$`, $options: 'i' };
         var user;
         var checkUser = false;
         //la user
         user = await controllerDetails.search(query, users);
-        if(user.dt.length > 0){
-            checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)    
-        }    
-        if(checkUser){
+        if (user.dt.length > 0) {
+            checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)
+        }
+        if (checkUser) {
             console.log("check users " + checkUser);
-            return{
-                dt:user.dt[0]._id,
-                ms:"user",
-                st:0
+            return {
+                dt: user.dt[0]._id,
+                ms: "user",
+                st: 0
             }
         }
         //la admin
         user = await controllerDetails.search(query, admin);
-        if(user.dt.length > 0){
+        if (user.dt.length > 0) {
             checkUser = await controllerDetails.checkPass(rawData.password, user.dt[0].password)
         }
-        if(checkUser){
+        if (checkUser) {
             console.log("check users " + checkUser);
-            return{
-                dt:user.dt[0]._id,
-                ms:"admin",
-                st:1
+            return {
+                dt: user.dt[0]._id,
+                ms: "admin",
+                st: 1
             }
         }
         //khong co tai khoan
-        return{
-            dt:'',
-            ms:"No Account",
+        return {
+            dt: '',
+            ms: "No Account",
             st: 2
         }
 
     } catch (error) {
         console.log("err: queryLogin " + error);
-        return{
-            dt:'',
-            ms:"Failed",
-            st:-1
+        return {
+            dt: '',
+            ms: "Failed",
+            st: -1
         }
     }
 }
 
 //sign up
-async function signUpNewAccount(rawData){
+async function signUpNewAccount(rawData) {
     try {
         //check email da ton tai chua
         const query = {};
-        query.email = {$regex: rawData.email, $options: 'i'};
+        query.email = { $regex: rawData.email, $options: 'i' };
         const emailExits = await controllerDetails.search(query, users);
-        if(emailExits.length > 0){
+        if (emailExits.length > 0) {
             console.log("da ton tai")
-            return{
-                dt:'',
-                ms:'email was exits',
-                st:1
+            return {
+                dt: '',
+                ms: 'email was exits',
+                st: 1
             }
         }
         //hash pass
         const passHash = await controllerDetails.hashPassword(rawData.password);
         //create id
-        const newId = await controllerDetails.createId('USER',users);
+        const newId = await controllerDetails.createId('USER', users);
         console.log("new id: " + newId);
         const newUser = {
             '_id': newId,
             'name': rawData.name,
-            'email':rawData.email,
+            'email': rawData.email,
             'gender': rawData.gender,
             'phone number': rawData.phone,
             'password': passHash
@@ -188,80 +188,143 @@ async function signUpNewAccount(rawData){
         };
     } catch (error) {
         console.log("err: " + error);
-        return{
-            dt:'',
-            ms:'Error',
+        return {
+            dt: '',
+            ms: 'Error',
             st: -1
         }
     }
-    
+
 }
 
 //delete
-async function deleteListProduct(rawData){
+async function deleteListProduct(rawData) {
     try {
         console.log(rawData);
         const result = await controllerDetails.deleteProducts(rawData, shoes);
-        return{
+        return {
             dt: result.dt,
             ms: result.ms,
             st: result.st
         }
     } catch (error) {
         console.log("Err: " + error);
-        return{
-            dt:'',
+        return {
+            dt: '',
             ms: 'error',
             st: -1
         }
     }
 }
 
-async function updateShoes(rawData, fileName){
+//update
+async function updateShoes(rawData, fileName) {
     try {
         const updateFields = {};
-        console.log('>>>File name: '+ fileName);
+        var quantityForSize = JSON.parse(rawData.sizeQuantity);
+        console.log('>>>File name: ' + fileName);
         const lisIds = rawData.listId.split(',');
-        console.log('>>>list id: ' + typeof(lisIds))
-        if(rawData.name){
-            updateFields.name = rawData.name;           
-            console.log(rawData.name);
+
+        if (rawData.name) {
+            updateFields.name = rawData.name;
         }
-        if(rawData.price){
+        if (rawData.price) {
             updateFields.price = rawData.price;
-            console.log(rawData.price);
         }
-        if(rawData.size){
-            updateFields.size = rawData.size;
-            console.log(rawData.size);
+        //check sale
+        if (rawData.sale) {
+            if (rawData.sale == 0) {
+                updateFields.sale = false;
+            }
+            else {
+                updateFields.sale = rawData.sale;
+            }
+
         }
-        if(rawData.quantity){
-            updateFields.quantity = rawData.quantity;
-            console.log(rawData.quantity);
+        //update quantity theo size
+        if (quantityForSize.length > 0) {
+            for (const item of quantityForSize) {
+                updateFields[`sizes.${item.size}.quantity`] = parseInt(item.quantity);
+            }
         }
         //check hinh anh
-        if(fileName || fileName !=''){
+        if (fileName || fileName != '') {
             updateFields.imageURL = '/productPic/' + fileName;
         }
-        console.log(updateFields);
-        const updateData = {$set : updateFields };
+        //update popular (khong can check vi no luon co gia tri la true or false)
+        updateFields.isPopular = rawData.popular;
+        const updateData = { $set: updateFields };
         console.log(updateData);
         const result = await controllerDetails.update(lisIds, updateData, shoes);
-        return{
+        return {
             st: result.st,
             ms: result.ms,
             dt: result.dt
         }
     } catch (error) {
         console.log("err: " + error);
-        return{
+        return {
             st: -1,
             ms: 'Failed',
-            dt:''
+            dt: ''
         }
     }
 }
 
+//insert
+async function insertProduct(rawData, fileName) {
+    try {
+        console.log(rawData);
+        const insertData = {};
+        const sizes = JSON.parse(rawData.sizes);
+        const _id = await controllerDetails.createId('SHOE', shoes);
+        console.log('>>>_id: ' + _id)
+        //viet query
+        insertData._id = _id;
+        insertData.name = rawData.name;
+        insertData.price = rawData.price;
+        insertData.category = rawData.category;
+        insertData.description = rawData.description;
+        insertData.isPopular = rawData.popular;
+        //sale
+        if (rawData.sale === 0) {
+            insertData.sale = false;
+        }
+        else {
+            insertData.sale = rawData.sale;
+        }
+        //file anh
+        if (fileName || fileName != '') {
+            insertData.imageURL = '/productPic/' + fileName;
+        }
+        //size
+        if (sizes.length > 0) {
+            const sizeData = {}
+            for (const [item, data] of Object.entries(sizes)) {
+                sizeData[data.size] = { quantity: parseInt(data.quantity) };
+            }
+            insertData.sizes = sizeData
+        }
+        else {
+            insertData.sizes = {};
+        }
+
+        console.log(insertData);
+        const result = await controllerDetails.createNewObj(insertData,shoes)
+        return{
+            dt:result.dt,
+            st: result.st,
+            ms: result.ms
+        }
+    } catch (error) {
+        console.log("Err: " + error)
+        return{
+            dt:'',
+            st:-1,
+            ms: 'Error'
+        }
+    }
+}
 module.exports = {
-    querySearchProduct, queryLogin, signUpNewAccount,updateShoes, deleteListProduct
+    querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct
 }

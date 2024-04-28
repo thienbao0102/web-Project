@@ -11,8 +11,8 @@
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../css/manage.css">
-    <title>Management</title>
+    <link rel="stylesheet" href="../css/insertProducts.css">
+    <title>Insert Products</title>
 </head>
 
 <body>
@@ -29,12 +29,12 @@
                         </li>
                     </a>
                     <a href="/manage">
-                        <li id="here"><ion-icon name="grid-outline"></ion-icon>
+                        <li><ion-icon name="grid-outline"></ion-icon>
                             <p>Management</p>
                         </li>
                     </a>
                     <a href="/insert">
-                        <li><ion-icon name="pie-chart-outline"></ion-icon>
+                        <li id="here"><ion-icon name="pie-chart-outline"></ion-icon>
                             <p>Insert</p>
                         </li>
                     </a>
@@ -63,7 +63,7 @@
     <section>
         <header>
             <div class="welcome-box">
-                <h1>Management</h1>
+                <h1>Insert Products</h1>
             </div>
             <div class="user-box">
                 <span class="notification"><ion-icon name="bag-outline"></ion-icon></span>
@@ -73,73 +73,49 @@
             </div>
         </header>
         <div class="container">
-            <div class="search">
-                <h1>Search Product</h1>
-                <div class="main-search">
-                    <label>Enter the information you want search</label><br>
-                    <input type="text" name="info-Search" id="infoSearch" placeholder="Enter id or name of product">
-                </div>
-                <div class="more-search">
-                    <label for="price">Price you want search</label><br>
-                    <input type="number" name="price" id="minPrice" min="0" placeholder="from">
-                    <input type="number" name="price" id="maxPrice" min="0" placeholder="to"><br>
-
-                    <label for="size">Size you want search</label><br>
-                    <input type="number" name="size" id="sizeSearch" min="0" placeholder="Enter size"><br>
-
-                    <label for="quantity">Quantity Price you want search</label><br>
-                    <input type="number" name="quantity" id="quantity" min="0" placeholder="Enter quantity "><br>
-                </div>
-                <div class="ativated-point">
-                    <div class="animation">
-                        <button onclick="searchProduct()">Search</button>
-                    </div>
-                    <span class="extend-search" onclick="extendSearch()"><i
-                            class="fa-solid fa-angles-right fa-rotate-90" style="color: #000000;"></i></span>
-                </div>
-            </div>
-            <div class="update">
-                <h1 class="title">Update</h1>
+            <div class="insert">
+                <h1 class="title">Insert</h1>
                 <form id="form" enctype="multipart/form-data">
                     <label for="name">Name Product</label><br>
-                    <input type="text" name="name" id="nameUpdate" placeholder="Enter name you want update"><br>
+                    <input type="text" name="name" id="name" placeholder="Enter name"><br>
+
+                    <label for="category">Category</label><br>
+                    <input type="text" name="category" id="category"  placeholder="Enter category"><br>
+
+                    <label for="description">Description</label><br>
+                    <input type="text" name="description" id="description" placeholder="Enter description"><br>
+
                     <label for="price">Price</label><br>
-                    <input type="number" name="price" id="priceUpdate" min="0"
-                        placeholder="Enter price you want update"><br>
+                    <input type="number" name="price" id="price" min="0" value="0" placeholder="Enter price"><br>
+
                     <div class="salePopular">
                         <label>Popular</label>
                         <input type="checkbox" id="popular">
                         <label>Sale</label>
                         <input type="number" value="0" id="sale" placeholder="enter sale">
                     </div>
-                    <div id="allowUpdate">
-                        <label for="size-and-quantity">Size and Quantity</label>
-                        <button class="addsize" type="button" onclick="addQuantityForSize()">Add</button><br>
-                        <select id="mySelection" onchange="quantityOfSize()"></select>
-                        <input type="number" name="quantity" id="quantityUpdate" min="0" value="0"
-                            placeholder="Enter quantity for size"><br>
-                        <label for="uploadImage">Upload Image</label><br>
-                        <input type="file" name="uploadfile" id="uploadFile"><br>
-                    </div>
+                    <label for="size-and-quantity">Size and Quantity</label><br>
+                    <input type="number" name="size" id="size" min="0" value="0">
+                    <input type="number" name="quantity" id="quantity" min="0" value="0"
+                        placeholder="Enter quantity for size"><br>
+                    <button class="addsize" type="button" onclick="addSize()">+</button><br>
+                    <div id="listSizeQuantity">              
+                    </div><br>
+                    <label for="uploadImage">Upload Image</label><br>
+                    <input type="file" name="uploadfile" id="uploadFile"><br>
+
                 </form>
                 <div class="animation">
-                    <button onclick="updateProduct()">Update</button>
+                    <button onclick="insertProduct()">Insert</button>
                 </div>
             </div>
-        </div>
-        <div class="containerProduct" id="containerProduct">
-            <!-- <span class="text">
-                <p class="select-text">Select</p>
-                <p class="select-all-text">Select all</p>
-                <p class="selected-text">Selected <i>8</i>  items</p>
-            </span> -->
         </div>
     </section>
     <footer>
 
     </footer>
 
-    <script src="../javascript/manage.js"></script>
+    <script src="../javascript/insertProduct.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 

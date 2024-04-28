@@ -337,7 +337,7 @@ header {
     width: 100%;
 }
 
-/* --------Management container---------- */
+/* -------- container---------- */
 .container
 {
     display: flex;
@@ -347,126 +347,7 @@ header {
     justify-content: center;
 }
 
-.container .search{
-    position: relative;
-    width: 40%;
-    transition: 0.3s;
-    border-radius: 20px;
-    height: fit-content;
-    padding: 10px 0px;
-    background-color: #EEEEEE;
-    margin: 3rem;
-}
-
-.container .search:hover{
-    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
-}
-
-.container .search h1{
-    text-align: center;
-    margin: 10px;
-    font-size: 30px;
-}
-    /* css o input */
-.container .search :where(.main-search, .more-search, .ativated-point){
-    position: relative;
-    width: 80%;
-    margin: 10px 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: fit-content;
-    font-size: 16px;
-}
-
-.container .search .more-search{
-    display: none;
-}
-
-.container .search .more-search.active{
-    display: block;
-}
-
-.container .search input:not(#minPrice, #maxPrice){
-    height: 30px;
-    width: 100%;
-    padding: 0px 10px;
-    margin-bottom: 10px ;
-    border-radius: 15px;
-}
-
-.container .search :where(#minPrice, #maxPrice){
-    height: 30px;
-    width: 49.5%;
-    padding: 0px 10px;
-    margin-bottom: 10px ;
-    border-radius: 15px;
-}
-
-.container .search input::placeholder{
-    color: #0000BB;
-}
-
-    /* css nut search */
-.container .search .ativated-point .animation{
-    height: 34px;
-    width: 105px;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    border-radius: 12px;
-    position: relative;
-}
-
-.container .search .ativated-point .animation button{
-    position: relative;
-    height: 30px;
-    width: 100px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 10px;
-    background-color:#00FF00;
-    border: none;
-    cursor: pointer;
-}
-.container .search .ativated-point .animation::after{
-    content: '';
-    position: absolute;
-    background: conic-gradient(red 0deg,transparent 180deg,green 180deg, transparent 360deg);
-    height: 105px;
-    width: 105px;
-    z-index: -1;
-    display: none;
-}
-.container .search .ativated-point .animation:hover:after {
-    display: block;
-    animation-duration: 0.7s;
-    animation-name: lineRun;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-@keyframes lineRun{
-    form {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg);
-    }
-}
-
-.container .search .ativated-point .extend-search{
-    position: absolute;
-    right: 20px;
-    top: 20%;
-    cursor: pointer;
-    
-}
-.container .search .ativated-point .extend-search.active{
-    transform: rotate(180deg);
-}
-
-    /* css phan update */
-.container .update{
+.container .insert{
     position: relative;
     width: 40%;
     padding: 10px 0px;
@@ -474,51 +355,46 @@ header {
     border-radius: 20px;
     margin: 3rem;
     height: fit-content;
-    display: none;
     background-color: #EEEEEE;
 }
 
-.container .update.active{
-    display: block;
-}
-
-.container .update h1{
+.container .insert h1{
     text-align: center;
     margin: 10px;
 }
 
-.container .update form{
+.container .insert form{
     width: 80%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.container .update .salePopular{
+.container .insert .salePopular{
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.container .update .salePopular label{
+.container .insert .salePopular label{
     margin: 0px 10px;
 }
 
-.container .update .salePopular :where(#popular, #sale){
+.container .insert .salePopular :where(#popular, #sale){
     height: 30px;
     padding: 0px 10px;
     border-radius: 15px;
 }
 
-.container .update .salePopular #popular{
+.container .insert .salePopular #popular{
     width:15%;
 }
 
-.container .update .salePopular #sale{
+.container .insert .salePopular #sale{
     width:65%;
 }
 
-.container .update input:not(#quantityUpdate, #popular, #sale){
+.container .insert input:not(#quantity, #size, #popular, #sale){
     height: 30px;
     width: 100%;
     padding: 0px 10px;
@@ -526,7 +402,14 @@ header {
     border-radius: 15px;
 }
 
-.container .update #mySelection{
+.container .insert #mySelection{
+    width: 15%;
+    height: 30px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+.container .insert #size{
     width: 15%;
     height: 30px;
     padding: 0px 10px;
@@ -534,7 +417,7 @@ header {
     border-radius: 15px;
 }
 
-.container .update #quantityUpdate{
+.container .insert #quantity{
     width: 84%;
     height: 30px;
     padding: 0px 10px;
@@ -542,7 +425,7 @@ header {
     border-radius: 15px;
 }
 
-.container .update .animation{
+.container .insert .animation{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -554,7 +437,7 @@ header {
     border-radius: 12px;
 }
 
-.container .update button{
+.container .insert button{
     position: relative;
     height: 30px;
     width: 100px;
@@ -566,12 +449,14 @@ header {
     cursor: pointer;
 }
 
-.container .update .addsize{
+.container .insert .addsize{
     background-color: rgb(186, 186, 186);
     color: black;
-    margin: 5px 10px;
+    margin: 5px 0px;
+    width: 100%;
+    height: 20px;
 }
-.container .update .animation::after{
+.container .insert .animation::after{
     content: '';
     position: absolute;
     background: conic-gradient(red 0deg,transparent 180deg,green 180deg, transparent 360deg);
@@ -581,7 +466,7 @@ header {
     display: none;
 }
 
-.container .update .animation:hover:after {
+.container .insert .animation:hover:after {
     display: block;
     animation-duration: 0.7s;
     animation-name: lineRun;
@@ -589,210 +474,33 @@ header {
     animation-timing-function: linear;
 }
 
-    /* css cho phan san pham sau tim */
-.containerProduct{
+.container .insert #listSizeQuantity{
     width: 100%;
+    height: fit-content;
+}
+
+.container .insert #listSizeQuantity .size-Infor{
     position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.products-result{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    height: 25px;
+    padding: 0px 10px;
+    line-height: 25px;
 }
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    border-radius: 1rem;
-    padding: 16px;
-    width: 300px;
-    background-color: #EEEEEE;
-    position: relative;
-    max-height: 500px;
-    /* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15); */
-    margin: 0 1rem 1rem 1rem;
-    transition: 0.3s;
-}
-
-.product-card:hover{
-    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
-}
-
-.product-image {
-    max-height: 268px;
-    width: 100%;
-    border-radius: 0.5rem;
-}
-
-.product-info {
-    margin-top: 16px;
-}
-
-.product-title {
-    font-size: 20px;
-    margin-bottom: 8px;
-    display: -webkit-box;
-    -webkit-line-clamp: 1; /* Số dòng tối đa bạn muốn hiển thị */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.product-description {
-    display: -webkit-box;
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 8px;
-    -webkit-line-clamp: 2; /* Số dòng tối đa bạn muốn hiển thị */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.product-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-#productPrice{
-    display: flex;
-}
-
-#newPrice{
-    color: #E72929;
-    font-size: 20px;
-    font-weight: 600; 
-    padding-left: 10px;
-}
-
-.sale-product::before {
-    content: 'Sale 'attr(data-sale);
-    display: flex;
-    text-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    position: absolute;
-    color: #EEEEEE;
-    font-size: 15px;
-    font-weight: 600;
-    top: 0px;
-    background-color: #E72929;
-    right: 0; /* Thay đổi màu và độ dày viền theo ý muốn */
-    border-radius: 0 1rem 0 1rem; /* Đảm bảo viền làm tròn theo góc của sản phẩm */
-    pointer-events: none;
-}
-
-.sale-product .old-price{
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
-}
-
-
-.popular-product::before {
-    content: 'Popular 🔥';
-    display: flex;
-    text-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    position: absolute;
-    color: #EEEEEE;
-    font-size: 15px;
-    font-weight: 600;
-    top: 0px;
-    background-color: #76885B;
-    right: 0; /* Thay đổi màu và độ dày viền theo ý muốn */
-    border-radius: 0 1rem 0 1rem; /* Đảm bảo viền làm tròn theo góc của sản phẩm */
-    pointer-events: none;
-}
-
-.toggle-btn input {
-    display: none;
-}
-  
-  /* Thiết lập kiểu của toggle button */
-.toggle-btn {
-    display: inline-block;
-}
-
-.category{
-    width: 100%;
-}
-
-.category span{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 0.5rem;
-    gap: 0.3rem;
-    width: 100%;
-}
-
-.content {
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.fake-checkbox{
-    width: 1rem;
-    height: 1rem;
-    position: absolute;
-    border-radius: 10rem;
-    background-color: transparent;
-    color: #EEEEEE;
-}
-
-.fake-checkbox img {
-    width: 100%;
-    height: 100%; /* Đảm bảo ảnh lấp đầy kích thước của checkbox */
-    object-fit: cover;
-    opacity: 0;
-    filter: invert(100%);
-}
-
-.content::after{
+.container .insert #listSizeQuantity .size-Infor::after{
     content: '';
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
     position: absolute;
-    border-radius: 1rem;
+    bottom: 0px;
+    left: 0px;
+    height: 0.5px;
+    width: 100%;
+    background-color: black;
 }
 
-.choosed-shoes:checked + .content::after {
-    border: 2px solid #3559E0; /* Viền màu xanh khi checkbox được chọn */
-}
-
-
-.containerProduct .text {
-    width: 80%;
-    display: flex;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
-    margin: 2rem 0 1rem 0;
-}
-
-.containerProduct .text .select-all-text{
-    cursor: pointer;
-    background-color: #22283115;
-    padding: 0.5rem 1rem;
-    border-radius: 10rem;
-    color: #3559E0;
-    margin: 0px 5px;
-}
-.containerProduct .text .selected-text{
-    margin-left: auto;
-    padding: 0.5rem 1rem;
-}
-
-.containerProduct .text .selected-text i{
-    color: #E72929;
+@keyframes lineRun{
+    form {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
 }
