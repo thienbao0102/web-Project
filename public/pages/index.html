@@ -349,11 +349,35 @@
     <script>
     </script>
     <script>
+        // function handleSearchFocus(){
+        //     const div = document.getElementById("expandDiv"); // Thay "your-div-id" bằng id của div bạn muốn xử lý
+
+        //     // Thêm sự kiện click vào document
+        //     document.addEventListener("click", function(event) {
+        //         // Kiểm tra nếu sự kiện click không xảy ra trên div hoặc các phần tử con của div
+        //         if (!div.contains(event.target)) {
+        //             // Click ra ngoài div, ẩn div đi
+        //             div.style.display = "none";
+        //         }
+        //     });
+
+        //     // Thêm sự kiện click vào div
+        //     div.addEventListener("click", function(event) {
+        //         // Ngăn chặn sự kiện click lan ra bên ngoài div
+        //         event.stopPropagation();
+        //     });
+
+        //     // Thêm sự kiện focus vào div
+        //     div.addEventListener("focus", function(event) {
+        //         // Hiển thị div lại khi focus vào
+        //         div.style.display = "block"; // Hoặc "flex", "grid", tùy thuộc vào kiểu display của div
+        //     });
+        // }
+
         searchInput.addEventListener('keydown', function(event) {
             // Kiểm tra xem phím được ấn có phải là phím Enter không (mã phím là 13)
             if (event.key === 'Enter') {
                 redirectRouterToProducts()
-                
             }
         });
 
@@ -372,7 +396,7 @@
                 route += `maxPrice=${maxPrice.value}&`
             }
             const category = handleShoesCategory();
-            if (category) {
+            if (category && category.length > 0) {
                 route += `category=${category}&`
             }
             window.location.href = route;

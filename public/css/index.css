@@ -366,6 +366,12 @@ header {
     flex-direction: column;
 }
 
+
+  
+.search-box:focus-{
+    background-color: aqua;
+}
+
 .expanded {
     height: auto;
 }

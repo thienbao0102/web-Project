@@ -301,18 +301,10 @@
                             <input type="number" id="maxPrice" placeholder="Max">
                         </div>
                     </div>
+                    <button class="apply">Apply</button>
                 </div>
             </div>
             <div class="right" id="products">
-                <div class="sort">
-                    <select name="sort" id="sort">
-                        <option value="">Sort</option>
-                        <option value="AtoZ">A-Z</option>
-                        <option value="ZtoA">Z-A</option>
-                        <option value="Price-HtoL">Price: High to Low</option>
-                        <option value="Price-LtoH">Price: Low to High</option>
-                    </select>
-                </div>
                 <div class="product-card popular-product">
                     <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
                     <div class="product-info">
@@ -350,7 +342,7 @@
     </footer>
     <!-- script tuong tac server -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
             handleInput()
             currentPage = getCurrentPageFromLocalStorage() || 1;
             if (currentPage) {
@@ -413,6 +405,7 @@
                 .then(data => {
                     documents = data.dt;
                     perPageProducts = documents.slice((currentPage - 1) * perPage, (currentPage - 1) * perPage + perPage);
+                    console.log((currentPage - 1) * perPage);
                     renderProducts(perPageProducts);
                     renderPageNum(documents);
                 })
@@ -423,8 +416,16 @@
         }
 
         function renderProducts(products) {
-            let Html = ' ';
-            if (products !== null) {
+            let Html = '<h2>No product found</h2>';
+            if (products !== null && products.length > 0) {
+                Html = `<div class="sort">
+                            <select name="sort" id="sort">
+                                <option value="AtoZ">A-Z</option>
+                                <option value="ZtoA">Z-A</option>
+                                <option value="Price-HtoL">Price: High to Low</option>
+                                <option value="Price-LtoH">Price: Low to High</option>
+                            </select>
+                        </div>`;
                 products.forEach(product => {
                 Html += checkTag(product);
                 Html += `<img src="${product.imageURL}" loading="lazy" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
@@ -617,7 +618,10 @@
 
         // Lấy trạng thái trang từ localStorage
         function getCurrentPageFromLocalStorage() {
-            return localStorage.getItem('currentPage');
+            if (documents.length > perPage) {
+                return localStorage.getItem('currentPage');
+            }
+            return 1;
         }
     </script> 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
