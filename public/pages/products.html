@@ -301,7 +301,7 @@
                             <input type="number" id="maxPrice" placeholder="Max">
                         </div>
                     </div>
-                    <button class="apply">Apply</button>
+                    <button class="apply" onclick="handleFilter()">Apply</button>
                 </div>
             </div>
             <div class="right" id="products">
@@ -350,11 +350,49 @@
             }
         })
 
+        function handleFilter(){
+            const searchInput = document.getElementById('searchInput');
+            const price = document.getElementById('price');
+            const minPrice = document.getElementById('minPrice');
+            const maxPrice = document.getElementById('maxPrice');
+            const shoesType = document.querySelectorAll('#shoesType');
+            const data = {};
+            let route = '/products?';
+            if (searchInput.value.trim() != "") {
+                data.name = searchInput.value;
+                route += `search=${searchInput.value}&`;
+            }
+            if (price.value.trim() != "") {
+                data.price = price.value;
+                route += `price=${price.value}&`;
+            }
+            if (minPrice.value.trim() != "") {
+                data.minPrice = minPrice.value;
+                route += `minPrice=${minPrice.value}&`;
+            }
+            if (maxPrice.value.trim() != "") {
+                data.maxPrice = maxPrice.value;
+                route += `maxPrice=${maxPrice.value}&`;
+            }
+            let categories = [];
+            
+            shoesType.forEach((shoeType) => {
+                if (shoeType.checked) {
+                    categories.push(shoeType.value);
+                }
+            });
+
+            if (categories && categories.length > 0) {
+                route += `category=${categories}&`
+            }
+            
+            window.location.href = route;
+        }
+
         function handleInput() {   // Lấy giá trị của các ô input vào data để fetch
             // Lấy các tham số truy vấn từ URL
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            console.log(urlParams);
             const searchValue = urlParams.get('search');
             const typeValue = urlParams.get('type');
             const priceValue = urlParams.get('price');
@@ -405,7 +443,6 @@
                 .then(data => {
                     documents = data.dt;
                     perPageProducts = documents.slice((currentPage - 1) * perPage, (currentPage - 1) * perPage + perPage);
-                    console.log((currentPage - 1) * perPage);
                     renderProducts(perPageProducts);
                     renderPageNum(documents);
                 })

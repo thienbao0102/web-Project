@@ -142,7 +142,7 @@
             </div>
             </div>
             <div class="user-box">
-                <a style="color: #222831;" href="/cart"><span class="cart cart-outline"><ion-icon
+                <a style="color: #222831;" href="/my-cart"><span class="cart cart-outline"><ion-icon
                             name="bag-outline"></ion-icon></span></a>
                 <span class="user-avt">
                     <img id="user-avatar" src="../avt.png" alt="">
@@ -461,16 +461,18 @@
                 });
         }
 
+        let carousel = 6;
         async function renderProducts(products, divId) {
+            carousel++;
             const perPageProducts = 10;
             const totalPages = await Math.ceil(products.length / perPageProducts);
             let Html = ' ';
             if (products !== null && products.length > 0) {
                 Html += `<h2>${divId}</h2>
-                    <div id="carouselExampleCaptions5" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleCaptions${carousel}" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators" id="carouselBtn">`;
                 for (let i = 0; i < totalPages; i++) {
-                    Html += `<button type="button" data-bs-target="#carouselExampleCaptions5" data-bs-slide-to="${i}"${i === 0 ? ' class="active"' : ''} aria-label="Slide ${i + 1}"></button>`;
+                    Html += `<button type="button" data-bs-target="#carouselExampleCaptions${carousel}" data-bs-slide-to="${i}"${i === 0 ? ' class="active"' : ''} aria-label="Slide ${i + 1}"></button>`;
                 }
                 Html += `</div>
                     <div class="carousel-inner" id="carouselItem">`;
@@ -494,11 +496,11 @@
                 }
                 Html += `</div>`
                 if(totalPages > 1){
-                Html += `<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions5" data-bs-slide="prev">
+                Html += `<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions${carousel}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions5" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions${carousel}" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
