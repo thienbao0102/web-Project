@@ -71,6 +71,11 @@ app.get('/insert', async (req, res) => {
     res.sendFile(__dirname + '/public/pages/insertProducts.html')
 })
 
+app.get('/product', async (req, res) => {
+    res.sendFile(__dirname + '/public/pages/productDetail.html')
+})
+
+
 /*------------API------------*/
 
 //search
