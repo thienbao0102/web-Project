@@ -15,6 +15,9 @@ async function querySearchProduct(rawData) {
                 { name: { $regex: rawData.idOrName, $options: 'i' } }
             ];
         }
+        if (rawData._id) { //name /id
+            query._id = { $regex: rawData._id, $options: 'i' }
+        }
         if (rawData.name) { //name /id
             query.name = { $regex: rawData.name, $options: 'i' }
         }

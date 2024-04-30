@@ -29,26 +29,63 @@
         transform: translateX(-50%);
     }
 
-    .product-image img {
-        height: 100%;
+    .primary-image {
+        width: calc(100% - 4rem - 1rem);
+    }
+
+    .popular-product.primary-image {
+        position: relative;
+    }
+
+    #productImage {
         object-fit: cover;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-        border-radius: 10px;
-        
+        border-radius: 8px;
+        height: 700px;
         width: 100%;
+    }
+
+    .popular-product.primary-image::before {
+        content: "🔥 is Popular";
+        padding: 0.5rem 1.6rem 0.6rem 1.3rem;
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        background-color: #e0dede;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #222831;
+        border-radius: 10rem;
+        z-index: 10000;
     }
 
     .product-image{
         position: sticky;
         position: -webkit-sticky;
         top: 1rem;
+        display: flex;
         max-height: 650px;
-        margin-right: 3rem;
+        width: 60%;
+        padding-right: 4rem;
+    }
+
+    .image-thumbnail {
+        display: flex;
+        flex-direction: column;
+        margin-right: 1rem;
+    }
+
+    .image-thumbnail img{
+        object-fit: cover;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
     }
 
     .product-info {
         padding: 20px;
+        width: 40%;
     }
 
     .product-info h1 {
@@ -84,6 +121,7 @@
     form label {
         font-size: 16px;
         margin-right: 10px;
+        text-align: center;
     }
 
     select {
@@ -145,6 +183,7 @@
 
     .container .price .old-price {
         text-decoration: line-through;
+        margin-right: 1rem;
     }
 
     .container .price {
@@ -154,7 +193,7 @@
 
     .price .new-price {
         color: #FF0000;
-        margin-left: 1rem;
+        margin-right: 1rem;
         font-size: 18px;
     }
 
@@ -314,14 +353,25 @@
         <div class="container">
             <div class="product">
                 <div class="product-image">
-                    <img id="productImage" src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                    <div class="image-thumbnail">
+                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                    </div>
+                    <div class="primary-image popular-product">
+                        <img id="productImage" src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                    </div>
                 </div>
                 <div class="product-info">
                     <h1 id="productName">Nike V2K Run</h1>
                     <p id="productCategory">Shoes</p>
                     <span class="price">
-                        <p class="current-price old-price" id="productCurrentPrice">3.519.000₫</p>
                         <p class="new-price" id="productNewPrice">3.519.000₫</p>
+                        <p class="current-price old-price" id="productCurrentPrice">3.519.000₫</p>
+                        <p class="new-price" id="productNewPrice">40% off</p>
                     </span>
                     <form id="sizeForm" action="#">
                         <h2>Select size</h2>
@@ -363,6 +413,93 @@
     </section>
     <footer>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            handleInput();
+        });
+
+        function handleInput() {   // Lấy giá trị của các ô input vào data để fetch
+            // Lấy các tham số truy vấn từ URL
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const idValue = urlParams.get('id');
+            const data = {};
+            if (idValue && idValue.trim() != "") {
+                data._id = idValue;
+            }
+            getSearch(data)
+
+            //data.category += typeValue;
+        }
+
+        let documents = [] //Chua san pham tra ve
+
+        async function getSearch(data) {
+            const queryParams = new URLSearchParams(data).toString();
+            fetch(`/api/indexSearch?${queryParams}`, {
+                method: 'GET',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    documents = data.dt;
+                    console.log(documents);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi ở đây nếu cần thiết
+                });
+        }
+
+        function renderProducts(products) {
+            let Html = '<h2>No product found</h2>';
+            if (products !== null && products.length > 0) {
+                Html = `<div class="sort">
+                            <select name="sort" id="sort">
+                                <option value="AtoZ">A-Z</option>
+                                <option value="ZtoA">Z-A</option>
+                                <option value="Price-HtoL">Price: High to Low</option>
+                                <option value="Price-LtoH">Price: Low to High</option>
+                            </select>
+                        </div>`;
+                products.forEach(product => {
+                Html += checkTag(product);
+                Html += `<img src="${product.imageURL}" loading="lazy" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                Html += `<div class="product-info">`;
+                Html += `<h2 class="product-title">${product.name}</h2>`;
+                Html += `<p class="product-description">${product.description}</p>`;
+                Html += `<span id="productPrice">`;
+                Html += `<p class="product-price old-price">$${product.price}</p>`;
+                Html += calSalePrice(product);
+                Html += `</span>`;
+                Html += `<button class="add-to-cart" onclick = "handleBuyNowClick(event)" data-id = "${product._id}">Buy now</button>`;
+                Html += `</div>`;
+                Html += `</div>`;
+            });
+            }
+            // Chèn vào phần tử có id là "container"
+            var container = document.getElementById('products');
+            container.innerHTML = Html;
+        }
+
+        function calSalePrice(product) {
+            if(product.sale !== false  && !isNaN(product.sale))
+            {
+                return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+            }
+            return `<p id="newPrice"></p>`;
+        }
+
+        function checkTag(product){
+            if(product.sale !== false  && !isNaN(product.sale))
+            {
+                return `<div class="product-card sale-product" data-sale="${product.sale}%">`
+            }
+            if (product.isPopular !== false) {
+                return `<div class="product-card popular-product">`
+            }
+            return `<div class="product-card">`;
+        }
+    </script>
     <script src="../javascript/productDetail.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
