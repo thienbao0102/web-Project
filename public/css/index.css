@@ -757,6 +757,13 @@ header {
     justify-content: center;
 }
 
+.container-product-groups .products-group .carousel-item-end{
+    display: flex;
+    flex-wrap: wrap;
+    min-height: calc((427px * 2)  + 2rem);
+    justify-content: center;
+}
+
 .container-product-groups .products-group .carousel-control-next, .container-product-groups .products-group .carousel-control-prev{
     width: 2rem;
 }
