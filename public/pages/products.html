@@ -492,32 +492,19 @@
         }
 });
 
-
 function handleSortChange(sortValue) {
-    let sortedProducts = [];
-    switch (sortValue) {
-        case 'AtoZ':
-            sortedProducts = documents.sort((a, b) => a.name.localeCompare(b.name));
-            break;
-        case 'ZtoA':
-            sortedProducts = documents.sort((a, b) => b.name.localeCompare(a.name));
-            break;
-        case 'Price-HtoL':
-            sortedProducts = documents.sort((a, b) => b.price - a.price);
-            break;
-        case 'Price-LtoH':
-            sortedProducts = documents.sort((a, b) => a.price - b.price);
-            break;
-        default:
-            // Mặc định: không sắp xếp
-            sortedProducts = documents;
-            break;
+    let sortedProducts = documents.slice();
+    if (sortValue === 'AtoZ') {
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortValue === 'ZtoA') {
+        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (sortValue === 'Price-HtoL') {
+        sortedProducts.sort((a, b) => b.price - a.price);
+    } else if (sortValue === 'Price-LtoH') {
+        sortedProducts.sort((a, b) => a.price - b.price);
     }
     renderProducts(sortedProducts);
 }
-
-
-
         function calSalePrice(product) {
             if(product.sale !== false  && !isNaN(product.sale))
             {
