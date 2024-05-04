@@ -63,7 +63,6 @@ async function querySearchProduct(rawData) {
                 $gte: 1
             }
         }
-        console.log(query);
         list = await controllerDetails.search(query,shoes);
         return{
             dt: list.dt,
@@ -303,5 +302,5 @@ async function insertProduct(rawData, fileName) {
     }
 }
 module.exports = {
-    querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct
+    querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct,
 }
