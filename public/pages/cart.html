@@ -62,44 +62,83 @@
         <div class="container">
             <div class="my-cart">
                 <h1>My cart</h1>
-                <p style="margin-top: 1rem; font-size: 20px;">There are no products in your cart</p>
-                <!-- <div class="product-card-h">
-                    <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <div>
-                            <div class="data">
-                                <h2 class="product-title">Product Name</h2>
-                                <span class="item">
-                                    <p>Size</p>
-                                    <select name="size" id="cartSizeBox">
-                                        <option value="39">39</option>
-                                        <option value="40">40</option>
-                                        <option value="41">41</option>
-                                        <option value="42">42</option>
-                                        <option value="43">43</option>
-                                        <option value="44">44</option>
-                                        <option value="45">45</option>
-                                    </select>
-                                    <p>Quantity</p>
-                                    <select name="quantity" id="cartQuantityBox">
-                                        <option value="39">39</option>
-                                        <option value="40">40</option>
-                                        <option value="41">41</option>
-                                        <option value="42">42</option>
-                                        <option value="43">43</option>
-                                        <option value="44">44</option>
-                                        <option value="45">45</option>
-                                    </select>
+                <div id="cartProducts">
+                    <p style="margin-top: 1rem; font-size: 20px;">There are no products in your cart</p>
+                    <div class="product-card-h">
+                        <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                        <div class="product-info">
+                            <div>
+                                <div class="data">
+                                    <h2 class="product-title">Product Name</h2>
+                                    <span class="item">
+                                        <p>Size</p>
+                                        <select name="size" id="cartSizeBox">
+                                            <option value="39">39</option>
+                                            <option value="40">40</option>
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                            <option value="44">44</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                        <p>Quantity</p>
+                                        <select name="quantity" id="cartQuantityBox">
+                                            <option value="39">39</option>
+                                            <option value="40">40</option>
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                            <option value="44">44</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                <span id="productPrice">
+                                    <p class="product-price old-price">$99.99</p>
+                                    <p id="newPrice">$50.99</p>
                                 </span>
                             </div>
-                            <span id="productPrice">
-                                <p class="product-price old-price">$99.99</p>
-                                <p id="newPrice">$50.99</p>
-                            </span>
+                            <ion-icon name="trash-outline" id="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
                         </div>
-                        <ion-icon name="trash-outline" id="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
                     </div>
-                </div> -->
+                    <div class="product-card-h">
+                        <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
+                        <div class="product-info">
+                            <div>
+                                <div class="data">
+                                    <h2 class="product-title">Product Name</h2>
+                                    <span class="item">
+                                        <p>Size</p>
+                                        <select name="size" id="cartSizeBox">
+                                            <option value="39">39</option>
+                                            <option value="40">40</option>
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                            <option value="44">44</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                        <p>Quantity</p>
+                                        <select name="quantity" id="cartQuantityBox">
+                                            <option value="39">39</option>
+                                            <option value="40">40</option>
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                            <option value="44">44</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                <span id="productPrice">
+                                    <p class="product-price old-price">$99.99</p>
+                                    <p id="newPrice">$50.99</p>
+                                </span>
+                            </div>
+                            <ion-icon name="trash-outline" id="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="summary">
                 <h1>Summary</h1>
@@ -143,7 +182,160 @@
                 }
                 lastScrollTop = st <= 0 ? 0 : st;
             });
+
+            getCartFromServer()
         })
+
+        function getUserIdFromSessionStorage(){
+            const _id = sessionStorage.getItem("_id");
+            return _id;
+        }
+
+        async function getCartFromServer(){
+            const data = {
+                _id : await getUserIdFromSessionStorage()
+            };
+            const queryParams = new URLSearchParams(data).toString();
+            fetch(`/api/getCarts?${queryParams}`, {
+                method: 'GET',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    cart = data.dt;
+                    getProductInfo(cart);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi ở đây nếu cần thiết
+                });
+        }
+
+        async function getProductInfo(cart) {
+            const productIds = Object.keys(cart.item);
+            let productInCart = [];
+            for (const productId of productIds) {
+                const productInfo = {
+                    _id: productId
+                };
+                const searchResult = await getSearch(productInfo);
+                productInCart.push(searchResult[0]);
+            }
+            renderCartProducts(productInCart, cart);
+        }
+
+        async function getSearch(data) {
+            const queryParams = new URLSearchParams(data).toString();
+            try {
+                const response = await fetch(`/api/indexSearch?${queryParams}`, {
+                    method: 'GET',
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const searchData = await response.json();
+                return searchData.dt || 0;
+            } catch (error) {
+                console.error('Error:', error);
+                return 0;
+                // Xử lý lỗi ở đây nếu cần thiết
+            }
+        }
+
+
+        function renderCartProducts(cartProducts, cart) {
+            const cartProductsContainer = document.getElementById("cartProducts");
+            cartProductsContainer.innerHTML = "";
+            cartProducts.forEach(product => {
+                productId = product._id;
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card-h");
+                productCard.innerHTML = `
+                    <img src="${product.imageURL}" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <div>
+                            <div class="data">
+                                <h2 class="product-title">${product.name}</h2>
+                                <span class="item">
+                                    <p>Size</p>
+                                    <select name="size" class="cartSizeBox">
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                        <option value="41">41</option>
+                                        <option value="42">42</option>
+                                        <option value="43">43</option>
+                                        <option value="44">44</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                    <p>Quantity</p>
+                                    <select name="quantity" class="cartQuantityBox">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <span class="productPrice">
+                                <p class="product-price old-price">$${product.price}</p>
+                                <p class="newPrice">$${product.productPrice}</p>
+                            </span>
+                        </div>
+                        <ion-icon name="trash-outline" class="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
+                    </div>
+                `;
+                cartProductsContainer.appendChild(productCard);
+                handleCartQuantityBox(cart.item[productId].quantity)
+                handleCartSizeBox(cart.item[productId].size)
+            })
+        }
+
+        function handleCartQuantityBox(quantity) {
+            console.log(quantity);
+            const selectElements = document.querySelectorAll(".cartQuantityBox");
+            selectElements.forEach(selectElement => {
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    const option = selectElement.options[i];
+                    if (option.value == quantity) {
+                        option.classList.add("selected");
+                        break;
+                    }
+                }
+            });
+
+            document.querySelectorAll(".selected").forEach(option => {
+                option.selected = true;
+            });
+        }
+
+        function handleCartSizeBox(Size) {
+            console.log(Size);
+            const selectElements = document.querySelectorAll(".cartSizeBox");
+            selectElements.forEach(selectElement => {
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    const option = selectElement.options[i];
+                    if (option.value == Size) {
+                        option.classList.add("selected");
+                        break;
+                    }
+                }
+            });
+
+            document.querySelectorAll(".selected").forEach(option => {
+                option.selected = true;
+            });
+        }
+
     </script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

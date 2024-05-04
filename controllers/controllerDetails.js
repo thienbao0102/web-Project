@@ -63,6 +63,26 @@ async function createId(str, nameCollection){
     return newId;
 }
 
+//get carts
+async function getCartsFromDB(userId) {
+    try {
+        const carts = await search(userId, "carts");
+        return{
+            dt: carts.dt,
+            ms: 'success',
+            st: 0
+        }
+    } catch (error) {
+        console.log("err: " + error);
+        return{
+            dt: '',
+            ms: 'failed',
+            st: -1
+        }
+    }
+   
+}
+
 //search
 async function search(query, nameCollection){
     try {
@@ -173,5 +193,6 @@ async function addProductToCart(query, productQuery, nameCollection){
 }
 
 module.exports ={
-    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, createNewObj,deleteProducts, addProductToCart
+    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search
+    , update, createNewObj,deleteProducts, addProductToCart, getCartsFromDB
 }

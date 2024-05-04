@@ -98,7 +98,7 @@
             <div class="search-box" id="fixedBox">
                 <span class="fixed-search" id="fixedSearch">
                     <input type="text" id="searchInput" placeholder="Search at here...">
-                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
+                    <button ><ion-icon id="moreOpt" name="options-outline"></ion-icon></button>
                 </span>
                 <div class="expand" id="expandDiv">
                     <div id="filter">
@@ -349,31 +349,6 @@
     <script>
     </script>
     <script>
-        // function handleSearchFocus(){
-        //     const div = document.getElementById("expandDiv"); // Thay "your-div-id" bằng id của div bạn muốn xử lý
-
-        //     // Thêm sự kiện click vào document
-        //     document.addEventListener("click", function(event) {
-        //         // Kiểm tra nếu sự kiện click không xảy ra trên div hoặc các phần tử con của div
-        //         if (!div.contains(event.target)) {
-        //             // Click ra ngoài div, ẩn div đi
-        //             div.style.display = "none";
-        //         }
-        //     });
-
-        //     // Thêm sự kiện click vào div
-        //     div.addEventListener("click", function(event) {
-        //         // Ngăn chặn sự kiện click lan ra bên ngoài div
-        //         event.stopPropagation();
-        //     });
-
-        //     // Thêm sự kiện focus vào div
-        //     div.addEventListener("focus", function(event) {
-        //         // Hiển thị div lại khi focus vào
-        //         div.style.display = "block"; // Hoặc "flex", "grid", tùy thuộc vào kiểu display của div
-        //     });
-        // }
-
         searchInput.addEventListener('keydown', function(event) {
             // Kiểm tra xem phím được ấn có phải là phím Enter không (mã phím là 13)
             if (event.key === 'Enter') {
@@ -400,7 +375,6 @@
                 route += `category=${category}&`
             }
             window.location.href = route;
-            //`/products?search=${searchInput.value}&type=0&price=${price.value}&minPrice=${minPrice.value}&maxPrice=${maxPrice.value}`
         }
 
         function handleShoesCategory() {
@@ -433,14 +407,14 @@
             const data = {};
             if (divId === "Trending") {   
                 data.isPopular = true;
-                getSearch(data, divId)
+                getSearchWithDivId(data, divId)
             }else{
                 data.sale = true;
-                getSearch(data, divId)
+                getSearchWithDivId(data, divId)
             }
         }
 
-        async function getSearch(data, divId) {
+        async function getSearchWithDivId(data, divId) {
             const queryParams = new URLSearchParams(data).toString();
             fetch(`/api/indexSearch?${queryParams}`, {
                 method: 'GET',
@@ -453,7 +427,7 @@
                 })
                 .then(data => {
                     documents = data.dt;
-                    renderProducts(data.dt,divId);
+                    renderProductsWithDivId(data.dt,divId);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -462,7 +436,7 @@
         }
 
         let carousel = 6;
-        async function renderProducts(products, divId) {
+        async function renderProductsWithDivId(products, divId) {
             carousel++;
             const perPageProducts = 10;
             const totalPages = await Math.ceil(products.length / perPageProducts);
@@ -488,7 +462,7 @@
                         Html += `<p class="product-price old-price">$${product.price}</p>`;
                         Html += calSalePrice(product);
                         Html += `</span>`;
-                        Html += `<button class="add-to-cart" data-id="${product._id}">Buy now</button>`;
+                        Html += `<button class="add-to-cart" data-id="${product._id}">Look closer</button>`;
                         Html += `</div>`;
                         Html += `</div>`;
                     });
@@ -508,7 +482,7 @@
             }
             // Chèn vào phần tử có id là "container"
             var container = document.getElementById(`${divId}`);
-            container.innerHTML += Html;
+            container.innerHTML = Html;
             handlePopularSaleProducts();
         }
 
