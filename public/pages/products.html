@@ -485,10 +485,13 @@
         
         document.addEventListener("DOMContentLoaded", function() {
         const sortSelect = document.getElementById('sort');
-        sortSelect.addEventListener('change', function() {
-        handleSortChange(this.value);
-    });
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                handleSortChange(this.value);
+            });
+        }
 });
+
 
 function handleSortChange(sortValue) {
     let sortedProducts = [];
