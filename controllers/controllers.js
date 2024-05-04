@@ -4,7 +4,7 @@ const admin = 'admins';
 const shoes = 'shoes';
 const users = 'users';
 const bills = 'bills';
-
+const carts = 'carts';
 //query to search product
 async function querySearchProduct(rawData) {
     try {
@@ -27,7 +27,7 @@ async function querySearchProduct(rawData) {
                 $lt: parseFloat(rawData.price) + 1
             };
         }
-        if(rawData.category){ //category
+        if (rawData.category) { //category
             let categories = rawData.category;
             if (typeof categories === 'string') {
                 categories = categories.split(',').map(category => category.trim());
@@ -50,22 +50,22 @@ async function querySearchProduct(rawData) {
                 $gte: parseFloat(rawData.minPrice)
             }
         }
-        else if (!rawData.minPrice && rawData.maxPrice){ //Min == null, max != null -> X < max
+        else if (!rawData.minPrice && rawData.maxPrice) { //Min == null, max != null -> X < max
             query.price = {
                 $lt: parseFloat(rawData.maxPrice) + 1
             }
         }
-        if(rawData.isPopular === 'true'){
+        if (rawData.isPopular === 'true') {
             query.isPopular = true
         }
-        if(rawData.sale ==='true'){
+        if (rawData.sale === 'true') {
             query.sale = {
                 $gte: 1
             }
         }
         console.log(query);
-        list = await controllerDetails.search(query,shoes);
-        return{
+        list = await controllerDetails.search(query, shoes);
+        return {
             dt: list.dt,
             ms: list.ms,
             st: list.st
@@ -115,7 +115,7 @@ async function queryLogin(rawData) {
         //khong co tai khoan
         return {
             dt: '',
-            ms: "No Account",
+            ms: "Error email or password",
             st: 2
         }
 
@@ -228,8 +228,13 @@ async function updateShoes(rawData, fileName) {
         if (fileName || fileName != '') {
             updateFields.imageURL = '/productPic/' + fileName;
         }
-        //update popular (khong can check vi no luon co gia tri la true or false)
-        updateFields.isPopular = rawData.popular;
+        //update popular 
+        if (rawData.popular === 'true') {
+            updateFields.isPopular = true;
+        }
+        else {
+            updateFields.isPopular = false;
+        }
         const updateData = { $set: updateFields };
         console.log(updateData);
         const result = await controllerDetails.update(lisIds, updateData, shoes);
@@ -287,21 +292,46 @@ async function insertProduct(rawData, fileName) {
         }
 
         console.log(insertData);
-        const result = await controllerDetails.createNewObj(insertData,shoes)
-        return{
-            dt:result.dt,
+        const result = await controllerDetails.createNewObj(insertData, shoes)
+        return {
+            dt: result.dt,
             st: result.st,
             ms: result.ms
         }
     } catch (error) {
         console.log("Err: " + error)
-        return{
-            dt:'',
-            st:-1,
+        return {
+            dt: '',
+            st: -1,
             ms: 'Error'
         }
     }
 }
+
+//add to cart
+async function addToCart(rawData) {
+    try {
+        const prod = {};
+        prod.item = rawData.idProd;
+        prod[`item.${rawData.idProd}.quantity`] = parseInt(rawData.quantity);
+        prod[`item.${rawData.idProd}.size`] = rawData.size;
+        const addProd = { $set: prod };
+        console.log(addProd)
+        const result = await controllerDetails.addProductToCart(rawData._id, addProd, carts)
+        return {
+            dt: result.dt,
+            ms: result.ms,
+            st: result.st
+        }
+    } catch (error) {
+        console.log(error);
+        return {
+            dt: '',
+            ms: 'error',
+            st: -1
+        }
+    }
+}
 module.exports = {
-    querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct
+    querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct, addToCart
 }

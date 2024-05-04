@@ -171,7 +171,7 @@ function checkUserSignIn(){
 //xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
 function redirectRouter(){
     if(redireRoute.textContent == 'Login'){
-        window.location.href = '/login_orregister';
+        window.location.href = '/login';
     }
     else if(redireRoute.textContent == 'My Info'){
         window.location.href = '/myinfo';

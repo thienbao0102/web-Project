@@ -3,6 +3,52 @@ const btnMoreOpt = document.getElementById("moreOpt")
 const searchInput = document.getElementById("searchInput");
 let searchExpand = !0;
 let timerId;
+
+/*____________API____________ */
+function getSearch(data) {
+    const queryParams = new URLSearchParams(data).toString();
+    fetch(`/api/indexSearch?${queryParams}`, {
+        method: 'GET',
+    })
+        .then(res => res.json())
+        .then(data => {
+            documents = data.dt[0];                
+            renderProduct(documents);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Xử lý lỗi ở đây nếu cần thiết
+        });
+}
+
+function addToCart(){
+    const userId = sessionStorage.getItem('_id');
+    const size = document.querySelector('input[name="size"]:checked').value;
+    console.log(size)
+    dataProd ={
+        '_id': userId,
+        'idProd':  documents._id,
+        'size': size,
+        'quantity': 1
+    }
+
+    fetch('/api/addtocart',{
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataProd)
+    })
+    .then(res => res.json())
+    .then(data=>{
+
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Xử lý lỗi ở đây nếu cần thiết
+    })
+}
+/*______________client_______________*/
 document.addEventListener("DOMContentLoaded", () => {
     var lastScrollTop = 0;
 
@@ -147,3 +193,93 @@ checkBox.addEventListener("change", function () {
         maxPrice.value = '';
     }
 })
+
+document.addEventListener('DOMContentLoaded', function () {
+    handleInput();
+});
+
+function handleInput() {   // Lấy giá trị của các ô input vào data để fetch
+    // Lấy các tham số truy vấn từ URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    console.log(urlParams);
+    const idValue = urlParams.get('id');
+    const data = {};
+    if (idValue && idValue.trim() != "") {
+        data._id = idValue;
+    }
+    getSearch(data)
+
+    //data.category += typeValue;
+}
+
+let documents = [] //Chua san pham tra ve
+
+function renderProduct(product) {
+    let html = '<h2>No product found</h2>';
+    console.log(html)
+    if (product) {
+        html = `<div class="product-image">`;
+        html += `<div class="image-thumbnail">`;
+                // <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                // <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                // <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                // <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                // <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+                // <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5b23e3c3-48a5-4d72-ae36-adfa7e5dccc4/v2k-run-shoes-zJV8TV.png" alt="Giày thể thao Nike V2K Run">
+        html +=`</div>`
+        html +=checkTag(product);
+        html +=`<img id="productImage" src="${product.imageURL}" alt="Giày thể thao Nike V2K Run">`;
+        html +=`</div>`;
+        html +=`</div>`;
+        html +=`<div class="product-info">`;
+        html +=`<h1 id="productName">${product.name}</h1>`;
+        html +=`<p id="productCategory">${product._id}</p>`;
+        html +=`<span class="price">`;
+        html +=calSalePrice(product);                             
+        html +=`<p class="current-price old-price" id="productCurrentPrice">${product.price}₫</p>`;
+        if( product.sale != false || product.sale > 0){
+            html +=`<p class="new-price" id="productNewPrice">${product.sale}% off</p>`;
+        }                
+        html +=`</span>`;
+        html +=`<form id="sizeForm" action="#">`;
+        html +=`<h2>Select size</h2>`;
+        Object.entries(product.sizes).forEach(([size, quantity]) =>  {
+            html +=`<input type="radio" id="${size}" name="size" value="${size}" ${checkSizeQuantity(quantity.quantity)}>`;
+            html +=`<label for="${size}" class="${checkSizeQuantity(quantity.quantity)}" >${size}</label>`;
+        });
+        html +=`</form>`;
+        html +=`<div class="product-description" id="productDescription">`;
+        html +=`<p>**${product.description}**</p>`;
+        html +=`</div>`;
+        html +=`<button class="add-to-cart" onclick="addToCart()">Add to cart</button>`;
+    }
+    // Chèn vào phần tử có id là "container"
+    var container = document.getElementById('product');
+    container.innerHTML = html;
+}
+
+function calSalePrice(product) {
+    if(product.sale !== false  && !isNaN(product.sale))
+    {
+        return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+    }
+    return `<p id="newPrice"></p>`;
+}
+
+function checkTag(product){
+    if (product.isPopular !== false) {
+        return `<div class="primary-image popular-product">`
+    }
+    return `<div class="primary-image">`;
+}
+
+function checkSizeQuantity(quantity){
+    
+    console.log(quantity)
+    let disabled = '';
+    if(quantity <= 0){
+        disabled = 'disabled';
+    }
+    return disabled;
+}

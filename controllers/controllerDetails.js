@@ -151,7 +151,27 @@ async function createNewObj(query, nameCollection){
     }
 }
 
+//add to cart
+async function addProductToCart(query, productQuery, nameCollection){
+    try {
+        const result = await db.collection(nameCollection).updateOne({_id: query}, productQuery);
+        console.log(result.modifiedCount + " documents updated successfully.")
+        return{
+            dt: '',
+            ms: 'Add to cart Success',
+            st: 0
+        }
+        
+    } catch (error) {
+        console.log(error);
+        return {
+            dt: '',
+            ms: 'error',
+            st: -1
+        }
+    }
+}
 
 module.exports ={
-    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, createNewObj,deleteProducts
+    connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search, update, createNewObj,deleteProducts, addProductToCart
 }
