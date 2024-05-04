@@ -482,29 +482,6 @@
             var container = document.getElementById('products');
             container.innerHTML = Html;
         }
-        
-        document.addEventListener("DOMContentLoaded", function() {
-        const sortSelect = document.getElementById('sort');
-        if (sortSelect) {
-            sortSelect.addEventListener('change', function() {
-                handleSortChange(this.value);
-            });
-        }
-});
-
-function handleSortChange(sortValue) {
-    let sortedProducts = documents.slice();
-    if (sortValue === 'AtoZ') {
-        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortValue === 'ZtoA') {
-        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-    } else if (sortValue === 'Price-HtoL') {
-        sortedProducts.sort((a, b) => b.price - a.price);
-    } else if (sortValue === 'Price-LtoH') {
-        sortedProducts.sort((a, b) => a.price - b.price);
-    }
-    renderProducts(sortedProducts);
-}
         function calSalePrice(product) {
             if(product.sale !== false  && !isNaN(product.sale))
             {
