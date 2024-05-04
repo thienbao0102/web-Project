@@ -456,7 +456,7 @@
             let Html = '<h2>No product found</h2>';
             if (products !== null && products.length > 0) {
                 Html = `<div class="sort">
-                            <select name="sort" id="sort">
+                            <select name="sort" id="sort"onchange="handleSortChange(this.value)">
                                 <option value="AtoZ">A-Z</option>
                                 <option value="ZtoA">Z-A</option>
                                 <option value="Price-HtoL">Price: High to Low</option>
@@ -482,6 +482,38 @@
             var container = document.getElementById('products');
             container.innerHTML = Html;
         }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+        const sortSelect = document.getElementById('sort');
+        sortSelect.addEventListener('change', function() {
+        handleSortChange(this.value);
+    });
+});
+
+function handleSortChange(sortValue) {
+    let sortedProducts = [];
+    switch (sortValue) {
+        case 'AtoZ':
+            sortedProducts = documents.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case 'ZtoA':
+            sortedProducts = documents.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case 'Price-HtoL':
+            sortedProducts = documents.sort((a, b) => b.price - a.price);
+            break;
+        case 'Price-LtoH':
+            sortedProducts = documents.sort((a, b) => a.price - b.price);
+            break;
+        default:
+            // Mặc định: không sắp xếp
+            sortedProducts = documents;
+            break;
+    }
+    renderProducts(sortedProducts);
+}
+
+
 
         function calSalePrice(product) {
             if(product.sale !== false  && !isNaN(product.sale))
