@@ -89,6 +89,25 @@ app.get(`/api/searchProduct`, async(req,res)=>{
     })
 })
 
+app.get('/api/getCarts', async (req, res) => {
+    try{
+        const data = req.query;
+        const cart = await controllerDetails.getCartsFromDB(data);
+        if (cart.length < 1) {
+            res.status(404).json({ error: 'Không tìm thấy' });
+        } else {
+            res.json({
+                dt: cart.dt[0],
+                ms: cart.ms,
+                st: cart.st
+            })
+        }
+    }catch(err) {
+        console.error('An error occurred while processing the request:', err);
+        res.status(500).json({ error: 'Internal server error'});
+    }
+});
+
 //login
 app.post('/api/login', async(req,res)=>{
     const list = await controllers.queryLogin(req.body);
@@ -108,6 +127,7 @@ app.post('/api/SignUp', async(req,res)=>{
         st: result.st
     })
 })
+
 app.get('/api/indexSearch', async (req, res) => {
     try{
         const data = req.query;

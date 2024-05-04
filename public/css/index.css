@@ -348,10 +348,14 @@ header {
     justify-content: center;
     border-radius: 5px;
     transition: 0.3s;
+    z-index: 1002;
 }
-
+.search-box span button ion-icon{
+    z-index: 1000;
+}
 .search-box span button:hover{
     background-color: #22283115;
+    z-index: 1002;
 }
 
 .expand{
@@ -364,12 +368,6 @@ header {
     display: flex;
     align-items: center;
     flex-direction: column;
-}
-
-
-  
-.search-box:focus-{
-    background-color: aqua;
 }
 
 .expanded {
