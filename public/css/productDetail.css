@@ -426,7 +426,7 @@ header {
     color: #E72929;
     font-size: 20px;
     font-weight: 600; 
-    padding-left: 10px;
+    margin-right: 10px;
 }
 
 /* Ẩn checkbox */
@@ -590,4 +590,230 @@ header {
 }
 
 /* --------container---------- */
+.container {
+    width: 100%;
+    position: relative;
+}
 
+.container #product{
+    display: flex;
+    width: 80%;
+    margin-top: 2rem;
+    /* height: 100%;
+    max-height: 800px; */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.primary-image {
+    width: calc(100% - 4rem - 1rem);
+}
+
+.popular-product.primary-image {
+    position: relative;
+}
+
+#productImage {
+    object-fit: cover;
+    border-radius: 8px;
+    height: 700px;
+    width: 100%;
+}
+
+.popular-product.primary-image::before {
+    content: "🔥 is Popular";
+    padding: 0.5rem 1.6rem 0.6rem 1.3rem;
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background-color: #e0dede;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222831;
+    border-radius: 10rem;
+    z-index: 10000;
+}
+
+.product-image{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 1rem;
+    display: flex;
+    max-height: 650px;
+    width: 60%;
+    padding-right: 4rem;
+}
+
+.image-thumbnail {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+}
+
+.image-thumbnail img{
+    object-fit: cover;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.product-info {
+    padding: 20px;
+    width: 40%;
+}
+
+.product-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.rating {
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.star {
+    font-size: 20px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+    
+}
+#productNewPrice{
+    color: red;
+    font-size: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-size: 16px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #333;
+}
+
+.product-description p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.product-description ul {
+    margin-left: 20px;
+}
+
+.product-description ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.add-to-cart {
+    background-color: #31363F;
+    color: #EEEEEE;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    border-radius: 10rem;
+    padding: 13px 16px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background-color 0.3s ease;
+}
+
+#sizeForm {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.container .price .old-price {
+    text-decoration: line-through;
+    margin-right: 1rem;
+}
+
+.container .price {
+    display: flex;
+    height: 20px;
+}
+
+#sizeForm {
+    margin-top: 2rem;
+}
+
+#sizeForm h2{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    margin-bottom: 0.5rem;
+    font-size: 17px;
+}
+
+#sizeForm input {
+    display: none;
+}
+
+#sizeForm label {
+    padding: 13px 20px;
+    border: 1px solid #00000075;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#sizeForm input:checked+label {
+    border: 2px solid #000;
+}
+
+#sizeForm label:hover {
+    border-color: #000;
+}
+/* disable */
+.disabled{
+    background-color: gray;
+    border: none;
+}
+
+.disabled:hover{
+    background-color: gray;
+    border: none;
+}
+.disabled:active{
+    border: none;
+}

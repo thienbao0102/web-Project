@@ -203,6 +203,18 @@ app.post('/api/insertProduct',upload.single('file') ,async (req, res) => {
     })
 });
 
+//them vao gio hang
+app.put('/api/addtocart', async(req, res)=>{
+    console.log(req.body);
+    result = await controllers.addToCart(req.body);
+    console.log(result.ms)
+    res.json({
+        dt: result.dt,
+        ms: result.ms,
+        st: result.st
+    })
+})
+
 //khong tim thay file
 app.get(`*`, (req, res) => {
     res.sendFile(__dirname + '/public/pages/404-page.html');
