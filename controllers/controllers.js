@@ -1,3 +1,4 @@
+const { query } = require('express');
 const controllerDetails = require('./controllerDetails')
 //ten collection
 const admin = 'admins';
@@ -63,7 +64,6 @@ async function querySearchProduct(rawData) {
                 $gte: 1
             }
         }
-        console.log(query);
         list = await controllerDetails.search(query, shoes);
         return {
             dt: list.dt,
@@ -190,6 +190,77 @@ async function deleteListProduct(rawData) {
             dt: '',
             ms: 'error',
             st: -1
+        }
+    }
+}
+
+async function updateCart(rawData) {
+    try {
+        let query = [];
+        const userId = rawData._id;
+        const productId = rawData.productId;
+        const updateFields = {};
+
+        query = { 
+            _id: userId,
+            [`item.${productId}`] : { $exists: true }
+        };
+
+        // Kiểm tra và thêm cập nhật cho quantity
+        if (rawData.quantity) {
+            updateFields.$set = updateFields.$set || {};
+            updateFields.$set[`item.${productId}.quantity`] = rawData.quantity;
+        }
+
+        // Kiểm tra và thêm cập nhật cho size
+        if (rawData.size) {
+            updateFields.$set = updateFields.$set || {};
+            updateFields.$set[`item.${productId}.size`] = rawData.size;
+        }
+        const result = await controllerDetails.updateProductInCart(query, updateFields, carts);
+        return {
+            st: result.st,
+            ms: result.ms,
+            dt: result.dt
+        }
+    } catch (error) {
+        console.log("err: " + error);
+        return {
+            st: -1,
+            ms: 'Failed',
+            dt: ''
+        }
+    }
+}
+
+async function deleteProductCart(rawData) {
+    try {
+        let query = [];
+        const userId = rawData._id;
+        const productId = rawData.productId;
+
+        query = { 
+            _id: userId,
+        };
+
+        const updateFields = {
+            $unset: {
+                [`item.${productId}`]: ""
+            }
+        };
+
+        const result = await controllerDetails.updateProductInCart(query, updateFields, carts);
+        return {
+            st: result.st,
+            ms: result.ms,
+            dt: result.dt
+        }
+    } catch (error) {
+        console.log("err: " + error);
+        return {
+            st: -1,
+            ms: 'Failed',
+            dt: ''
         }
     }
 }
@@ -333,5 +404,5 @@ async function addToCart(rawData) {
     }
 }
 module.exports = {
-    querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct, addToCart
+    querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct, addToCart, updateCart, deleteProductCart
 }

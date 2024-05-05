@@ -416,7 +416,7 @@ header {
 }
 
 
-.sale-product .old-price{
+.old-price{
     text-decoration: line-through;
     text-decoration-thickness: 2px;
 }
@@ -704,4 +704,8 @@ header {
 
 .summary .total h4 {
     font-size: 20px;
+}
+
+.delFromCart{
+    cursor: pointer;
 }
