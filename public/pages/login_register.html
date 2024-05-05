@@ -111,7 +111,11 @@
                             onclick="showPassword('password',0)"></i>
                     </div><br>
                     <p class="forgotPassword">Forgot Password?</p>
-                    <button type="button" onclick="Login()">Login</button>
+                    <button type="button" class="submit" onclick="Login()">Login</button>
+                    <p class="or">Or</p>
+                    <div class="third-login">
+                        <button id="gg-btn" type="button"><img src="../system/gg.png" alt=""> Sign in with Google</button>
+                    </div>
                 </form>
             </div>
             <div class="register">
@@ -168,6 +172,19 @@
     <footer>
 
     </footer>
+    <script>
+        const CLIENT_ID = 
+            '684630155268-c5t09234hj9fd3p10uvrbfj8qqjcthkp.apps.googleusercontent.com';
+        const linkGetToken = `https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&response_type=token&redirect_uri=http://localhost:3000/home&client_id=${CLIENT_ID}`
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const ggBtn = document.getElementById('gg-btn');
+            ggBtn.addEventListener("click", () => {
+                console.log(linkGetToken)
+                window.location.replace(linkGetToken);
+            });
+        });
+    </script>
     <script src="../javascript/login_register.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

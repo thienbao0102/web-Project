@@ -118,6 +118,9 @@ document.addEventListener("click", function(e){
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    handleGoogleHash()
+
     var lastScrollTop = 0;
 
     window.addEventListener("scroll", function () {
@@ -212,6 +215,106 @@ document.addEventListener("DOMContentLoaded", () => {
         return `<div class="product-result">`;
     }
 })
+
+function handleGoogleHash() {
+    // Kiểm tra nếu đoạn hash chứa access_token
+    if (window.location.hash.includes('access_token')) {
+        // Lấy URL trước khi hash
+        const urlWithoutHash = window.location.href.split('#')[0];
+
+        getUserInfo(getToken());
+
+        // Thay đổi URL bằng cách loại bỏ đoạn hash
+        window.history.replaceState({}, document.title, urlWithoutHash);
+    }
+}
+
+function getToken() {
+    const url = new URLSearchParams(window.location.hash.substring(1));
+    const token = url.get("access_token");
+    return token;
+}
+
+async function getUserInfo(access_token){
+    const accessToken = access_token;
+    const respone = await fetch(
+        `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${accessToken}`
+    );
+    const data = await respone.json();
+    console.log(data)
+    //renderUserInfo(data);
+}
+
+async function setUserPictureToSession(data){
+    sessionStorage.setItem('imageUrl', data.picture);
+}
+
+function Login(){
+    fetch('/api/login', {
+        method: 'post',
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataLogin)
+    })
+    .then(res => res.json())
+    .then(data=>{
+        console.log("_id: " + data.dt);
+        if(data.st == 0){
+            alert("Login success user")
+            sessionStorage.setItem('_id',data.dt,);
+            sessionStorage.setItem('role','isUser');
+            window.location.href = '/';
+        }
+        else if(data.st == 1){
+            alert("Login success admin")
+            sessionStorage.setItem('_id',data.dt);
+            sessionStorage.setItem('role', 'isAdmin');
+            window.location.href = '/dashboard';
+        }
+        else if(data.st == 2)
+        {
+            alert("No Account")
+        }
+        else{
+            alert("Login Failed")
+        }
+    })
+    .catch
+    {
+        console.log("err: " + Error);
+    }
+}
+
+function SignUp(userData){
+    const dataSignUp ={
+        'name': userData.name,
+        'email': userData.email,
+        'gender':"",
+        'phone':"",
+        'password': userData.picture,
+    }
+
+    console.log(dataSignUp)
+
+    fetch('/api/SignUp', {
+        method: 'post',
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataSignUp)
+    })
+    .then(res => res.json())
+    .then(data=>{
+        if(data.st == 0){
+            console.log("Register success!");
+            location.reload();
+        }
+        else{
+            console.log("Register Failed!");
+        }
+    })
+}
 
 //script xử lí price range
 const checkBox = document.getElementById('checkbox');

@@ -47,11 +47,50 @@
         <header>
             <div class="welcome-box">
             </div>
-            <div class="search-box" id="fixedBox">
-                <span class="fixed-search">
+            <div class="search-box" id="fixedBox" style="z-index: 1000;">
+                <span class="fixed-search" id="fixedSearch">
                     <input type="text" id="searchInput" placeholder="Search at here...">
-                    <button id="moreOpt"><ion-icon name="options-outline"></ion-icon></button>
+                    <button ><ion-icon id="moreOpt" name="options-outline"></ion-icon></button>
                 </span>
+                <div class="expand" id="expandDiv">
+                    <div id="filter">
+                        <div class="category">
+                            <p>Category:</p>
+                            <span>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="sport">
+                                    <div class="content">Sport</div>
+                                </label>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="formal">
+                                    <div class="content">Formal</div>
+                                </label>
+                                <label class="toggle-btn">
+                                    <input type="checkbox" id="shoesType" value="casual">
+                                    <div class="content">Casual</div>
+                                </label>
+                            </span>
+                        </div>
+                        <div id="priceRange" class="form-group">
+                            <span>
+                                <label for="price">Price:</label>
+                                <input type="number" id="price" class="search-input" name="price">
+                            </span>
+                            <span class="check-box">
+                                <input type="checkbox" id="checkbox" style="margin-right: 1rem;">
+                                <label for="checkbox">Price range</label>
+                            </span>
+                            <div id="priceRangeInput">
+                                <input type="number" id="minPrice" placeholder="Min">
+                                <p style="padding: 0.7rem 5px 5px 5px;">-</p>
+                                <input type="number" id="maxPrice" placeholder="Max">
+                            </div>
+                        </div>
+                        <button class="search-expand" onclick="redirectRouterToProducts()">Search</button>
+                    </div>
+                    <div class="search-result" id="searchResult">
+                    </div>
+                </div>
             </div>
             <div class="user-box">
                 <span class="user-avt">
@@ -214,7 +253,6 @@
         });
     </script>
     <script>
-        fixedBox = document.getElementById("fixedBox");
         document.addEventListener("DOMContentLoaded", () =>{
             var lastScrollTop = 0;
             window.addEventListener("scroll", function (){

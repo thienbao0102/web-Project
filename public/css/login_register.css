@@ -374,12 +374,10 @@ header {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
     cursor: pointer;
 }
 
-.container form button{
-    
+.container form .submit{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -457,4 +455,40 @@ header {
 .container #change #next {
     right: 5%;
     display: none;
+}
+
+.third-login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gg-btn {
+    height: 40px;
+    width: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 60px;
+    overflow: hidden;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#gg-btn img{
+    height: 100%;
+    margin-right: 10px;
+}
+
+.or{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 16px;
 }

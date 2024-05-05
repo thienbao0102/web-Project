@@ -38,6 +38,10 @@ app.get('/', async (req, res) =>{
     res.sendFile(__dirname + '/public/pages/index.html');
 })
 
+app.get('/home', async (req, res) =>{
+    res.sendFile(__dirname + '/public/pages/index.html');
+})
+
     //dashboard page
 app.get('/dashboard', async (req, res) =>{
     res.sendFile(__dirname + '/public/pages/dashboard.html');
