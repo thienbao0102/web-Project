@@ -157,8 +157,9 @@ function deleteProduct(listIds) {
 
 /*_____________Phan Client_______________ */
 function renderProducts(products) {
-    let Html = ' ';
+    let Html = `<p class = "no-product" >No product found</p>`;
     if (products !== null && products.length > 0) {
+        Html = '';
         Html += `<span class="text">`
         Html += `<p class="select-all-text" id = "btnSelectAll">Select all</p>`
         Html += `<p class="select-all-text" onclick = "showFormUpdate()">Update</p>`
