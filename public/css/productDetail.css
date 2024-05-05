@@ -289,6 +289,18 @@ header {
     margin-top: 5px;
 }
 
+.cart-outline::before {
+    content: "10";
+    top: -10px;
+    right: -10px;
+    position: absolute;
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 5px;
+    color: #EEEEEE;
+    background-color: #222831;
+}
+
 .search-box{
     position: absolute;
     left: 50%;
@@ -297,6 +309,7 @@ header {
     border-radius: 5px;
     transition: 0.5s;
     overflow: hidden;
+    z-index: 1000;
 }
 
 .search-box:hover{
@@ -397,17 +410,24 @@ header {
     object-fit: cover;
 }
 
-.product-result .product-info{
+.product-result .product-info {
     display: flex;
     flex-direction: column;
     margin-left: 1rem;
     justify-content: center;
+    width: 60%;
 }
 
 .product-result span{
     height: 30px;
-    justify-content: space-between;
     align-items: start;
+}
+
+.product-result #newPrice{
+    color: #E72929;
+    font-size: 20px;
+    font-weight: 600; 
+    margin-left: 1rem;
 }
 
 .product-price {
@@ -426,7 +446,7 @@ header {
     color: #E72929;
     font-size: 20px;
     font-weight: 600; 
-    margin-right: 10px;
+    margin-right: 1rem;
 }
 
 /* Ẩn checkbox */
@@ -636,7 +656,7 @@ header {
     z-index: 10000;
 }
 
-.product-image{
+.container .product-image{
     position: sticky;
     position: -webkit-sticky;
     top: 1rem;
@@ -761,6 +781,10 @@ button[type="submit"]:hover {
 #sizeForm {
     display:grid;
     grid-template-columns: repeat(3, 1fr);
+}
+
+.container .price .current-price {
+    font-size: 20px;
 }
 
 .container .price .old-price {

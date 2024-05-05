@@ -142,10 +142,21 @@ app.get('/api/getCarts', async (req, res) => {
 //login
 app.post('/api/login', async(req,res)=>{
     const list = await controllers.queryLogin(req.body);
+    console.log("login success");
+    console.log(list);
     res.json({
         dt: list.dt,
         ms: list.ms,
         st: list.st
+    })
+})
+
+app.post('/api/loginWithGoogle', async(req,res)=>{
+    const user = await controllers.queryLoginWithGoogle(req.body);
+    res.json({
+        dt: user.dt,
+        ms: user.ms,
+        st: user.st
     })
 })
 

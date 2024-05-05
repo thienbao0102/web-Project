@@ -336,7 +336,7 @@ header {
     align-items: center;
 }
 
-.user-box  :where(.user-avt, .notification){
+.user-box  :where(.user-avt, .cart){
     background-color: #EEEEEE;
     border-radius: 5px;
     display: flex;
@@ -346,6 +346,10 @@ header {
     height: 50px;
     width: 50px;
     box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.user-box .user-avt {
     overflow: hidden;
 }
 
@@ -354,6 +358,17 @@ header {
     width: 100%;
 }
 
+.cart-outline::before {
+    content: "10";
+    top: -10px;
+    right: -10px;
+    position: absolute;
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 5px;
+    color: #EEEEEE;
+    background-color: #222831;
+}
 /* --------Products---------- */
 
 .container {

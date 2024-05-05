@@ -92,17 +92,15 @@
                     </div>
                 </div>
             </div>
-            <div class="user-box">
-                <span class="user-avt">
-                    <img id="user-avatar" src="../avt.png" alt="">
-                </span>
+            <div class="user-box" id="userBox">
+                
             </div>
         </header>
         <div class="container">
             <div class="my-cart">
                 <h1>My cart</h1>
                 <div id="cartProducts">
-                    <p style="margin-top: 1rem; font-size: 20px;">There are no products in your cart</p>
+                    
                 </div>
             </div>
             <div class="summary">
@@ -251,6 +249,7 @@
             }
             
         });
+        
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", () =>{
@@ -266,6 +265,88 @@
             });
 
             getCartFromServer()
+
+            searchInput.addEventListener("input", debounceInput);
+
+            function debounceInput(e) {     //hàm debounce dùng để chờ người dùng nhập xong mới tìm
+                clearTimeout(timerId);
+                timerId = setTimeout(() => {
+                    handleInput(e);
+                }, 1000); // Thời gian chờ là milliseconds
+
+                function handleInput(e) {   // Lấy giá trị của các ô input vào data để fetch
+                    e.preventDefault();
+                    if (searchInput.value && searchInput.value.trim() != "") {
+                        const data = {
+                            name: searchInput.value,
+                        };
+                        getSearch(data);
+                    } else {
+                        document.getElementById("searchResult").innerHTML = "";
+                    }
+                }
+            }
+
+            function getSearch(data) {
+                const queryParams = new URLSearchParams(data).toString();
+                fetch(`/api/indexSearch?${queryParams}`, {
+                    method: 'GET',
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        renderProducts(data.dt)
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Xử lý lỗi ở đây nếu cần thiết
+                    });
+            }
+
+            function renderProducts(products) {
+                let Html = ' ';
+                if (products !== null && products.length > 0) {
+                    products.forEach(product => {
+                        Html += `<a href="product?id=${product._id}" style="text-decoration: none; color: #222831;">`;
+                        Html += checkTag(product);
+                        Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                        Html += `<div class="product-info">`;
+                        Html += `<h4 class="product-title">${product.name}</h4>`;
+                        Html += `<span id="productPrice">`;
+                        Html += `<p class="product-price old-price">$${product.price}</p>`;
+                        Html += calSalePrice(product);
+                        Html += `</span>`;
+                        Html += `</div>`;
+                        Html += `</div>`;
+                        Html += `</a>`;
+                    });
+                }
+                // Chèn vào phần tử có id là "container"
+                var container = document.getElementById('searchResult');
+                container.innerHTML = Html;
+            }
+
+            function calSalePrice(product) {
+                if(product.sale !== false  && !isNaN(product.sale))
+                {
+                    return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+                }
+                return `<p id="newPrice"></p>`;
+            }
+
+            function checkTag(product) {
+                if (product.sale !== false && !isNaN(product.sale)) {
+                    return `<div class="product-result sale-product" data-sale="${product.sale}%">`
+                }
+                if (product.isPopular !== false) {
+                    return `<div class="product-result popular-product">`
+                }
+                return `<div class="product-result">`;
+            }
         })
 
         function getUserIdFromSessionStorage(){
@@ -289,7 +370,7 @@
                 })
                 .then(data => {
                     cart = data.dt;
-                    getProductInfo(cart);
+                    renderCartProducts(cart);
                     renderCartProductsTotalAndSubtotal(cart);
                 })
                 .catch(error => {
@@ -299,19 +380,20 @@
         }
 
         async function getProductInfo(cart) {
-            if (!cart) {
-                return;
-            }
-            const productIds = Object.keys(cart.item);
             let productInCart = [];
-            for (const productId of productIds) {
-                const productInfo = {
-                    _id: productId
-                };
-                const searchResult = await getSearch(productInfo);
-                productInCart.push(searchResult[0]);
+
+            for (let key in cart.item) {
+                if (cart.item.hasOwnProperty(key)) {
+                    const item = cart.item[key];
+                    const productInfo = {
+                        _id: item.id
+                    };
+                    const searchResult = await getSearch(productInfo);
+                    productInCart.push(searchResult[0]);
+                }
             }
-            renderCartProducts(productInCart, cart);
+
+
         }
 
         async function getSearch(data) {
@@ -332,64 +414,76 @@
             }
         }
 
-
-        function renderCartProducts(cartProducts, cart) {
+        async function renderCartProducts(cart) {
             const cartProductsContainer = document.getElementById("cartProducts");
+            const items = cart.item;
+            const key = Object.keys(items);
+            if (!key|| key.length === 0) {
+                cartProductsContainer.innerHTML = '<p style="margin-top: 1rem; font-size: 20px;">There are no products in your cart</p>';
+                return;
+            }
             cartProductsContainer.innerHTML = "";
-            cartProducts.forEach(product => {
-                productId = product._id;
-                const productCard = document.createElement("div");
-                productCard.classList.add("product-card-h");
-                productCard.innerHTML = `
-                    <img src="${product.imageURL}" alt="Product Image" class="product-image">
-                    <div class="product-info">
-                        <div>
-                            <div class="data">
-                                <h2 class="product-title">${product.name}</h2>
-                                <span class="item">
-                                    <p>Size</p>
-                                    <select name="size" class="cartSizeBox SizeBox${productId}" onchange = "handleCartSizeBoxChange(event)">
-                                        <option value="39">39</option>
-                                        <option value="40">40</option>
-                                        <option value="41">41</option>
-                                        <option value="42">42</option>
-                                        <option value="43">43</option>
-                                        <option value="44">44</option>
-                                        <option value="45">45</option>
-                                    </select>
-                                    <p>Quantity</p>
-                                    <select name="quantity" class="cartQuantityBox QuantityBox${productId}" onchange = "handleCartQuantityBoxChange(event)">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
+            for (let key in cart.item) {
+                if (cart.item.hasOwnProperty(key)) {
+                    const product = cart.item[key];
+                    const productId ={
+                        _id : product.id
+                    };
+                    const searchResult = await getSearch(productId)
+                    const productInfo = searchResult[0]
+                    const productCard = document.createElement("div");
+                    productCard.classList.add("product-card-h");
+                    productCard.innerHTML = `
+                        <img src="${productInfo.imageURL}" alt="Product Image" class="product-image">
+                        <div class="product-info">
+                            <div>
+                                <div class="data">
+                                    <h2 class="product-title">${productInfo.name}</h2>
+                                    <span class="item">
+                                        <p>Size</p>
+                                        <select name="size" onchange = "handleCartSizeBoxChange(event)" class = "SizeBox${product.id}">
+                                            <option value="39">39</option>
+                                            <option value="40">40</option>
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                            <option value="44">44</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                        <p>Quantity</p>
+                                        <select name="quantity" onchange = "handleCartQuantityBoxChange(event)" class = "QuantityBox${product.id}">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                <span id="productPrice">
+                                    <p class="product-price old-price">$${productInfo.price}</p>
+                                    <p id="newPrice">$${productInfo.price - (productInfo.price * productInfo.sale / 100)}</p>
                                 </span>
                             </div>
-                            <span class="productPrice">
-                                ${checkSalePrice(product)}
-                            </span>
+                            <ion-icon name="trash-outline" onclick = "handleDeleteProductFromCart('${product.id}')" data-product-id="${product.id}" class="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
                         </div>
-                        <ion-icon name="trash-outline" onclick = "handleDeleteProductFromCart('${productId}')" class="delFromCart" data-product-id = "${productId}" style="font-size: 25px; height: 25px;"></ion-icon>
-                    </div>
-                `;
-                cartProductsContainer.appendChild(productCard);
-                handleCartQuantityBox(productId, cart.item[productId].quantity)
-                handleCartSizeBox(productId, cart.item[productId].size)
-            })
+                    `;
+                    cartProductsContainer.appendChild(productCard);
+                    handleCartQuantityBox(product.id, product.quantity);
+                    handleCartSizeBox(product.id, product.size)
+                }
+            }
         }
 
         function handleCartQuantityBox(productId, quantity) {
             const selectElement = document.querySelector(`.QuantityBox${productId}`);
             if (selectElement) {
                 selectElement.querySelectorAll("option").forEach(option => {
-                    
                     if (option.value == quantity) {
                         option.selected = true;
                     }
@@ -406,9 +500,20 @@
                 productId: productId,
                 quantity: quantity
             };
-
             updateCart(data);
-            location.reload(true);
+            //location.reload(true);
+        }
+
+        function handleCartSizeBox(productId, Size) {
+            const selectElement = document.querySelector(`.SizeBox${productId}`);
+            if (selectElement) {
+                selectElement.querySelectorAll("option").forEach(option => {
+                    if (option.value == Size) {
+                        
+                        option.selected = true;
+                    }
+                });
+            }
         }
 
         function handleCartSizeBoxChange(event) {
@@ -420,9 +525,8 @@
                 productId: productId,
                 size: size
             };
-            console.log(data);
             updateCart(data);
-            location.reload(true);
+            //location.reload(true);
         }
 
         async function updateCart(data) {
@@ -448,6 +552,7 @@
                 _id: getUserIdFromSessionStorage(),
                 productId: productId
             };
+            console.log(data)
             deleteProductFromCart(data);
             location.reload(true);
         }
@@ -472,18 +577,6 @@
                 });
         }
 
-        function handleCartSizeBox(productId, Size) {
-            const selectElement = document.querySelector(`.SizeBox${productId}`);
-            if (selectElement) {
-                selectElement.querySelectorAll("option").forEach(option => {
-                    
-                    if (option.value == Size) {
-                        option.selected = true;
-                    }
-                });
-            }
-        }
-
         function checkSalePrice(product) {
             if (product.sale) {
                
@@ -496,12 +589,11 @@
         async function calculateCartSubtotal(cart) {
             let subtotal = 0;
             const cartProducts = cart.item;
-            
-            for (const productId in cartProducts) {
-                if (cartProducts.hasOwnProperty(productId)) {
-                    const product = cartProducts[productId];
+            for (const key in cartProducts) {
+                if (cartProducts.hasOwnProperty(key)) {
+                    const product = cartProducts[key];
                     const productInfo = {
-                        _id: productId
+                        _id: product.id
                     };
                     try {
                         const searchResult = await getSearch(productInfo);

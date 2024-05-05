@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let Html = ' ';
         if (products !== null && products.length > 0) {
             products.forEach(product => {
-                Html += `<a href="" style="text-decoration: none; color: #222831;">`;
+                Html += `<a href="product?id=${product._id}" style="text-decoration: none; color: #222831;">`;
                 Html += checkTag(product);
                 Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
                 Html += `<div class="product-info">`;
@@ -216,13 +216,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 })
 
-function handleGoogleHash() {
+function handleBuyNowClick(event) {
+    const productId = event.target.dataset.id;
+    if (productId) {
+        window.location.href = `/product?id=${productId}`;
+    }
+}
+
+async function handleGoogleHash() {
     // Kiểm tra nếu đoạn hash chứa access_token
     if (window.location.hash.includes('access_token')) {
         // Lấy URL trước khi hash
         const urlWithoutHash = window.location.href.split('#')[0];
 
-        getUserInfo(getToken());
+        const data = await getUserInfo(getToken());
+        Login(data);
 
         // Thay đổi URL bằng cách loại bỏ đoạn hash
         window.history.replaceState({}, document.title, urlWithoutHash);
@@ -241,16 +249,22 @@ async function getUserInfo(access_token){
         `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${accessToken}`
     );
     const data = await respone.json();
-    console.log(data)
-    //renderUserInfo(data);
+    setUserPictureToSession(data);
+    setUserNameToSession(data);
+    return data;
 }
 
 async function setUserPictureToSession(data){
     sessionStorage.setItem('imageUrl', data.picture);
 }
 
-function Login(){
-    fetch('/api/login', {
+async function setUserNameToSession(data){
+    sessionStorage.setItem('userName', data.name);
+}
+
+
+function Login(dataLogin){
+    fetch('/api/loginWithGoogle', {
         method: 'post',
         headers:{
             "Content-Type": "application/json",
@@ -261,23 +275,11 @@ function Login(){
     .then(data=>{
         console.log("_id: " + data.dt);
         if(data.st == 0){
-            alert("Login success user")
             sessionStorage.setItem('_id',data.dt,);
             sessionStorage.setItem('role','isUser');
-            window.location.href = '/';
-        }
-        else if(data.st == 1){
-            alert("Login success admin")
-            sessionStorage.setItem('_id',data.dt);
-            sessionStorage.setItem('role', 'isAdmin');
-            window.location.href = '/dashboard';
-        }
-        else if(data.st == 2)
-        {
-            alert("No Account")
-        }
-        else{
-            alert("Login Failed")
+            location.reload(true);
+        }else{
+            SignUp(dataLogin);
         }
     })
     .catch
@@ -307,8 +309,7 @@ function SignUp(userData){
     .then(res => res.json())
     .then(data=>{
         if(data.st == 0){
-            console.log("Register success!");
-            location.reload();
+            Login(dataSignUp);
         }
         else{
             console.log("Register Failed!");
@@ -352,15 +353,46 @@ checkBox.addEventListener("change", function () {
 // check user đã đăng nhập hay chưa
 const redireRoute = document.querySelector('.redirtUser');
 function checkUserSignIn(){
+    const userBox = document.getElementById("userBox")
+    const wellcomeName = document.getElementById("wellcomeName");
     const checkSignin = sessionStorage.getItem('_id');
+    const userAvt = document.getElementById("userAvt");
     console.log("Checksignin: " + checkSignin);
+    
     if(checkSignin == null){
         redireRoute.textContent = 'Login';
+        userBox.style.display = "none";
+        wellcomeName.style.display = "none";
+        wellcomeName.textContent = ``;
         return;
     }
+
+    userBox.style.display = "flex";
+    wellcomeName.style.display = "block";
+    renderUserName(wellcomeName)
+    renderUserAvt(userAvt)
     redireRoute.textContent = 'My Info';
     accessManagement();
 }
+
+function getUserAvtFromSession(){
+    return sessionStorage.getItem('imageUrl')
+}
+
+function getUserNameFromSession(){
+    return sessionStorage.getItem('userName')
+}
+
+function renderUserName(divName) {
+    divName.textContent = `Hello ${getUserNameFromSession()}, welcome back!`;
+}
+
+function renderUserAvt(divName) {
+    const pictureLink = getUserAvtFromSession()
+    if (pictureLink)
+    divName.src = `${getUserAvtFromSession()}`;
+}
+
 
 //xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
 function redirectRouter(){

@@ -129,6 +129,37 @@ async function queryLogin(rawData) {
     }
 }
 
+async function queryLoginWithGoogle(rawData) {
+    try {
+        const query = {};
+        query.email = { $regex: `^${rawData.email}$`, $options: 'i' };
+        var user;
+        var checkUser = true;
+        //la user
+        user = await controllerDetails.search(query, users);
+        if (checkUser) {
+            return {
+                dt: user.dt[0]._id,
+                ms: "user",
+                st: 0
+            }
+        }
+        //khong co tai khoan
+        return {
+            dt: '',
+            ms: "Error email or password",
+            st: 2
+        }
+    } catch (error) {
+        console.log("err: queryLogin " + error);
+        return {
+            dt: '',
+            ms: "Failed",
+            st: -1
+        }
+    }
+}
+
 //sign up
 async function signUpNewAccount(rawData) {
     try {
@@ -153,8 +184,8 @@ async function signUpNewAccount(rawData) {
             '_id': newId,
             'name': rawData.name,
             'email': rawData.email,
-            'gender': rawData.gender,
-            'phone number': rawData.phone,
+            'gender': rawData.gender || null,
+            'phone number': rawData.phone || null,
             'password': passHash
         }
         const result = await controllerDetails.createNewObj(newUser, users);
@@ -202,42 +233,62 @@ async function deleteListProduct(rawData) {
 
 async function updateCart(rawData) {
     try {
-        let query = [];
         const userId = rawData._id;
         const productId = rawData.productId;
-        const updateFields = {};
+        const quantity = parseInt(rawData.quantity);
+        const size = parseInt(rawData.size)
 
-        query = { 
-            _id: userId,
-            [`item.${productId}`] : { $exists: true }
+        let query = { 
+            _id: userId
         };
+        let updateFields = {};
 
-        // Kiểm tra và thêm cập nhật cho quantity
-        if (rawData.quantity) {
-            updateFields.$set = updateFields.$set || {};
-            updateFields.$set[`item.${productId}.quantity`] = rawData.quantity;
+        const searchResult = await controllerDetails.search({ _id: userId }, carts);
+        const cart = searchResult.dt[0];
+
+        for (const key in cart.item) {
+            const item = cart.item[key];
+            if (item.id === productId) {
+                query[`item.${key}.id`] = productId;
+                if(quantity){
+                    updateFields = { $set: { [`item.${key}.quantity`]: quantity } };
+                }
+                if(size){
+                    updateFields = { $set: { [`item.${key}.size`]: size } };
+                }
+                break;
+            }
         }
 
-        // Kiểm tra và thêm cập nhật cho size
-        if (rawData.size) {
-            updateFields.$set = updateFields.$set || {};
-            updateFields.$set[`item.${productId}.size`] = rawData.size;
-        }
+        console.log(query)
+
+        // Thực hiện cập nhật sản phẩm trong giỏ hàng
         const result = await controllerDetails.updateProductInCart(query, updateFields, carts);
-        return {
-            st: result.st,
-            ms: result.ms,
-            dt: result.dt
+        
+        // Kiểm tra kết quả và trả về
+        if (result.st === 0) {
+            return {
+                st: 1,
+                ms: 'Success',
+                dt: ''
+            };
+        } else {
+            return {
+                st: -1,
+                ms: 'Failed',
+                dt: result.ms || ''
+            };
         }
     } catch (error) {
-        console.log("err: " + error);
+        console.log("Error:", error);
         return {
             st: -1,
             ms: 'Failed',
             dt: ''
-        }
+        };
     }
 }
+
 
 async function deleteProductCart(rawData) {
     try {
@@ -248,12 +299,18 @@ async function deleteProductCart(rawData) {
         query = { 
             _id: userId,
         };
+        let updateFields = {};
 
-        const updateFields = {
-            $unset: {
-                [`item.${productId}`]: ""
+        const searchResult = await controllerDetails.search({ _id: userId }, carts);
+        const cart = searchResult.dt[0];
+        for (const key in cart.item) {
+            const item = cart.item[key];
+            if (item.id === productId) {
+                updateFields = { $unset : {[`item.${key}`] : ""}}
+                break;
             }
-        };
+        }
+        
 
         const result = await controllerDetails.updateProductInCart(query, updateFields, carts);
         return {
@@ -398,7 +455,7 @@ async function addToCart(rawData) {
         if(lisIds)
             lisIds.sort((a, b) => (a < b ? 1 : -1));
             console.log(lisIds)
-            idItem = parseInt(lisIds[0]) + 1;
+            idItem = parseInt(lisIds[0]) + 1 || 0;
 
         const prod = {};
         prod[`item.${idItem}.id`] = rawData.idProd;
@@ -423,4 +480,5 @@ async function addToCart(rawData) {
 }
 module.exports = {
     querySearchProduct, queryLogin, signUpNewAccount, updateShoes, deleteListProduct, insertProduct, addToCart, updateCart, deleteProductCart
+    , queryLoginWithGoogle
 }

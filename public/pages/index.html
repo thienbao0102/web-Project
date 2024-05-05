@@ -91,9 +91,9 @@
     </nav>
     <section>
         <header>
-            <div class="welcome-box">
+            <div class="welcome-box" id="wellcomeBox">
                 <h1>Welcome to Stride Sync.</h1>
-                <h4>Hello Mach Hoai, welcome back!</h4>
+                <h4 id="wellcomeName">Hello Mach Hoai, welcome back!</h4>
             </div>
             <div class="search-box" id="fixedBox">
                 <span class="fixed-search" id="fixedSearch">
@@ -141,11 +141,11 @@
                 </div>
             </div>
             </div>
-            <div class="user-box">
+            <div class="user-box" id="userBox">
                 <a style="color: #222831;" href="/my-cart"><span class="cart cart-outline"><ion-icon
                             name="bag-outline"></ion-icon></span></a>
                 <span class="user-avt">
-                    <img id="user-avatar" src="../avt.png" alt="">
+                    <img src="../avt.png" id="userAvt" alt="">
                 </span>
             </div>
         </header>
@@ -462,7 +462,7 @@
                         Html += `<p class="product-price old-price">$${product.price}</p>`;
                         Html += calSalePrice(product);
                         Html += `</span>`;
-                        Html += `<button class="add-to-cart" data-id="${product._id}">Look closer</button>`;
+                        Html += `<button class="add-to-cart" onclick = "handleBuyNowClick(event)" data-id="${product._id}">Look closer</button>`;
                         Html += `</div>`;
                         Html += `</div>`;
                     });

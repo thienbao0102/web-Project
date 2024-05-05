@@ -23,13 +23,17 @@ function getSearch(data) {
 
 function addToCart(){
     const userId = sessionStorage.getItem('_id');
-    const size = document.querySelector('input[name="size"]:checked').value;
-    console.log(size)
-    dataProd ={
-        '_id': userId,
-        'idProd':  documents._id,
-        'size': size,
-        'quantity': 1
+    try{
+        const size = document.querySelector('input[name="size"]:checked').value || ' ';
+        dataProd ={
+            '_id': userId,
+            'idProd':  documents._id,
+            'size': size,
+            'quantity': 1
+        }
+    }catch{
+        alert("Please choose size");
+        return;
     }
 
     fetch('/api/addtocart',{
@@ -130,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.table(products)
         if (products !== null && products.length > 0) {
             products.forEach(product => {
-                Html += `<a href="" style="text-decoration: none; color: #222831;">`;
+                Html += `<a href="product?id=${product._id}" style="text-decoration: none; color: #222831;">`;
                 Html += checkTag(product);
                 console.log(Html);
                 Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
@@ -138,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 Html += `<h4 class="product-title">${product.name}</h4>`;
                 Html += `<span id="productPrice">`;
                 Html += `<p class="product-price old-price">$${product.price}</p>`;
-                Html += `<p id="newPrice"></p>`;
+                Html += calSalePrice(product);
                 Html += `</span>`;
                 Html += `</div>`;
                 Html += `</div>`;
@@ -148,6 +152,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Chèn vào phần tử có id là "container"
         var container = document.getElementById('searchResult');
         container.innerHTML = Html;
+    }
+
+    function calSalePrice(product) {
+        if(product.sale !== false  && !isNaN(product.sale))
+        {
+            return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+        }
+        return `<p id="newPrice"></p>`;
     }
 
     function checkTag(product) {
@@ -237,7 +249,6 @@ function renderProduct(product) {
         html +=`<p id="productCategory">${product.category}</p>`;
         html +=`<span class="price">`;
         html +=calSalePrice(product);                             
-        html +=`<p class="current-price old-price" id="productCurrentPrice">${product.price}₫</p>`;
         if( product.sale != false || product.sale > 0){
             html +=`<p class="new-price" id="productNewPrice">${product.sale}% off</p>`;
         }                
@@ -262,9 +273,11 @@ function renderProduct(product) {
 function calSalePrice(product) {
     if(product.sale !== false  && !isNaN(product.sale))
     {
-        return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+        return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>
+        <p class="current-price old-price" id="productCurrentPrice">$${product.price}</p>`;
     }
-    return `<p id="newPrice"></p>`;
+    return `
+    <p class="current-price" id="productCurrentPrice">$${product.price}</p>`;
 }
 
 function checkTag(product){
@@ -287,14 +300,41 @@ function checkSizeQuantity(quantity){
 // check user đã đăng nhập hay chưa
 const redireRoute = document.querySelector('.redirtUser');
 function checkUserSignIn(){
+    const userBox = document.getElementById("userBox")
     const checkSignin = sessionStorage.getItem('_id');
+    const userAvt = document.getElementById("userAvt");
     console.log("Checksignin: " + checkSignin);
+    
     if(checkSignin == null){
         redireRoute.textContent = 'Login';
+        userBox.style.display = "none";
+        wellcomeName.style.display = "none";
+        wellcomeName.textContent = ``;
         return;
     }
+
+    userBox.style.display = "flex";
+    renderUserAvt(userAvt)
     redireRoute.textContent = 'My Info';
     accessManagement();
+}
+
+function getUserAvtFromSession(){
+    return sessionStorage.getItem('imageUrl')
+}
+
+function getUserNameFromSession(){
+    return sessionStorage.getItem('userName')
+}
+
+function renderUserName(divName) {
+    divName.textContent = `Hello ${getUserNameFromSession()}, welcome back!`;
+}
+
+function renderUserAvt(divName) {
+    const pictureLink = getUserAvtFromSession()
+    if (pictureLink)
+    divName.src = `${getUserAvtFromSession()}`;
 }
 
 //xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
