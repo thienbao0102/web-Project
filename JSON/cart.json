@@ -10,7 +10,7 @@
             "1": {
                 "id": "SHOE0001",
                 "quantity" : 1,
-                "size": "43"
+                "size": "40"
             },
             "2":{
                 "id": "SHOE0002",
@@ -22,15 +22,15 @@
     {
         "_id":"USER0002",
         "item": {
-            "1": {
+            "0": {
                 "quantity" : 1,
                 "size": "42"
             },
-            "2":{
+            "1":{
                 "quantity" : 1,
-                "size": "43"
+                "size": "40"
             },
-            "3":{
+            "2":{
                 "quantity" : 1,
                 "size": "43"
             }
@@ -39,11 +39,15 @@
     {
         "_id":"USER0003",
         "item": {
-            "SHOE0001": {
+            "0": {
                 "quantity" : 1,
                 "size": "42"
             },
-            "SHOE0004":{
+            "1":{
+                "quantity" : 1,
+                "size": "40"
+            },
+            "2":{
                 "quantity" : 1,
                 "size": "43"
             }
