@@ -80,7 +80,25 @@ async function getCartsFromDB(userId) {
             st: -1
         }
     }
-   
+}
+
+//updateProductCart
+async function updateProductInCart(query, updateData, nameCollection) {
+    try {
+        const result = await db.collection(nameCollection).updateOne(query,updateData);
+        return {
+            ms: `${result.modifiedCount} document updated successfully.`,
+            st: 0,
+            dt: ''
+        };
+    } catch (error) {
+        console.error("Error updating document: ", error);
+        return {
+            ms: 'Failed',
+            st: -1,
+            dt: ''
+        };
+    }
 }
 
 //search
@@ -194,5 +212,5 @@ async function addProductToCart(query, productQuery, nameCollection){
 
 module.exports ={
     connecToDatabase, closeConnectToDatabase,hashPassword,checkPass,createId, getAllShoes,search
-    , update, createNewObj,deleteProducts, addProductToCart, getCartsFromDB
+    , update, createNewObj,deleteProducts, addProductToCart, getCartsFromDB, updateProductInCart
 }

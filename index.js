@@ -80,7 +80,6 @@ app.get('/product', async (req, res) => {
 
 //search
 app.get(`/api/searchProduct`, async(req,res)=>{
-    console.log(req.query)
     const list = await controllers.querySearchProduct(req.query)
     res.json({
         dt: list.dt,
@@ -88,6 +87,34 @@ app.get(`/api/searchProduct`, async(req,res)=>{
         st: list.st
     })
 })
+
+app.get('/api/updateCart', async (req, res) => {
+    try{
+        const data = req.query;
+        const cart = await controllers.updateCart(data);
+        res.json({
+            ms: cart.ms,
+            st: cart.st
+        })
+    }catch(err) {
+        console.error('An error occurred while processing the request:', err);
+        res.status(500).json({ error: 'Internal server error'});
+    }
+});
+
+app.get('/api/deleteProductCart', async (req, res) => {
+    try{
+        const data = req.query;
+        const cart = await controllers.deleteProductCart(data);
+        res.json({
+            ms: cart.ms,
+            st: cart.st
+        })
+    }catch(err) {
+        console.error('An error occurred while processing the request:', err);
+        res.status(500).json({ error: 'Internal server error'});
+    }
+});
 
 app.get('/api/getCarts', async (req, res) => {
     try{
@@ -205,9 +232,7 @@ app.post('/api/insertProduct',upload.single('file') ,async (req, res) => {
 
 //them vao gio hang
 app.put('/api/addtocart', async(req, res)=>{
-    console.log(req.body);
     result = await controllers.addToCart(req.body);
-    console.log(result.ms)
     res.json({
         dt: result.dt,
         ms: result.ms,

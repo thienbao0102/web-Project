@@ -64,80 +64,6 @@
                 <h1>My cart</h1>
                 <div id="cartProducts">
                     <p style="margin-top: 1rem; font-size: 20px;">There are no products in your cart</p>
-                    <div class="product-card-h">
-                        <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                        <div class="product-info">
-                            <div>
-                                <div class="data">
-                                    <h2 class="product-title">Product Name</h2>
-                                    <span class="item">
-                                        <p>Size</p>
-                                        <select name="size" id="cartSizeBox">
-                                            <option value="39">39</option>
-                                            <option value="40">40</option>
-                                            <option value="41">41</option>
-                                            <option value="42">42</option>
-                                            <option value="43">43</option>
-                                            <option value="44">44</option>
-                                            <option value="45">45</option>
-                                        </select>
-                                        <p>Quantity</p>
-                                        <select name="quantity" id="cartQuantityBox">
-                                            <option value="39">39</option>
-                                            <option value="40">40</option>
-                                            <option value="41">41</option>
-                                            <option value="42">42</option>
-                                            <option value="43">43</option>
-                                            <option value="44">44</option>
-                                            <option value="45">45</option>
-                                        </select>
-                                    </span>
-                                </div>
-                                <span id="productPrice">
-                                    <p class="product-price old-price">$99.99</p>
-                                    <p id="newPrice">$50.99</p>
-                                </span>
-                            </div>
-                            <ion-icon name="trash-outline" id="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
-                        </div>
-                    </div>
-                    <div class="product-card-h">
-                        <img src="../productPic/test-prod.jpg" alt="Product Image" class="product-image">
-                        <div class="product-info">
-                            <div>
-                                <div class="data">
-                                    <h2 class="product-title">Product Name</h2>
-                                    <span class="item">
-                                        <p>Size</p>
-                                        <select name="size" id="cartSizeBox">
-                                            <option value="39">39</option>
-                                            <option value="40">40</option>
-                                            <option value="41">41</option>
-                                            <option value="42">42</option>
-                                            <option value="43">43</option>
-                                            <option value="44">44</option>
-                                            <option value="45">45</option>
-                                        </select>
-                                        <p>Quantity</p>
-                                        <select name="quantity" id="cartQuantityBox">
-                                            <option value="39">39</option>
-                                            <option value="40">40</option>
-                                            <option value="41">41</option>
-                                            <option value="42">42</option>
-                                            <option value="43">43</option>
-                                            <option value="44">44</option>
-                                            <option value="45">45</option>
-                                        </select>
-                                    </span>
-                                </div>
-                                <span id="productPrice">
-                                    <p class="product-price old-price">$99.99</p>
-                                    <p id="newPrice">$50.99</p>
-                                </span>
-                            </div>
-                            <ion-icon name="trash-outline" id="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="summary">
@@ -145,7 +71,7 @@
                 <div class="content-billing">
                     <span>
                         <p class="title">Subtotal</p>
-                        <p id="subtotal">100$</p>
+                        <p id="subtotal"></p>
                     </span>
                     <span>
                         <p class="title">Estimated Delivery & Handling</p>
@@ -158,7 +84,7 @@
                 </div>
                 <div class="total">
                     <h4>Total</h4>
-                    <p id=" cartTotal">108$</p>
+                    <p id="cartTotal"></p>
                 </div>
                 <button class="check-out">Check-out</button>
             </div>
@@ -168,6 +94,126 @@
 
     </footer>
     <script>
+        const fixedBox = document.getElementById("fixedBox");
+        const btnMoreOpt = document.getElementById("moreOpt")
+        const searchInput = document.getElementById("searchInput");
+        //const category = document.getElementById("price");
+        let searchExpand = false;
+        let timerId;
+        document.addEventListener("click", function(e){
+            
+            // if(parentNode.parentNode == "searchInput" || parentNode.id == "moreOpt"){
+            let element = checkParentNode(e.target);
+
+            if(e.target.id == "searchInput"){
+                expandDiv.style.display = "block";
+                searchExpand = false;
+            }else if(e.target.id == "moreOpt"){
+                expandDiv.style.display = "block";
+                searchExpand = !searchExpand;
+            }else if(element.id == "expandDiv" && element.id){
+                expandDiv.style.display = "block";
+            }else{
+                expandDiv.style.display = "none";
+                searchExpand = false;
+            }
+
+            function checkParentNode(element){
+                while (element.parentNode && element.parentNode !== fixedBox) {
+                    let highestParent = null;
+                    highestParent = element.parentNode;
+                    element = highestParent;
+                }
+                return element || null;
+            }
+            
+            handleMoreOptClick()
+
+            function handleMoreOptClick() {
+                const expandDiv = document.getElementById("expandDiv");
+                expandDiv.classList.toggle("expanded");
+                if (searchExpand) {
+                    // searchExpand = false;
+                    // expandDiv.style.display = "block";
+                    document.getElementById("filter").style.display = "block";
+                    document.getElementById("searchResult").innerHTML = "";
+                } else {
+                    // expandDiv.style.display = "none";
+                    // searchExpand = true;
+                    document.getElementById("filter").style.display = "none";
+                    if (searchInput.value && searchInput.value.trim() != "") {
+                        const data = {
+                            name: searchInput.value,
+                        };
+                        getSearch(data);
+                    }
+                }
+            };
+
+            function getSearch(data) {
+                const queryParams = new URLSearchParams(data).toString();
+                fetch(`/api/indexSearch?${queryParams}`, {
+                    method: 'GET',
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        renderProducts(data.dt)
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Xử lý lỗi ở đây nếu cần thiết
+                    });
+            }
+
+            function renderProducts(products) {
+                let Html = ' ';
+                if (products !== null && products.length > 0) {
+                    products.forEach(product => {
+                        Html += `<a href="" style="text-decoration: none; color: #222831;">`;
+                        Html += checkTag(product);
+                        Html += `<img src="${product.imageURL}" onerror="this.onerror=null; this.src='../productPic/ads.webp';" alt="Product Image" class="product-image">`;
+                        Html += `<div class="product-info">`;
+                        Html += `<h4 class="product-title">${product.name}</h4>`;
+                        Html += `<span id="productPrice">`;
+                        Html += `<p class="product-price old-price">$${product.price}</p>`;
+                        Html += calSalePrice(product);
+                        Html += `</span>`;
+                        Html += `</div>`;
+                        Html += `</div>`;
+                        Html += `</a>`;
+                    });
+                }
+                // Chèn vào phần tử có id là "container"
+                var container = document.getElementById('searchResult');
+                container.innerHTML = Html;
+            }
+
+            function calSalePrice(product) {
+                if(product.sale !== false  && !isNaN(product.sale))
+                {
+                    return `<p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+                }
+                return `<p id="newPrice"></p>`;
+            }
+
+            function checkTag(product) {
+                if (product.sale !== false && !isNaN(product.sale)) {
+                    return `<div class="product-result sale-product" data-sale="${product.sale}%">`
+                }
+                if (product.isPopular !== false) {
+                    return `<div class="product-result popular-product">`
+                }
+                return `<div class="product-result">`;
+            }
+            
+        });
+    </script>
+    <script>
         fixedBox = document.getElementById("fixedBox");
         document.addEventListener("DOMContentLoaded", () =>{
             var lastScrollTop = 0;
@@ -175,10 +221,8 @@
                 var st = window.pageYOffset || document.documentElement.scrollTop;
                 if (st > lastScrollTop || st == 0) {
                     fixedBox.style.top = 0 + "px"
-                    console.log(lastScrollTop);
                 } else if (st < lastScrollTop) {
                     fixedBox.style.top = lastScrollTop + "px"
-                    console.log(lastScrollTop);
                 }
                 lastScrollTop = st <= 0 ? 0 : st;
             });
@@ -208,6 +252,7 @@
                 .then(data => {
                     cart = data.dt;
                     getProductInfo(cart);
+                    renderCartProductsTotalAndSubtotal(cart);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -216,6 +261,9 @@
         }
 
         async function getProductInfo(cart) {
+            if (!cart) {
+                return;
+            }
             const productIds = Object.keys(cart.item);
             let productInCart = [];
             for (const productId of productIds) {
@@ -262,7 +310,7 @@
                                 <h2 class="product-title">${product.name}</h2>
                                 <span class="item">
                                     <p>Size</p>
-                                    <select name="size" class="cartSizeBox">
+                                    <select name="size" class="cartSizeBox SizeBox${productId}" onchange = "handleCartSizeBoxChange(event)">
                                         <option value="39">39</option>
                                         <option value="40">40</option>
                                         <option value="41">41</option>
@@ -272,7 +320,7 @@
                                         <option value="45">45</option>
                                     </select>
                                     <p>Quantity</p>
-                                    <select name="quantity" class="cartQuantityBox">
+                                    <select name="quantity" class="cartQuantityBox QuantityBox${productId}" onchange = "handleCartQuantityBoxChange(event)">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -287,60 +335,177 @@
                                 </span>
                             </div>
                             <span class="productPrice">
-                                <p class="product-price old-price">$${product.price}</p>
                                 ${checkSalePrice(product)}
                             </span>
                         </div>
-                        <ion-icon name="trash-outline" class="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
+                        <ion-icon name="trash-outline" onclick = "handleDeleteProductFromCart('${productId}')" class="delFromCart" data-product-id = "${productId}" style="font-size: 25px; height: 25px;"></ion-icon>
                     </div>
                 `;
                 cartProductsContainer.appendChild(productCard);
-                handleCartQuantityBox(cart.item[productId].quantity)
-                handleCartSizeBox(cart.item[productId].size)
+                handleCartQuantityBox(productId, cart.item[productId].quantity)
+                handleCartSizeBox(productId, cart.item[productId].size)
             })
         }
 
-        function handleCartQuantityBox(quantity) {
-            console.log(quantity);
-            const selectElements = document.querySelectorAll(".cartQuantityBox");
-            selectElements.forEach(selectElement => {
-                for (let i = 0; i < selectElement.options.length; i++) {
-                    const option = selectElement.options[i];
+        function handleCartQuantityBox(productId, quantity) {
+            const selectElement = document.querySelector(`.QuantityBox${productId}`);
+            if (selectElement) {
+                selectElement.querySelectorAll("option").forEach(option => {
+                    
                     if (option.value == quantity) {
-                        option.classList.add("selected");
-                        break;
+                        option.selected = true;
                     }
-                }
-            });
-
-            document.querySelectorAll(".selected").forEach(option => {
-                option.selected = true;
-            });
-        }
-
-        function handleCartSizeBox(Size) {
-            console.log(Size);
-            const selectElements = document.querySelectorAll(".cartSizeBox");
-            selectElements.forEach(selectElement => {
-                for (let i = 0; i < selectElement.options.length; i++) {
-                    const option = selectElement.options[i];
-                    if (option.value == Size) {
-                        option.classList.add("selected");
-                        break;
-                    }
-                }
-            });
-
-            document.querySelectorAll(".selected").forEach(option => {
-                option.selected = true;
-            });
-        }
-
-        function checkSalePrice() {
-            if (product.sale) {
-                return `<p id="newPrice">$${product.salePrice}</p>`;
+                });
             }
-            return "";
+        }
+
+        function handleCartQuantityBoxChange(event) {
+            const selectElement = event.target;
+            const quantity = parseInt(selectElement.value);
+            const productId = selectElement.closest(".product-card-h").querySelector(".product-info").querySelector(".delFromCart").getAttribute("data-product-id");
+            const data = {
+                _id: getUserIdFromSessionStorage(),
+                productId: productId,
+                quantity: quantity
+            };
+
+            updateCart(data);
+            location.reload(true);
+        }
+
+        function handleCartSizeBoxChange(event) {
+            const selectElement = event.target;
+            const size = parseInt(selectElement.value);
+            const productId = selectElement.closest(".product-card-h").querySelector(".product-info").querySelector(".delFromCart").getAttribute("data-product-id");
+            const data = {
+                _id: getUserIdFromSessionStorage(),
+                productId: productId,
+                size: size
+            };
+            console.log(data);
+            updateCart(data);
+            location.reload(true);
+        }
+
+        async function updateCart(data) {
+            const queryParams = new URLSearchParams(data).toString();
+            try {
+                const response = await fetch(`/api/updateCart?${queryParams}`, {
+                    method: 'GET',
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const searchData = await response.json();
+                return searchData.ms;
+            } catch (error) {
+                console.error('Error:', error);
+                return 0;
+                // Xử lý lỗi ở đây nếu cần thiết
+            }
+        }
+
+        function handleDeleteProductFromCart(productId) {
+            const data = {
+                _id: getUserIdFromSessionStorage(),
+                productId: productId
+            };
+            deleteProductFromCart(data);
+            location.reload(true);
+        }
+
+        function deleteProductFromCart(data) {
+            const queryParams = new URLSearchParams(data).toString();
+            fetch(`/api/deleteProductCart?${queryParams}`, {
+                method: 'GET',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    return data.ms;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Xử lý lỗi ở đây nếu cần thiết
+                });
+        }
+
+        function handleCartSizeBox(productId, Size) {
+            const selectElement = document.querySelector(`.SizeBox${productId}`);
+            if (selectElement) {
+                selectElement.querySelectorAll("option").forEach(option => {
+                    
+                    if (option.value == Size) {
+                        option.selected = true;
+                    }
+                });
+            }
+        }
+
+        function checkSalePrice(product) {
+            if (product.sale) {
+               
+                return ` <p class="product-price old-price">$${product.price}</p>
+                         <p id="newPrice">$${product.price - (product.price * product.sale / 100)}</p>`;
+            }
+            return ` <p class="product-price">$${product.price}</p>`;
+        }
+
+        async function calculateCartSubtotal(cart) {
+            let subtotal = 0;
+            const cartProducts = cart.item;
+            
+            for (const productId in cartProducts) {
+                if (cartProducts.hasOwnProperty(productId)) {
+                    const product = cartProducts[productId];
+                    const productInfo = {
+                        _id: productId
+                    };
+                    try {
+                        const searchResult = await getSearch(productInfo);
+                        if (searchResult && searchResult.length > 0) {
+                            const productData = searchResult[0];
+                            if (productData.sale) {
+                                subtotal += (productData.price - (productData.price * productData.sale / 100)) * product.quantity;
+                            } else {
+                                subtotal += productData.price * product.quantity;
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        // Xử lý lỗi ở đây nếu cần thiết
+                    }
+                }
+            }
+            
+            
+
+            return subtotal;
+        }
+
+        async function calculateCartTotal(cart) {
+            const subtotal = await calculateCartSubtotal(cart);
+            const vat = 0.08;
+            const total = subtotal + (subtotal * vat);
+            
+
+            return total;
+        }
+
+        async function renderCartProductsTotalAndSubtotal(cart){
+
+            Promise.all([calculateCartSubtotal(cart), calculateCartTotal(cart)])
+                .then(([subtotal, total]) => {
+                    const subtotalElement = document.getElementById("subtotal");
+                    subtotalElement.innerText = `$${subtotal.toFixed(2) || 0}`;
+
+                    const totalElement = document.getElementById("cartTotal");
+                    totalElement.innerText = `$${total.toFixed(2) || 0}`;
+                });
         }
 
     </script>
