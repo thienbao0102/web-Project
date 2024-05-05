@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/productDetail.css">
     <title>Product</title>
 </head>
-<body>
+<body onload="checkUserSignIn()">
     <a href="#" id="btnScrollToTop"><button><img src="../system/srcolltotop.svg" alt=""></button></a>
     <nav class="navigation">
         <div class="logo">
@@ -46,7 +46,7 @@
             <div class="account">
                 <h4>ACCOUNT</h4>
                 <ul>
-                    <a href="/myinfo">
+                    <a onclick="redirectRouter()">
                         <li><ion-icon name="person-outline"></ion-icon>
                             <p>My Info</p>
                         </li>
@@ -56,9 +56,9 @@
                             <p>My Orders</p>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="/dashboard" class="isAdmin" style="display: none;">
                         <li><ion-icon name="settings-outline"></ion-icon>
-                            <p>Setting</p>
+                            <p>Management</p>
                         </li>
                     </a>
                 </ul>

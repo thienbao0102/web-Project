@@ -234,7 +234,7 @@ function renderProduct(product) {
         html +=`</div>`;
         html +=`<div class="product-info">`;
         html +=`<h1 id="productName">${product.name}</h1>`;
-        html +=`<p id="productCategory">${product._id}</p>`;
+        html +=`<p id="productCategory">${product.category}</p>`;
         html +=`<span class="price">`;
         html +=calSalePrice(product);                             
         html +=`<p class="current-price old-price" id="productCurrentPrice">${product.price}₫</p>`;
@@ -282,4 +282,39 @@ function checkSizeQuantity(quantity){
         disabled = 'disabled';
     }
     return disabled;
+}
+
+// check user đã đăng nhập hay chưa
+const redireRoute = document.querySelector('.redirtUser');
+function checkUserSignIn(){
+    const checkSignin = sessionStorage.getItem('_id');
+    console.log("Checksignin: " + checkSignin);
+    if(checkSignin == null){
+        redireRoute.textContent = 'Login';
+        return;
+    }
+    redireRoute.textContent = 'My Info';
+    accessManagement();
+}
+
+//xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
+function redirectRouter(){
+    if(redireRoute.textContent == 'Login'){
+        window.location.href = '/login';
+    }
+    else if(redireRoute.textContent == 'My Info'){
+        window.location.href = '/myinfo';
+    }
+}
+
+//admin truy cap vao trang quan ly
+const allowAccess = document.querySelector('.isAdmin');
+function accessManagement(){
+    const roleUser = sessionStorage.getItem('role');
+    console.log(roleUser)
+    if(roleUser == 'isAdmin'){
+        allowAccess.style.display = 'block';
+        return;
+    }
+    allowAccess.style.display = 'none';
 }
