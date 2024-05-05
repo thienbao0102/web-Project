@@ -567,15 +567,45 @@
     <script>//checkuser
         // check user đã đăng nhập hay chưa
         const redireRoute = document.querySelector('.redirtUser');
-        function checkUserSignIn() {
+        function checkUserSignIn(){
+            const userBox = document.getElementById("userBox")
+            const wellcomeName = document.getElementById("wellcomeName");
             const checkSignin = sessionStorage.getItem('_id');
+            const userAvt = document.getElementById("userAvt");
             console.log("Checksignin: " + checkSignin);
-            if (checkSignin == null) {
+            
+            if(checkSignin == null){
                 redireRoute.textContent = 'Login';
+                userBox.style.display = "none";
+                wellcomeName.style.display = "none";
+                wellcomeName.textContent = ``;
                 return;
             }
+
+            userBox.style.display = "flex";
+            wellcomeName.style.display = "block";
+            renderUserName(wellcomeName)
+            renderUserAvt(userAvt)
             redireRoute.textContent = 'My Info';
             accessManagement();
+        }
+
+        function getUserAvtFromSession(){
+            return sessionStorage.getItem('imageUrl')
+        }
+
+        function getUserNameFromSession(){
+            return sessionStorage.getItem('userName')
+        }
+
+        function renderUserName(divName) {
+            divName.textContent = `Hello ${getUserNameFromSession()}, welcome back!`;
+        }
+
+        function renderUserAvt(divName) {
+            const pictureLink = getUserAvtFromSession()
+            if (pictureLink)
+            divName.src = `${getUserAvtFromSession()}`;
         }
 
         //xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)

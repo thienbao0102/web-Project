@@ -393,7 +393,6 @@ function renderUserAvt(divName) {
     divName.src = `${getUserAvtFromSession()}`;
 }
 
-
 //xu ly su kien chuyen huong (khi chua dang nhap va khi da danh nhap)
 function redirectRouter(){
     if(redireRoute.textContent == 'Login'){
