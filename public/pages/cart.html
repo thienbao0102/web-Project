@@ -288,7 +288,7 @@
                             </div>
                             <span class="productPrice">
                                 <p class="product-price old-price">$${product.price}</p>
-                                <p class="newPrice">$${product.productPrice}</p>
+                                ${checkSalePrice(product)}
                             </span>
                         </div>
                         <ion-icon name="trash-outline" class="delFromCart" style="font-size: 25px; height: 25px;"></ion-icon>
@@ -334,6 +334,13 @@
             document.querySelectorAll(".selected").forEach(option => {
                 option.selected = true;
             });
+        }
+
+        function checkSalePrice() {
+            if (product.sale) {
+                return `<p id="newPrice">$${product.salePrice}</p>`;
+            }
+            return "";
         }
 
     </script>

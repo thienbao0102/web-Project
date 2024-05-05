@@ -1,19 +1,19 @@
 [
     {
         "_id":"USER0001",
-        "items": {
-            "item0": {
-                "idProd": "SHOE0001",
+        "item": {
+            "0": {
+                "id": "SHOE0001",
                 "quantity" : 1,
                 "size": "42"
             },
-            "item1": {
-                "idProd": "SHOE0001",
+            "1": {
+                "id": "SHOE0001",
                 "quantity" : 1,
                 "size": "40"
             },
-            "item2":{
-                "idProd": "SHOE0002",
+            "2":{
+                "id": "SHOE0002",
                 "quantity" : 1,
                 "size": "43"
             }
@@ -21,19 +21,16 @@
     },
     {
         "_id":"USER0002",
-        "items": {
-            "item0": {
-                "idProd": "SHOE0001",
+        "item": {
+            "0": {
                 "quantity" : 1,
                 "size": "42"
             },
-            "item1": {
-                "idProd": "SHOE0001",
+            "1":{
                 "quantity" : 1,
                 "size": "40"
             },
-            "item2":{
-                "idProd": "SHOE0002",
+            "2":{
                 "quantity" : 1,
                 "size": "43"
             }
@@ -41,19 +38,16 @@
     },
     {
         "_id":"USER0003",
-        "items": {
-            "item0": {
-                "idProd": "SHOE0001",
+        "item": {
+            "0": {
                 "quantity" : 1,
                 "size": "42"
             },
-            "item1": {
-                "idProd": "SHOE0001",
+            "1":{
                 "quantity" : 1,
                 "size": "40"
             },
-            "item2":{
-                "idProd": "SHOE0002",
+            "2":{
                 "quantity" : 1,
                 "size": "43"
             }
