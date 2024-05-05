@@ -135,8 +135,12 @@ async function update(query, updateData, nameCollection) {
     try {
         const result = await db.collection(nameCollection).updateMany({_id:{$in: query}}, updateData);
         console.log(result.modifiedCount + " documents updated successfully.");
+        ms = result.modifiedCount +'Update Success!';
+        if(result.modifiedCount == 0){
+            ms = 'No Product Updated'
+        }
         return {
-            ms: 'Update Success!',
+            ms: ms,
             st: 0,
             dt: ''
         };
@@ -154,8 +158,12 @@ async function deleteProducts(query, nameCollection) {
     try {
         const result = await db.collection(nameCollection).deleteMany({_id: {$in: query}});
         console.log(result.deletedCount + " documents deleted successfully.");
+        ms = result.modifiedCount +'Shoes deleted successfully!';
+        if(result.modifiedCount == 0){
+            ms = 'No Product Delete'
+        }
         return {
-            ms: 'Shoes deleted successfully',
+            ms: ms,
             st: 0,
             dt: ''
         };

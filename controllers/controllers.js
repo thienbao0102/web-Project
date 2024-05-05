@@ -158,6 +158,12 @@ async function signUpNewAccount(rawData) {
             'password': passHash
         }
         const result = await controllerDetails.createNewObj(newUser, users);
+        //tạo giỏ hàng
+        const queryCart ={
+            '_id': newId,
+            'item':{}
+        };        
+        const createCart = await controllerDetails.createNewObj(queryCart, carts);
         return {
             dt: result.dt,
             ms: result.ms,
