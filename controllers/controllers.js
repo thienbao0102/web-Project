@@ -311,12 +311,24 @@ async function insertProduct(rawData, fileName) {
 //add to cart
 async function addToCart(rawData) {
     try {
+        //tìm gio hang của nguoi dùng 
+        const query = {};
+        query._id = rawData._id ;
+        const mycart = await controllerDetails.search(query, carts);
+        const lisIds = Object.keys(mycart.dt[0].item)
+        var idItem = 0;
+
+        if(lisIds)
+            lisIds.sort((a, b) => (a < b ? 1 : -1));
+            console.log(lisIds)
+            idItem = parseInt(lisIds[0]) + 1;
+
         const prod = {};
-        prod.item = rawData.idProd;
-        prod[`item.${rawData.idProd}.quantity`] = parseInt(rawData.quantity);
-        prod[`item.${rawData.idProd}.size`] = rawData.size;
+        prod[`item.${idItem}.id`] = rawData.idProd;
+        prod[`item.${idItem}.quantity`] = parseInt(rawData.quantity);
+        prod[`item.${idItem}.size`] = rawData.size;
+
         const addProd = { $set: prod };
-        console.log(addProd)
         const result = await controllerDetails.addProductToCart(rawData._id, addProd, carts)
         return {
             dt: result.dt,
