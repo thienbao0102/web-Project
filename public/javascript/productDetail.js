@@ -41,7 +41,7 @@ function addToCart(){
     })
     .then(res => res.json())
     .then(data=>{
-
+        alert(data.ms);
     })
     .catch(error => {
         console.error('Error:', error);

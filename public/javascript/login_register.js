@@ -146,6 +146,7 @@ function validationRegister(){
     return true;
 }
 
+/*___________API__________*/
 //dang nhap
 function Login(){
     if(validationLogin() != true){
@@ -231,6 +232,7 @@ function SignUp(){
     })
 }
 
+/*_______________client_______________*/
 // check user đã đăng nhập hay chưa
 const redireRoute = document.querySelector('.redirtUser');
 function checkUserSignIn(){
