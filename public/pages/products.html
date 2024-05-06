@@ -43,6 +43,10 @@
         border-radius: 8px;
     }
 
+    .product-image {
+        object-fit: cover;
+    }
+
     .product-info {
         margin-top: 16px;
     }
@@ -252,7 +256,7 @@
             </div>
 
             <div class="user-box" id="userBox">
-                <a style="color: #222831;" href="/my-cart"><span class="cart cart-outline"><ion-icon
+                <a style="color: #222831;" href="/my-cart"><span class="cart cart-outline" id="cartSpan"><ion-icon
                             name="bag-outline"></ion-icon></span></a>
                 <span class="user-avt">
                     <img src="../avt.png" id="userAvt" alt="">
@@ -325,8 +329,8 @@
     <!-- script tuong tac server -->
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
-            handleInput()
-            currentPage = getCurrentPageFromLocalStorage() || 1;
+            await handleInput()
+            const currentPage = getCurrentPageFromLocalStorage();
             if (currentPage) {
                 handlePageNumberClick(parseInt(currentPage));
             }
@@ -371,7 +375,7 @@
             window.location.href = route;
         }
 
-        function handleInput() {   // Lấy giá trị của các ô input vào data để fetch
+        async function handleInput() {   // Lấy giá trị của các ô input vào data để fetch
             // Lấy các tham số truy vấn từ URL
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -409,9 +413,7 @@
                 data.category = category;
                 handleCategory(category)
             }
-            getSearch(data)
-
-            //data.category += typeValue;
+            await getSearch(data)
         }
 
         let documents = [] //Chua san pham tra ve
@@ -443,7 +445,7 @@
 
         async function getSearch(data) {
             const queryParams = new URLSearchParams(data).toString();
-            fetch(`/api/indexSearch?${queryParams}`, {
+            await fetch(`/api/indexSearch?${queryParams}`, {
                 method: 'GET',
             })
                 .then(res => res.json())
@@ -569,7 +571,6 @@
         const redireRoute = document.querySelector('.redirtUser');
         function checkUserSignIn(){
             const userBox = document.getElementById("userBox")
-            const wellcomeName = document.getElementById("wellcomeName");
             const checkSignin = sessionStorage.getItem('_id');
             const userAvt = document.getElementById("userAvt");
             console.log("Checksignin: " + checkSignin);
@@ -582,9 +583,8 @@
                 return;
             }
 
+            renderCartNumber();
             userBox.style.display = "flex";
-            wellcomeName.style.display = "block";
-            renderUserName(wellcomeName)
             renderUserAvt(userAvt)
             redireRoute.textContent = 'My Info';
             accessManagement();
@@ -629,6 +629,45 @@
             }
             allowAccess.style.display = 'none';
         }
+
+        //xu li so luong san pham trong gio hang
+
+        function getUserIdFromSessionStorage(){
+            const _id = sessionStorage.getItem("_id");
+            return _id;
+        }
+
+        async function getCartFromServer(userId){
+            const data = {
+                _id : userId
+            };
+            const queryParams = new URLSearchParams(data).toString();
+            try {
+                const response = await fetch(`/api/getCarts?${queryParams}`, {
+                    method: 'GET',
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                const cart = data.dt;
+                return cart;
+            } catch (error) {
+                console.error('Error:', error);
+                // Xử lý lỗi ở đây nếu cần thiết
+                return null; // hoặc trả về một giá trị mặc định nếu có lỗi
+            }
+        }
+
+        async function renderCartNumber(){
+            const cart = await getCartFromServer(getUserIdFromSessionStorage());
+            items = cart.item;
+            const numOfProductsInCart = Object.keys(items).length;
+            const cartSpan = document.getElementById("cartSpan");
+            cartSpan.setAttribute("data-numProducts", numOfProductsInCart);
+        };
     </script>
     <script>//Xu li phan trang
         const pg = document.getElementById('pagination');

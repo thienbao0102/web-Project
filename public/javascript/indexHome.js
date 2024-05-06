@@ -367,6 +367,7 @@ function checkUserSignIn(){
         return;
     }
 
+    renderCartNumber();
     userBox.style.display = "flex";
     wellcomeName.style.display = "block";
     renderUserName(wellcomeName)
@@ -414,3 +415,42 @@ function accessManagement(){
     }
     allowAccess.style.display = 'none';
 }
+
+//xu li so luong san pham trong gio hang
+
+function getUserIdFromSessionStorage(){
+    const _id = sessionStorage.getItem("_id");
+    return _id;
+}
+
+async function getCartFromServer(userId){
+    const data = {
+        _id : userId
+    };
+    const queryParams = new URLSearchParams(data).toString();
+    try {
+        const response = await fetch(`/api/getCarts?${queryParams}`, {
+            method: 'GET',
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        const cart = data.dt;
+        return cart;
+    } catch (error) {
+        console.error('Error:', error);
+        // Xử lý lỗi ở đây nếu cần thiết
+        return null; // hoặc trả về một giá trị mặc định nếu có lỗi
+    }
+}
+
+async function renderCartNumber(){
+    const cart = await getCartFromServer(getUserIdFromSessionStorage());
+    items = cart.item;
+    const numOfProductsInCart = Object.keys(items).length;
+    const cartSpan = document.getElementById("cartSpan");
+    cartSpan.setAttribute("data-numProducts", numOfProductsInCart);
+};

@@ -14,7 +14,7 @@
         "category": "Sport",
         "description": "Classic Sneakers with a modern twist, perfect for everyday wear.",
         "sale": false,
-        "isPopular" : true,
+        "isPopular" : false,
         "price": 160,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-665455a5-45de-40fb-945f-c1852b82400d/react-infinity-run-flyknit-mens-running-shoe-zX42Nc.jpg"
     },
@@ -52,7 +52,7 @@
         "category": "Sport",
         "description": "High-performance sports shoes designed for active individuals.",
         "sale": false,
-        "isPopular" : true,
+        "isPopular" : false,
         "price": 120,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-33b0a0a5-c171-46cc-ad20-04a768703e47/air-zoom-pegasus-37-womens-running-shoe-Jl0bDf.jpg"
     },
@@ -109,7 +109,7 @@
         "category": "Sport",
         "description": "Durable sports shoes built to endure rigorous activities.",
         "sale": false,
-        "isPopular" : true,
+        "isPopular" : false,
         "price": 150,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/s1amp7uosrn0nqpsxeue/phantom-vision-elite-dynamic-fit-fg-firm-ground-soccer-cleat-19Kv1V.jpg"
     },
@@ -127,8 +127,8 @@
         },
         "category": "Sport",
         "description": "Classic Western-style boots for a timeless look.",
-        "sale": 20,
-        "isPopular" : true,
+        "sale": 10,
+        "isPopular" : false,
         "price": 80,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/whegph8z9ornhxklc8rp/phantom-venom-academy-fg-firm-ground-soccer-cleat-6JVNll.jpg"
     },
@@ -147,7 +147,7 @@
         "category": "Sport",
         "description": "Versatile lifestyle shoes suitable for various occasions.",
         "sale": false,
-        "isPopular" : true,
+        "isPopular" : false,
         "price": 145,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/vhbwnkor8sxt8qtecgia/mercurial-vapor-13-elite-tech-craft-fg-firm-ground-soccer-cleat-l38JPj.jpg"
     },
@@ -166,7 +166,7 @@
         "category": "Sport",
         "description": "Lightweight and breathable sports shoes for maximum comfort.",
         "sale": 20,
-        "isPopular" : true,
+        "isPopular" : false,
         "price": 137,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-a52a8aec-22dc-4982-961b-75c5f4c72805/mercurial-superfly-7-pro-mds-fg-firm-ground-soccer-cleat-mhcpdN.jpg"
     },
@@ -203,8 +203,8 @@
         },
         "category": "Sport",
         "description": "Breathable running shoes designed for long-distance training.",
-        "sale": 20,
-        "isPopular" : true,
+        "sale": 30,
+        "isPopular" : false,
         "price": 100,
         "imageURL": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/178b2a46-3ee4-492b-882e-f71efdd53a36/air-force-1-big-kids-shoe-2zqp8D.jpg"
     },
@@ -223,7 +223,7 @@
         "category": "Sport",
         "description": "Trail running shoes with enhanced grip for outdoor adventures.",
         "sale": false,
-        "isPopular" : true,
+        "isPopular" : false,
         "price": 110,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/8439f823-86cf-4086-81d2-4f9ff9a66866/air-max-90-big-kids-shoe-1wzwJM.jpg"
     },
@@ -260,14 +260,14 @@
         },
         "category": "Sport",
         "description": "High-performance basketball shoes designed for quick cuts and jumps.",
-        "sale": 20,
-        "isPopular" : true,
+        "sale": false,
+        "isPopular" : false,
         "price": 80,
         "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-73e54c0b-11a6-478b-9f90-bd97fcde872d/renew-run-big-kids-running-shoe-5Bpz93.jpg"
     },
     {
-        "_id": "SHOE0015",
-        "name": "Beck",
+        "_id": "SHOE00115",
+        "name": "Air Jordan 1 Low",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -278,15 +278,15 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Sturdy hiking shoes with ankle support for rugged terrain.",
+        "description": "Inspired by the original that debuted in 1985, the Air Jordan 1 Low offers a clean, classic look that's familiar yet always fresh. With an iconic design that pairs perfectly with any 'fit, these kicks ensure you'll always be on point.",
         "sale": false,
         "isPopular" : true,
-        "price": 130,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/Beck-Black_800x800.jpg"
+        "price": 220,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1c0c434c-9802-4556-89c7-a8600b2828d8/air-jordan-1-low-shoes-6Q1tFM.png"
     },
     {
         "_id": "SHOE0016",
-        "name": "Bridgport Advice",
+        "name": "Tatum 2 'Legacy' PF",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -297,15 +297,15 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Flexible tennis shoes suitable for quick movements on the court.",
-        "sale": false,
-        "isPopular" : true,
-        "price": 80,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/BRIDGPORT_ADVICE-BLACK_1_800x800.jpg?v=1576567903"
+        "description": "You know the legend of Jordan Brand and the lore of Boston. Jayson Tatum takes both legacies into the future with this edition of the Tatum 2, combining the iconic 'White Cement' with hot pops of colour that celebrate his team. So, what's your legacy going to be? Step into the lightweight and flexible build of the Tatum 2 and make it what you want.",
+        "sale": 5,
+        "isPopular" : false,
+        "price": 219,
+        "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/3bdf52f5-1615-4bdf-9936-355332055c21/tatum-2-legacy-pf-basketball-shoes-WWbXXK.png"
     },
     {
         "_id": "SHOE0017",
-        "name": "Fester",
+        "name": "Jordan Stay Loyal 3",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -316,15 +316,15 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Comfortable soccer cleats designed for agility and control.",
-        "sale": 20,
-        "isPopular" : true,
-        "price": 105,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/fester-Tan_800x800.jpg?v=1575537531"
+        "description": "You gotta know where you've been to know where you're going. We took that to heart when creating the Stay Loyal 3, a modern shoe built on the Air Jordan legacy. Inside and out, they're made for versatility, with minimalist looks, cloud-like cushioning and design elements that echo the AJ4. In other words, style with proven lasting power.",
+        "sale": 10,
+        "isPopular" : false,
+        "price": 299,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d9aeda4d-8928-4495-91bd-bef61255eb8b/jordan-stay-loyal-3-shoes-GNHN2X.png"
     },
     {
         "_id": "SHOE0018",
-        "name": "Pixel",
+        "name": "Luka 2 PF",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -335,15 +335,15 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Lightweight cycling shoes with a stiff sole for efficient power transfer.",
-        "sale": false,
-        "isPopular" : true,
-        "price": 105,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/PIXEL-TAN_800x800.jpg?v=1577420506"
+        "description": "You bring the speed. We'll bring the stability. The Luka 2 is built to support your skills, with an emphasis on step-backs, side-steps and quick-stop action. A stacked midsole features firm, flexible cushioning for added responsiveness as you shift back and forth on the court. Up top, the full-foot wrapped cage design helps you stay contained whether you're faking out a defender or driving down the lane. With all that tech in a lightweight package, we've got efficiency covered. The rest is up to you.",
+        "sale": 15,
+        "isPopular" : false,
+        "price": 250,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/de9d55e5-633b-4f50-be35-d53fdd1fa895/luka-2-pf-basketball-shoes-LM9ScX.png"
     },
     {
         "_id": "SHOE0019",
-        "name": "Austin",
+        "name": "Air Jordan Legacy 312 Low",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -354,15 +354,15 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Waterproof trail running shoes for wet and muddy conditions.",
-        "sale": 20,
+        "description": "Celebrate MJ's legacy with this shout-out to Chicago's 312 area code. With elements from three iconic Jordans (the AJ3, AJ1 and Air Alpha Force), it's a modern mash-up that reps the best.",
+        "sale": false,
         "isPopular" : true,
-        "price": 115,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/Austin-Coffee_800x800.jpg?v=1574772988"
+        "price": 299,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d872566e-2744-4194-910f-aaa28afc4fad/air-jordan-legacy-312-low-shoes-6Vd4Xl.png"
     },
     {
         "_id": "SHOE0020",
-        "name": "SS-HL-0135",
+        "name": "Jordan Stadium 90",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -373,15 +373,15 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Skateboarding shoes with durable construction for skatepark sessions.",
-        "sale": false,
+        "description": "Comfort is king, but that doesn't mean you have to sacrifice style. Taking design inspiration from the AJ1 and AJ5, the Stadium 90 is ready for everyday wear. The upper is made from leather and airy woven, so you get both breathability and durability, and Nike Air cushioning in the sole keeps your every step light and cushioned.",
+        "sale": 30,
         "isPopular" : true,
-        "price": 129,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/009240000-11-SS-HL-0135-Black_800x800.jpg?v=1572264270"
+        "price": 250,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/54b9dfee-b6c2-43d7-9a68-61e126a5a2e7/jordan-stadium-90-shoes-Jn6ZH4.png"
     },
     {
         "_id": "SHOE0021",
-        "name": "SS-HL-0136",
+        "name": "Air Jordan 1 Mid",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -392,15 +392,15 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Versatile running shoes suitable for road and treadmill workouts.",
-        "sale": 25,
+        "description": "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+        "sale": false,
         "isPopular" : true,
-        "price": 129,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/009250000-779-SS-HL-0136-Coffee_800x800.jpg?v=1571900372"
+        "price": 290,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/aff63355-b2e9-47fb-adae-4b60ba1f602e/air-jordan-1-mid-shoes-SQf7DM.png"
     },
     {
         "_id": "SHOE0022",
-        "name": "SS-HL-0128",
+        "name": "Air Jordan 1 Zoom CMFT 2",
         "sizes": {
             "39": {"quantity": 35},
             "40": {"quantity": 50},
@@ -411,11 +411,11 @@
             "45": {"quantity": 20}
         },
         "category": "Formal",
-        "description": "Breathable golf shoes with excellent traction for stability on the course.",
-        "sale": false,
+        "description": "Premium suede and Jordan Brand's signature Formula 23 foam come together to give you an extra luxurious (and extra cosy) AJ1. You don't need to play 'either or' when it comes to choosing style or comfort with this one—which is nice, 'cause you deserve both.",
+        "sale": 20,
         "isPopular" : true,
-        "price": 129,
-        "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/000300242-484-SS-HL-0128-Blue_800x800.jpg?v=1583235174"
+        "price": 190,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1c0c434c-9802-4556-89c7-a8600b2828d8/air-jordan-1-low-shoes-6Q1tFM.png"
     },
     {
         "_id": "SHOE0023",
@@ -625,6 +625,234 @@
         "sale": 15,
         "isPopular" : true,
         "imageURL": "https://images.vans.com/is/image/Vans/MV122M-HERO?$583x583$"
+    },
+    {
+        "_id": "SHOE0034",
+        "name": "Nike Invincible 3",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 129,
+        "description": "Maximum cushioning provides our most comfortable ride for everyday runs. Experience a breathable Flyknit upper and the robust platform of lightweight ZoomX foam that softens impact. Plus, the midsole of this model is wider and taller than the last for even more cushioned comfort.",
+        "sale": false,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/aa151331-0d75-4744-8e47-cfb7ec0fdfb0/invincible-3-road-running-shoes-KZFTMC.png"
+    },
+    {
+        "_id": "SHOE0035",
+        "name": "Nike Vaporfly 3",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 129,
+        "description": "Catch 'em if you can. Giving you race-day speed to conquer any distance, the Nike Vaporfly 3 is made for the chasers, the racers and the elevated pacers who can't turn down the thrill of the pursuit. We reworked the leader of the super shoe pack and tuned the engine underneath to help you chase personal bests from a 10K to marathon. From elite runners to those new to racing, this versatile road-racing workhorse is for those who see speed as a gateway to more miles and more seemingly uncatchable highs.",
+        "sale": 15,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/e3832ea3-e857-4ad1-8626-7c3b8d204a0e/vaporfly-3-road-racing-shoes-xsDgvM.png"
+    },
+    {
+        "_id": "SHOE0036",
+        "name": "Nike Vomero 17",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 129,
+        "description": "Maximum cushioning provides a comfortable ride for everyday runs. Experience enhanced comfort in this latest version, with a dual-density midsole made with a combination of ZoomX underfoot and Cushlon 3.0 foam throughout. Plus, a new engineered mesh upper offers more breathability.",
+        "sale": 15,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/32f0e4ea-a19f-45c9-b07a-fabdd12be739/vomero-17-road-running-shoes-0DbNrf.png"
+    },
+    {
+        "_id": "SHOE0037",
+        "name": "Nike Structure 25",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 109,
+        "description": "The supportive cushioning provides steadiness for everyday runs. Experience a stable platform without sacrificing performance with a combination of Cushlon 3.0 foam and a Zoom Air unit. Plus, a higher stack height makes it more comfortable, stable and supportive than ever.",
+        "sale": false,
+        "isPopular" : true,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/443d9471-4e9f-4e1a-a4a2-ca9e8f32bd0d/structure-25-road-running-shoes-Vnp1d0.png"
+    },
+    {
+        "_id": "SHOE0038",
+        "name": "Nike InfinityRN 4",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 119,
+        "description": "Maximum cushioning provides elevated comfort for everyday runs. Experience a soft, rocker-shaped platform made with new ReactX foam underfoot, and an ultra-comfortable collar and tongue for a snug feel. Plus, a water-resistant membrane was added to this version to help keep you dry.",
+        "sale": false,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/84dadb96-8116-48db-b489-093a5eebe310/infinityrn-4-road-running-shoes-SFXkMs.png"
+    },
+    {
+        "_id": "SHOE0039",
+        "name": "Nike Motiva",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 129,
+        "description": "The Nike Motiva helps you step through whatever the day brings, at your pace. Its uniquely patterned outsole and exaggerated rocker combine to give you a super-smooth, cushioned and comfortable ride. This means you can walk, jog or run comfortably and come back for your next leisurely stroll confidently. It gives you optimal support for your every move, every day.",
+        "sale": false,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/17de9fea-710d-401e-8de9-96cffccc7f5f/motiva-walking-shoes-Fjzkq7.png"
+    },
+    {
+        "_id": "SHOE0040",
+        "name": "Nike Winflo 11",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 129,
+        "description": "Responsive cushioning provides a balanced ride for everyday runs. Experience energy return with a combination of Cushlon 3.0 foam and a full-length Nike Air unit in the midsole. Plus, an elastic midfoot band and a spacious forefoot provide an accommodating, comfortable fit.",
+        "sale": false,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ecd6012a-022f-44f7-9d49-8b933c0cccc1/wio-11-road-running-shoes-2SNS3P.png"
+    },
+    {
+        "_id": "SHOE0041",
+        "name": "Nike Victory 2 Proto",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 179,
+        "description": "The Victory 2 is tested and validated by the best middle-distance runners sprinting the planet. It sports every speed component you need to smash records, from a carbon fibre Flyplate to Air Zoom unit to a lightweight, responsive ZoomX midsole. AtomKnit on the upper and midfoot containment cables are combined with a supportive base that delivers improved shoe stability and control, especially around the turns.",
+        "sale": false,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/98793563-a8e4-4344-84ae-00ad4c9c9f4b/victory-2-proto-athletics-distance-spikes-lFBThc.png"
+    },
+    {
+        "_id": "SHOE0042",
+        "name": "Nike Revolution 7 EasyOn",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 219,
+        "description": "We loaded the Revolution 7 with the sort of soft cushioning and support that might change your running world. Stylish as ever, comfortable when the rubber meets the road and performance-driven for your desired pace, it's an evolution of a fan favourite that offers a soft, smooth ride. We added the quick-and-easy toggle system that makes putting these shoes on and taking them off a breeze.",
+        "sale": false,
+        "isPopular" : true,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ca929f7e-f433-46b7-8d83-1a6171c172ce/revolution-7-easyon-road-running-shoes-nNqdwt.png"
+    },
+    {
+        "_id": "SHOE0043",
+        "name": "Nike Downshifter 12",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 219,
+        "description": "Take those first steps on your running journey in the Nike Downshifter 12. Made from at least 20% recycled content by weight, it has a supportive fit and stable ride, with a lightweight feel that easily transitions from your workout to hangout. Your trek begins. Lace up and hit the road.",
+        "sale": false,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/e53419df-8536-4c14-8f0d-2e481b1fad2f/downshifter-12-road-running-shoes-kQLnZn.png"
+    },
+    {
+        "_id": "SHOE0044",
+        "name": "Nike Revolution 6",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 129,
+        "description": "Here's to new beginnings between you and the pavement. Lace up the 100% recycled laces and set the pace at the start of your running journey with the plush feel of the Nike Revolution 6. We know comfort is key to a successful run, so we made sure your steps are cushioned and flexible for a soft ride. It's an evolution of a favourite, with a breathable design made with at least 20% recycled content by weight.",
+        "sale": false,
+        "isPopular" : true,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/88c3280a-1b77-4cf9-957f-d71b91e90393/revolution-6-road-running-shoes-NC0P7k.png"
+    },
+    {
+        "_id": "SHOE0045",
+        "name": "Nike Invincible 3 By You",
+        "sizes": {
+            "39": {"quantity": 35},
+            "40": {"quantity": 50},
+            "41": {"quantity": 50},
+            "42": {"quantity": 45},
+            "43": {"quantity": 30},
+            "44": {"quantity": 30},
+            "45": {"quantity": 20}
+        },
+        "category": "Sport",
+        "price": 329,
+        "description": "With maximum cushioning to support every mile, the Invincible 3 is our highest level of comfort underfoot. Its plush and bouncy ZoomX foam helps you stay stable and fresh. In other words—it's going to feel good all day, whatever you're doing. And when you pair all this cushioning with easy-to-style colours, you get a shoe you never want to stop wearing. This version has unlimited customising potential. Personalise everything from the colours to the graphics, outsole material and more. Take it all the way.",
+        "sale": false,
+        "isPopular" : false,
+        "imageURL": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/74a626ac-8b3d-4190-8c1e-67e8e5ede67a/custom-invincible-3-by-you.png"
     }
 ]
 

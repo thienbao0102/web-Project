@@ -359,12 +359,15 @@ header {
 }
 
 .cart-outline::before {
-    content: "10";
+    content: attr(data-numProducts);
     top: -10px;
     right: -10px;
     position: absolute;
     font-size: 0.8rem;
     border-radius: 10rem;
+    text-align: center;
+    height: 1rem;
+    width: 1rem;
     padding: 5px;
     color: #EEEEEE;
     background-color: #222831;
