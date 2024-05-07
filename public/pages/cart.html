@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cart.css">
-    <title>Home</title>
+    <title>Cart</title>
 </head>
 <style>
     
@@ -307,7 +307,7 @@
                     });
             }
 
-            function renderProducts(products) {
+            function renderProducts(products){
                 let Html = ' ';
                 if (products !== null && products.length > 0) {
                     products.forEach(product => {
@@ -429,6 +429,7 @@
                     const productId ={
                         _id : product.id
                     };
+                    console.log(productId)
                     const searchResult = await getSearch(productId)
                     const productInfo = searchResult[0]
                     const productCard = document.createElement("div");

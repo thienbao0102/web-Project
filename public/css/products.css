@@ -588,9 +588,10 @@ header {
     flex-wrap: wrap;
 }
 
-.container .right h2 {
+.container .products h2 {
     width: 100%;
-    text-align: center;
+    position: relative;
+    margin-left: 2rem;
 }
 
 .container .sort {
